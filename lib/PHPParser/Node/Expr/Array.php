@@ -1,9 +1,11 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
  * @property PHPParser_Node_Expr_ArrayItem[] $items Items
  */
-class PHPParser_Node_Expr_Array extends PHPParser_Node_Expr
+class Expr_Array extends Expr
 {
     /**
      * Constructs an array node.
