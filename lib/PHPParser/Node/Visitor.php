@@ -28,7 +28,7 @@ interface Visitor
      *
      * @return null|PHPParser\Node Node
      */
-    public function enterNode(PHPParser\Node $node);
+    public function enterNode(Node $node);
 
     /**
      * Called when leaving a node.
@@ -43,7 +43,7 @@ interface Visitor
      *
      * @return null|PHPParser\Node|false|PHPParser\Node[] Node
      */
-    public function leaveNode(PHPParser\Node $node);
+    public function leaveNode(Node $node);
 
     /**
      * Called once after traversal.

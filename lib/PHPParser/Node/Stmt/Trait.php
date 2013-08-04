@@ -1,12 +1,12 @@
 <?php
 
-namespace PHPParser\Node\Stmt;
+namespace PHPParser\Node;
 
 /**
  * @property string           $name  Name
  * @property PHPParser\Node[] $stmts Statements
  */
-class Trait extends PHPParser\Node\Stmt
+class Stmt_Trait extends Stmt
 {
     /**
      * Constructs a trait node.

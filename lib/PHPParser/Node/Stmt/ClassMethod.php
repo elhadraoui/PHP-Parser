@@ -42,7 +42,7 @@ class ClassMethod extends Stmt
         if (($this->type & Stmt_Class::MODIFIER_STATIC)
             && ('__construct' == $this->name || '__destruct' == $this->name || '__clone' == $this->name)
         ) {
-            throw new PHPParser\Error(sprintf('"%s" method cannot be static', $this->name));
+            throw new Error(sprintf('"%s" method cannot be static', $this->name));
         }
     }
 
@@ -67,6 +67,6 @@ class ClassMethod extends Stmt
     }
 
     public function isStatic() {
-        return (bool) ($this->type & Node\Stmt_Class::MODIFIER_STATIC);
+        return (bool) ($this->type & Stmt_Class::MODIFIER_STATIC);
     }
 }

@@ -2,6 +2,18 @@
 
 namespace PHPParser\Builder;
 
+use PHPParser\Node\Expr_Array;
+
+use PHPParser\Node\Expr\ArrayItem;
+
+use PHPParser\Node\Scalar\String;
+
+use PHPParser\Node\Scalar\DNumber;
+
+use PHPParser\Node\Scalar\LNumber;
+
+use PHPParser\Node\Expr\ConstFetch;
+
 use PHPParser\Node\Stmt_Class;
 
 use PHPParser\Node\Name;
@@ -59,11 +71,11 @@ abstract class BuilderAbstract implements Builder {
                 new Name($value ? 'true' : 'false')
             );
         } elseif (is_int($value)) {
-            return new Scalar\LNumber($value);
+            return new LNumber($value);
         } elseif (is_float($value)) {
-            return new Scalar\DNumber($value);
+            return new DNumber($value);
         } elseif (is_string($value)) {
-            return new Scalar\String($value);
+            return new String($value);
         } elseif (is_array($value)) {
             $items = array();
             $lastKey = -1;
@@ -84,7 +96,7 @@ abstract class BuilderAbstract implements Builder {
 
             return new Expr_Array($items);
         } else {
-            throw new LogicException('Invalid value');
+            throw new \LogicException('Invalid value');
         }
     }
 

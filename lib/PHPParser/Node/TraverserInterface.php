@@ -9,7 +9,7 @@ interface TraverserInterface
      *
      * @param PHPParser\NodeVisitor $visitor Visitor to add
      */
-    function addVisitor(PHPParser\NodeVisitor $visitor);
+    function addVisitor(NodeVisitor $visitor);
 
     /**
      * Traverses an array of nodes using the registered visitors.

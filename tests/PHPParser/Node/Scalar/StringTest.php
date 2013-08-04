@@ -2,6 +2,8 @@
 
 namespace PHPParserTest\Node\Scalar;
 
+use PHPParser\Node\Scalar\String;
+
 class StringTest extends \PHPUnit_Framework_TestCase
 {
     /**

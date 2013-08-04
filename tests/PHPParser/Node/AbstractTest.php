@@ -2,14 +2,18 @@
 
 namespace PHPParserTest\Node;
 
+use PHPParser\Comment\Doc;
+
+use PHPParser\Comment\Comment;
+
 class AbstractTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct() {
         $attributes = array(
             'startLine' => 10,
             'comments'  => array(
-                new PHPParser\Comment('// Comment' . "\n"),
-                new PHPParser\Comment_Doc('/** doc comment */'),
+                new Comment('// Comment' . "\n"),
+                new Doc('/** doc comment */'),
             ),
         );
 
@@ -38,7 +42,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testConstruct
      */
-    public function testGetDocComment(PHPParser\Node $node) {
+    public function testGetDocComment(Node $node) {
         $this->assertEquals('/** doc comment */', $node->getDocComment());
         array_pop($node->getAttribute('comments')); // remove doc comment
         $this->assertNull($node->getDocComment());
@@ -49,7 +53,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testConstruct
      */
-    public function testChange(PHPParser\Node $node) {
+    public function testChange(Node $node) {
         // change of line
         $node->setLine(15);
         $this->assertEquals(15, $node->getLine());

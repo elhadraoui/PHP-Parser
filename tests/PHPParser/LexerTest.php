@@ -2,10 +2,9 @@
 
 namespace PHPParserTest;
 
+use PHPParser\Lexer\Lexer;
 use PHPParser\Comment\Comment;
-
 use PHPParser\Comment\Doc;
-
 use PHPParser\Parser\Parser;
 
 class LexerTest extends \PHPUnit_Framework_TestCase
@@ -14,7 +13,7 @@ class LexerTest extends \PHPUnit_Framework_TestCase
     protected $lexer;
 
     protected function setUp() {
-        $this->lexer = new PHPParser\Lexer;
+        $this->lexer = new Lexer;
     }
 
     /**
@@ -23,7 +22,7 @@ class LexerTest extends \PHPUnit_Framework_TestCase
     public function testError($code, $message) {
         try {
             $this->lexer->startLexing($code);
-        } catch (PHPParser\Error $e) {
+        } catch (Error $e) {
             $this->assertEquals($message, $e->getMessage());
 
             return;

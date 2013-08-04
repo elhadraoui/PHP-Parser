@@ -21,7 +21,7 @@ use PHPParser\Node\Stmt_Interface;
 
 use PHPParser\PrettyPrinter\PrettyPrinterDefault;
 
-use PHPParser\Builder_Interface;
+use PHPParser\Builder\Builder_Interface;
 
 class BuilderInterfaceTest extends \PHPUnit_Framework_TestCase
 {

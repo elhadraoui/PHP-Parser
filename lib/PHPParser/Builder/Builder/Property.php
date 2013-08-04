@@ -2,7 +2,13 @@
 
 namespace PHPParser\Builder;
 
-class Property extends BuilderAbstract
+use PHPParser\Node\Stmt\PropertyProperty;
+
+use PHPParser\Node\Stmt\Property;
+
+use PHPParser\Node\Stmt_Class;
+
+class Builder_Property extends BuilderAbstract
 {
     protected $name;
 
@@ -27,7 +33,7 @@ class Property extends BuilderAbstract
      * @return PHPParser\Builder_Property The builder instance (for fluid interface)
      */
     public function makePublic() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC);
+        $this->setModifier(Stmt_Class::MODIFIER_PUBLIC);
 
         return $this;
     }
@@ -38,7 +44,7 @@ class Property extends BuilderAbstract
      * @return PHPParser\Builder_Property The builder instance (for fluid interface)
      */
     public function makeProtected() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED);
+        $this->setModifier(Stmt_Class::MODIFIER_PROTECTED);
 
         return $this;
     }
@@ -49,7 +55,7 @@ class Property extends BuilderAbstract
      * @return PHPParser\Builder_Property The builder instance (for fluid interface)
      */
     public function makePrivate() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE);
+        $this->setModifier(Stmt_Class::MODIFIER_PRIVATE);
 
         return $this;
     }
@@ -60,7 +66,7 @@ class Property extends BuilderAbstract
      * @return PHPParser\Builder_Property The builder instance (for fluid interface)
      */
     public function makeStatic() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_STATIC);
+        $this->setModifier(Stmt_Class::MODIFIER_STATIC);
 
         return $this;
     }
@@ -84,10 +90,10 @@ class Property extends BuilderAbstract
      * @return PHPParser\Node\Stmt_Property The built property node
      */
     public function getNode() {
-        return new PHPParser\Node\Stmt_Property(
-            $this->type !== 0 ? $this->type : PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC,
+        return new Property(
+            $this->type !== 0 ? $this->type : Stmt_Class::MODIFIER_PUBLIC,
             array(
-                new PHPParser\Node\Stmt_PropertyProperty($this->name, $this->default)
+                new PropertyProperty($this->name, $this->default)
             )
         );
     }

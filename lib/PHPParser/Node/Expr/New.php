@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property PHPParser\Node\Name|PHPParser\Node\Expr $class Class name
  * @property PHPParser\Node\Arg[]                    $args  Arguments
  */
-class Expr_New extends PHPParser\Node\Expr
+class Expr_New extends Expr
 {
     /**
      * Constructs a function call node.

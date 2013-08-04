@@ -2,7 +2,7 @@
 
 namespace PHPParser\Node;
 
-class Traverser implements PHPParser\NodeTraverserInterface
+class Traverser implements TraverserInterface
 {
     /**
      * @var PHPParser\NodeVisitor[] Visitors
@@ -21,7 +21,7 @@ class Traverser implements PHPParser\NodeTraverserInterface
      *
      * @param PHPParser\NodeVisitor $visitor Visitor to add
      */
-    public function addVisitor(PHPParser\NodeVisitor $visitor) {
+    public function addVisitor(NodeVisitor $visitor) {
         $this->visitors[] = $visitor;
     }
 
@@ -50,7 +50,7 @@ class Traverser implements PHPParser\NodeTraverserInterface
         return $nodes;
     }
 
-    protected function traverseNode(PHPParser\Node $node) {
+    protected function traverseNode(Node $node) {
         $node = clone $node;
 
         foreach ($node->getSubNodeNames() as $name) {
@@ -58,7 +58,7 @@ class Traverser implements PHPParser\NodeTraverserInterface
 
             if (is_array($subNode)) {
                 $subNode = $this->traverseArray($subNode);
-            } elseif ($subNode instanceof PHPParser\Node) {
+            } elseif ($subNode instanceof Node) {
                 foreach ($this->visitors as $visitor) {
                     if (null !== $return = $visitor->enterNode($subNode)) {
                         $subNode = $return;
@@ -84,7 +84,7 @@ class Traverser implements PHPParser\NodeTraverserInterface
         foreach ($nodes as $i => &$node) {
             if (is_array($node)) {
                 $node = $this->traverseArray($node);
-            } elseif ($node instanceof PHPParser\Node) {
+            } elseif ($node instanceof Node) {
                 foreach ($this->visitors as $visitor) {
                     if (null !== $return = $visitor->enterNode($node)) {
                         $node = $return;

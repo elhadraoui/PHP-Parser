@@ -68,7 +68,7 @@ abstract class NodeAbstract implements Node, \IteratorAggregate
         }
 
         $lastComment = $comments[count($comments) - 1];
-        if (!$lastComment instanceof PHPParser\Comment_Doc) {
+        if (!$lastComment instanceof Comment_Doc) {
             return null;
         }
 
@@ -122,6 +122,6 @@ abstract class NodeAbstract implements Node, \IteratorAggregate
         unset($this->subNodes[$name]);
     }
     public function getIterator() {
-        return new ArrayIterator($this->subNodes);
+        return new \ArrayIterator($this->subNodes);
     }
 }

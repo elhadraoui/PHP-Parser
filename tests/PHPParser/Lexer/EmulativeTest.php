@@ -2,6 +2,8 @@
 
 namespace PHPParserTest\Lexer;
 
+use PHPParser\Lexer\Emulative;
+
 use PHPParser\Parser\Parser;
 
 class EmulativeTest extends \PHPUnit_Framework_TestCase
@@ -10,7 +12,7 @@ class EmulativeTest extends \PHPUnit_Framework_TestCase
     protected $lexer;
 
     protected function setUp() {
-        $this->lexer = new PHPParser\Lexer_Emulative;
+        $this->lexer = new Emulative;
     }
 
     /**
@@ -29,8 +31,8 @@ class EmulativeTest extends \PHPUnit_Framework_TestCase
     public function testNoReplaceKeywordsAfterObjectOperator($keyword) {
         $this->lexer->startLexing('<?php ->' . $keyword);
 
-        $this->assertEquals(PHPParser\Parser::T_OBJECT_OPERATOR, $this->lexer->getNextToken());
-        $this->assertEquals(PHPParser\Parser::T_STRING, $this->lexer->getNextToken());
+        $this->assertEquals(Parser::T_OBJECT_OPERATOR, $this->lexer->getNextToken());
+        $this->assertEquals(Parser::T_STRING, $this->lexer->getNextToken());
         $this->assertEquals(0, $this->lexer->getNextToken());
     }
 
@@ -75,7 +77,7 @@ class EmulativeTest extends \PHPUnit_Framework_TestCase
         $stringifiedToken = '"' . addcslashes($code, '"\\') . '"';
         $this->lexer->startLexing('<?php ' . $stringifiedToken);
 
-        $this->assertEquals(PHPParser\Parser::T_CONSTANT_ENCAPSED_STRING, $this->lexer->getNextToken($text));
+        $this->assertEquals(Parser::T_CONSTANT_ENCAPSED_STRING, $this->lexer->getNextToken($text));
         $this->assertEquals($stringifiedToken, $text);
         $this->assertEquals(0, $this->lexer->getNextToken());
     }

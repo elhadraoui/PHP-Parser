@@ -2,6 +2,33 @@
 
 namespace PHPParserTest\NodeVisitor;
 
+use PHPParser\Node\Stmt_Use;
+
+use PHPParser\Node\Stmt_Trait;
+
+use PHPParser\Node\Stmt_Namespace;
+
+use PHPParser\Node\Scalar\String;
+
+use PHPParser\Node\Node_Const;
+
+use PHPParser\Node\Stmt_Class;
+use PHPParser\Node\Stmt_Interface;
+use PHPParser\Node\Stmt_Function;
+use PHPParser\Node\Stmt_Const;
+
+use PHPParser\Node\Traverser;
+
+use PHPParser\Node\Visitor\NameResolver;
+
+use PHPParser\Node\Name;
+
+use PHPParser\Node\Expr_New;
+
+use PHPParser\Lexer\Emulative;
+
+use PHPParser\Parser\Parser;
+
 class NameResolverTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -75,10 +102,10 @@ namespace {
 }
 EOC;
 
-        $parser        = new PHPParser\Parser(new PHPParser\Lexer_Emulative);
-        $prettyPrinter = new PHPParser\PrettyPrinter_Default;
-        $traverser     = new PHPParser\NodeTraverser;
-        $traverser->addVisitor(new PHPParser\NodeVisitor_NameResolver);
+        $parser        = new Parser(new Emulative);
+        $prettyPrinter = new PrettyPrinter_Default;
+        $traverser     = new NodeTraverser;
+        $traverser->addVisitor(new NodeVisitor_NameResolver);
 
         $stmts = $parser->parse($code);
         $stmts = $traverser->traverse($stmts);
@@ -142,10 +169,10 @@ try {
 }
 EOC;
 
-        $parser        = new PHPParser\Parser(new PHPParser\Lexer_Emulative);
-        $prettyPrinter = new PHPParser\PrettyPrinter_Default;
-        $traverser     = new PHPParser\NodeTraverser;
-        $traverser->addVisitor(new PHPParser\NodeVisitor_NameResolver);
+        $parser        = new Parser(new Emulative);
+        $prettyPrinter = new PrettyPrinter_Default;
+        $traverser     = new NodeTraverser;
+        $traverser->addVisitor(new NodeVisitor_NameResolver);
 
         $stmts = $parser->parse($code);
         $stmts = $traverser->traverse($stmts);
@@ -154,33 +181,33 @@ EOC;
     }
 
     public function testNoResolveSpecialName() {
-        $stmts = array(new Expr_New(new PHPParser\Node\Name('self')));
+        $stmts = array(new Expr_New(new Name('self')));
 
-        $traverser = new PHPParser\NodeTraverser;
-        $traverser->addVisitor(new PHPParser\NodeVisitor_NameResolver);
+        $traverser = new Traverser;
+        $traverser->addVisitor(new NameResolver);
 
         $this->assertEquals($stmts, $traverser->traverse($stmts));
     }
 
     protected function createNamespacedAndNonNamespaced(array $stmts) {
         return array(
-            new PHPParser\Node\Stmt_Namespace(new PHPParser\Node\Name('NS'), $stmts),
-            new PHPParser\Node\Stmt_Namespace(null,                          $stmts),
+            new Stmt_Namespace(new Name('NS'), $stmts),
+            new Stmt_Namespace(null,                          $stmts),
         );
     }
 
     public function testAddNamespacedName() {
         $stmts = $this->createNamespacedAndNonNamespaced(array(
-            new PHPParser\Node\Stmt_Class('A'),
-            new PHPParser\Node\Stmt_Interface('B'),
-            new PHPParser\Node\Stmt_Function('C'),
-            new PHPParser\Node\Stmt_Const(array(
-                new PHPParser\Node_Const('D', new String('E'))
+            new Stmt_Class('A'),
+            new Stmt_Interface('B'),
+            new Stmt_Function('C'),
+            new Stmt_Const(array(
+                new Node_Const('D', new String('E'))
             )),
         ));
 
-        $traverser = new PHPParser\NodeTraverser;
-        $traverser->addVisitor(new PHPParser\NodeVisitor_NameResolver);
+        $traverser = new Traverser;
+        $traverser->addVisitor(new NameResolver);
 
         $stmts = $traverser->traverse($stmts);
 
@@ -196,11 +223,11 @@ EOC;
 
     public function testAddTraitNamespacedName() {
         $stmts = $this->createNamespacedAndNonNamespaced(array(
-            new PHPParser\Node\Stmt_Trait('A')
+            new Stmt_Trait('A')
         ));
 
-        $traverser = new PHPParser\NodeTraverser;
-        $traverser->addVisitor(new PHPParser\NodeVisitor_NameResolver);
+        $traverser = new Traverser;
+        $traverser->addVisitor(new NameResolver);
 
         $stmts = $traverser->traverse($stmts);
 
@@ -214,14 +241,14 @@ EOC;
      */
     public function testAlreadyInUseError() {
         $stmts = array(
-            new PHPParser\Node\Stmt_Use(array(
-                new PHPParser\Node\Stmt_UseUse(new PHPParser\Node\Name('A\B'), 'B', array('startLine' => 1)),
-                new PHPParser\Node\Stmt_UseUse(new PHPParser\Node\Name('C'),   'B', array('startLine' => 2)),
+            new Stmt_Use(array(
+                new Stmt_Use(new Name('A\B'), 'B', array('startLine' => 1)),
+                new Stmt_Use(new Name('C'),   'B', array('startLine' => 2)),
             ))
         );
 
-        $traverser = new PHPParser\NodeTraverser;
-        $traverser->addVisitor(new PHPParser\NodeVisitor_NameResolver);
+        $traverser = new NodeTraverser;
+        $traverser->addVisitor(new NodeVisitor_NameResolver);
         $traverser->traverse($stmts);
     }
 }

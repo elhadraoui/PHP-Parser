@@ -12,12 +12,12 @@ class Dumper
      * @return string Dumped value
      */
     public function dump($node) {
-        if ($node instanceof PHPParser\Node) {
+        if ($node instanceof Node) {
             $r = $node->getType() . '(';
         } elseif (is_array($node)) {
             $r = 'array(';
         } else {
-            throw new InvalidArgumentException('Can only dump nodes and arrays.');
+            throw new \InvalidArgumentException('Can only dump nodes and arrays.');
         }
 
         foreach ($node as $key => $value) {

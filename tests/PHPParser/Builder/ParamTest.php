@@ -2,8 +2,10 @@
 
 namespace PHPParserTest\Builder;
 
+use PHPParser\Node\Param;
+
 use PHPParser\Node\Scalar\DirConst;
-use PHPParser\Builder\Param;
+use PHPParser\Builder\Builder_Param;
 use PHPParser\Node\Expr\ConstFetch;
 use PHPParser\Node\Expr_Array;
 use PHPParser\Node\Expr\ArrayItem;
@@ -15,7 +17,7 @@ use PHPParser\Node\Scalar\String;
 class ParamTest extends \PHPUnit_Framework_TestCase
 {
     public function createParamBuilder($name) {
-        return new Param($name);
+        return new Builder_Param($name);
     }
 
     /**
@@ -91,7 +93,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Param('test', null, 'array'),
+            new Param('test', null, 'array'),
             $node
         );
 
@@ -101,7 +103,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Param('test', null, 'callable'),
+            new Param('test', null, 'callable'),
             $node
         );
 
@@ -111,7 +113,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Param('test', null, new PHPParser\Node\Name('Some\Class')),
+            new Param('test', null, new Name('Some\Class')),
             $node
         );
     }
@@ -123,7 +125,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Param('test', null, null, true),
+            new Param('test', null, null, true),
             $node
         );
     }

@@ -2,7 +2,9 @@
 
 namespace PHPParser\Builder;
 
-use PHPParser\Builder_Interface;
+use PHPParser\Builder\Builder_Interface;
+use PHPParser\Builder\Builder_Property;
+use PHPParser\Builder\Builder_Param;
 
 /**
  * "class", "interface" and "function" are reserved keywords, so the methods are defined as _class(),
@@ -45,7 +47,7 @@ class Factory
      * @return PHPParser\Builder_Method The created method builder
      */
     public function method($name) {
-        return new Method($name);
+        return new Builder_Method($name);
     }
 
     /**
@@ -56,7 +58,7 @@ class Factory
      * @return PHPParser\Builder_Param The created parameter builder
      */
     public function param($name) {
-        return new Param($name);
+        return new Builder_Param($name);
     }
 
     /**
@@ -67,7 +69,7 @@ class Factory
      * @return PHPParser\Builder_Property The created property builder
      */
     public function property($name) {
-        return new Property($name);
+        return new Builder_Property($name);
     }
 
     /**

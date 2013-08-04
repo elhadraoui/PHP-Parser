@@ -2,7 +2,10 @@
 
 namespace PHPParser\Builder;
 
-class Method extends BuilderAbstract
+use PHPParser\Node\Stmt_Class;
+use PHPParser\Node\Stmt\ClassMethod;
+
+class Builder_Method extends BuilderAbstract
 {
     protected $name;
 
@@ -31,7 +34,7 @@ class Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makePublic() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC);
+        $this->setModifier(Stmt_Class::MODIFIER_PUBLIC);
 
         return $this;
     }
@@ -42,7 +45,7 @@ class Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makeProtected() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED);
+        $this->setModifier(Stmt_Class::MODIFIER_PROTECTED);
 
         return $this;
     }
@@ -53,7 +56,7 @@ class Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makePrivate() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE);
+        $this->setModifier(Stmt_Class::MODIFIER_PRIVATE);
 
         return $this;
     }
@@ -64,7 +67,7 @@ class Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makeStatic() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_STATIC);
+        $this->setModifier(Stmt_Class::MODIFIER_STATIC);
 
         return $this;
     }
@@ -79,7 +82,7 @@ class Method extends BuilderAbstract
             throw new LogicException('Cannot make method with statements abstract');
         }
 
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_ABSTRACT);
+        $this->setModifier(Stmt_Class::MODIFIER_ABSTRACT);
         $this->stmts = null; // abstract methods don't have statements
 
         return $this;
@@ -91,7 +94,7 @@ class Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makeFinal() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_FINAL);
+        $this->setModifier(Stmt_Class::MODIFIER_FINAL);
 
         return $this;
     }
@@ -150,7 +153,7 @@ class Method extends BuilderAbstract
      */
     public function addStmt($stmt) {
         if (null === $this->stmts) {
-            throw new LogicException('Cannot add statements to an abstract method');
+            throw new \LogicException('Cannot add statements to an abstract method');
         }
 
         $this->stmts[] = $this->normalizeNode($stmt);
@@ -179,8 +182,8 @@ class Method extends BuilderAbstract
      * @return PHPParser\Node\Stmt_ClassMethod The built method node
      */
     public function getNode() {
-        return new PHPParser\Node\Stmt_ClassMethod($this->name, array(
-            'type'   => $this->type !== 0 ? $this->type : PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC,
+        return new ClassMethod($this->name, array(
+            'type'   => $this->type !== 0 ? $this->type : Stmt_Class::MODIFIER_PUBLIC,
             'byRef'  => $this->returnByRef,
             'params' => $this->params,
             'stmts'  => $this->stmts,

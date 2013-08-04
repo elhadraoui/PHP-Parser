@@ -3,13 +3,9 @@
 namespace PHPParserTest\Node;
 
 use PHPParser\Node\Scalar\String;
-
 use PHPParser\Node\Dumper;
-
 use PHPParser\Node\Expr\ArrayItem;
-
 use PHPParser\Node\Expr_Array;
-
 use PHPParser\Node\Name;
 
 class DumperTest extends \PHPUnit_Framework_TestCase
@@ -19,7 +15,7 @@ class DumperTest extends \PHPUnit_Framework_TestCase
      * @covers PHPParser\NodeDumper::dump
      */
     public function testDump($node, $dump) {
-        $dumper = new PHPParser\NodeDumper;
+        $dumper = new Dumper;
 
         $this->assertEquals($dump, $dumper->dump($node));
     }
@@ -73,6 +69,6 @@ class DumperTest extends \PHPUnit_Framework_TestCase
      */
     public function testError() {
         $dumper = new Dumper;
-        $dumper->dump(new stdClass);
+        $dumper->dump(new \stdClass);
     }
 }

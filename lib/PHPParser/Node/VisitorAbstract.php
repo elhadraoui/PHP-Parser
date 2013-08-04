@@ -5,10 +5,10 @@ namespace PHPParser\Node;
 /**
  * @codeCoverageIgnore
  */
-class VisitorAbstract implements PHPParser\NodeVisitor
+class VisitorAbstract implements Visitor
 {
     public function beforeTraverse(array $nodes)    { }
-    public function enterNode(PHPParser\Node $node) { }
-    public function leaveNode(PHPParser\Node $node) { }
+    public function enterNode(Node $node) { }
+    public function leaveNode(Node $node) { }
     public function afterTraverse(array $nodes)     { }
 }

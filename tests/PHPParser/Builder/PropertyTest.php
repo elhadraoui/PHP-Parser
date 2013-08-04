@@ -2,26 +2,26 @@
 
 namespace PHPParserTest\Builder;
 
+use PHPParser\Node\Stmt\PropertyProperty;
+
+use PHPParser\Node\Stmt_Class;
+
+use PHPParser\Node\Stmt\Property;
+
+use PHPParser\Builder\Builder_Property;
 use PHPParser\Node\Expr\ArrayItem;
-
 use PHPParser\Node\Expr_Array;
-
 use PHPParser\Node\Expr\ConstFetch;
-
 use PHPParser\Node\Scalar\DirConst;
-
 use PHPParser\Node\Scalar\String;
-
 use PHPParser\Node\Scalar\DNumber;
-
 use PHPParser\Node\Scalar\LNumber;
-
 use PHPParser\Node\Name;
 
 class PropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function createPropertyBuilder($name) {
-        return new PHPParser\Builder_Property($name);
+        return new Builder_Property($name);
     }
 
     public function testModifiers() {
@@ -32,11 +32,11 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Stmt_Property(
-                PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE
-              | PHPParser\Node\Stmt_Class::MODIFIER_STATIC,
+            new Property(
+                Stmt_Class::MODIFIER_PRIVATE
+              | Stmt_Class::MODIFIER_STATIC,
                 array(
-                    new PHPParser\Node\Stmt_PropertyProperty('test')
+                    new PropertyProperty('test')
                 )
             ),
             $node
@@ -48,10 +48,10 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Stmt_Property(
-                PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED,
+            new Property(
+                Stmt_Class::MODIFIER_PROTECTED,
                 array(
-                    new PHPParser\Node\Stmt_PropertyProperty('test')
+                    new PropertyProperty('test')
                 )
             ),
             $node
@@ -63,10 +63,10 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Stmt_Property(
-                PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC,
+            new Property(
+                Stmt_Class::MODIFIER_PUBLIC,
                 array(
-                    new PHPParser\Node\Stmt_PropertyProperty('test')
+                    new PropertyProperty('test')
                 )
             ),
             $node

@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPParser;
+namespace PHPParser\Builder;
 
 use PHPParser\Node\Stmt_Interface;
 

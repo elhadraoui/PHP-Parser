@@ -2,7 +2,9 @@
 
 namespace PHPParser\Builder;
 
-class Param extends BuilderAbstract
+use PHPParser\Node\Param;
+
+class Builder_Param extends BuilderAbstract
 {
     protected $name;
 
@@ -70,7 +72,7 @@ class Param extends BuilderAbstract
      * @return PHPParser\Node\Param The built parameter node
      */
     public function getNode() {
-        return new PHPParser\Node\Param(
+        return new Param(
             $this->name, $this->default, $this->type, $this->byRef
         );
     }

@@ -165,7 +165,7 @@ class Name extends NodeAbstract
             return $name->parts;
         }
 
-        throw new InvalidArgumentException(
+        throw new \InvalidArgumentException(
             'When changing a name you need to pass either a string, an array or a Name node'
         );
     }
