@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_Node_Stmt_ClassTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Node\Stmt;
+
+class ClassTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsAbstract() {
         $class = new PHPParser_Node_Stmt_Class('Foo', array('type' => PHPParser_Node_Stmt_Class::MODIFIER_ABSTRACT));
