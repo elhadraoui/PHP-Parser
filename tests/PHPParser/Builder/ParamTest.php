@@ -5,6 +5,7 @@ namespace PHPParserTest\Builder;
 use PHPParser\Node\Expr\ConstFetch;
 use PHPParser\Node\Name;
 use PHPParser\Builder\Param;
+use PHPParser\Node\Scalar\LNumber;
 
 class ParamTest extends \PHPUnit_Framework_TestCase
 {
