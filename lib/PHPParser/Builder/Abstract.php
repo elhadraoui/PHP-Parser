@@ -2,8 +2,6 @@
 
 namespace PHPParser\Builder;
 
-use PHPParser\Builder;
-
 abstract class BuilderAbstract implements Builder {
     /**
      * Normalizes a node: Converts builder objects to nodes.
