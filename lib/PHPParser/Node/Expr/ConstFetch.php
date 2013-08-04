@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPParser\Expr;
+namespace PHPParser\Node\Expr;
 
 /**
  * @property PHPParser\Node\Name $name Constant name
