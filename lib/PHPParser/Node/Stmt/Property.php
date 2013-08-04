@@ -6,7 +6,11 @@ namespace PHPParser\Node\Stmt;
  * @property int                                    $type  Modifiers
  * @property PHPParser\Node\Stmt_PropertyProperty[] $props Properties
  */
-class Property extends PHPParser\Node\Stmt
+use PHPParser\Node\Stmt_Class;
+
+use PHPParser\Node\Stmt;
+
+class Property extends Stmt
 {
     /**
      * Constructs a class property list node.
@@ -26,18 +30,18 @@ class Property extends PHPParser\Node\Stmt
     }
 
     public function isPublic() {
-        return (bool) ($this->type & PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC);
+        return (bool) ($this->type & Stmt_Class::MODIFIER_PUBLIC);
     }
 
     public function isProtected() {
-        return (bool) ($this->type & PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED);
+        return (bool) ($this->type & Stmt_Class::MODIFIER_PROTECTED);
     }
 
     public function isPrivate() {
-        return (bool) ($this->type & PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE);
+        return (bool) ($this->type & Stmt_Class::MODIFIER_PRIVATE);
     }
 
     public function isStatic() {
-        return (bool) ($this->type & PHPParser\Node\Stmt_Class::MODIFIER_STATIC);
+        return (bool) ($this->type & Stmt_Class::MODIFIER_STATIC);
     }
 }

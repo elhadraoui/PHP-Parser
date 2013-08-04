@@ -4,7 +4,7 @@ namespace PHPParserTest;
 
 require_once dirname(__FILE__) . '/CodeTestAbstract.php';
 
-class PrettyPrinterTest extends PHPParser\Tests_CodeTestAbstract
+class PrettyPrinterTest extends CodeTestAbstract
 {
     protected function doTestPrettyPrintMethod($method, $name, $code, $dump) {
         $parser = new PHPParser\Parser(new PHPParser\Lexer_Emulative);

@@ -2,25 +2,38 @@
 
 namespace PHPParserTest\Builder;
 
+use PHPParser\Node\Scalar\String;
+
+use PHPParser\Node\Stmt_Echo;
+use PHPParser\Node\Stmt\TraitUse;
+use PHPParser\Node\Node_Const;
+use PHPParser\Node\Scalar\ClassConst;
+use PHPParser\Node\Stmt\PropertyProperty;
+use PHPParser\Node\Stmt\Property;
+use PHPParser\Node\Stmt\ClassMethod;
+use PHPParser\Node\Stmt_Class;
+use PHPParser\Node\Name;
+use PHPParser\Builder\BuilderClass;
+
 class BuilderClassTest extends \PHPUnit_Framework_TestCase
 {
     protected function createClassBuilder($class) {
-        return new PHPParser\Builder_Class($class);
+        return new BuilderClass($class);
     }
 
     public function testExtendsImplements() {
         $node = $this->createClassBuilder('SomeLogger')
             ->extend('BaseLogger')
-            ->implement('Namespaced\Logger', new PHPParser\Node\Name('SomeInterface'))
+            ->implement('Namespaced\Logger', new Name('SomeInterface'))
             ->getNode()
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Stmt_Class('SomeLogger', array(
-                'extends' => new PHPParser\Node\Name('BaseLogger'),
+            new Stmt_Class('SomeLogger', array(
+                'extends' => new Name('BaseLogger'),
                 'implements' => array(
-                    new PHPParser\Node\Name('Namespaced\Logger'),
-                    new PHPParser\Node\Name('SomeInterface')
+                    new Name('Namespaced\Logger'),
+                    new Name('SomeInterface')
                 ),
             )),
             $node
@@ -34,8 +47,8 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Stmt_Class('Test', array(
-                'type' => PHPParser\Node\Stmt_Class::MODIFIER_ABSTRACT
+            new Stmt_Class('Test', array(
+                'type' => Stmt_Class::MODIFIER_ABSTRACT
             )),
             $node
         );
@@ -48,23 +61,23 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Stmt_Class('Test', array(
-                'type' => PHPParser\Node\Stmt_Class::MODIFIER_FINAL
+            new Stmt_Class('Test', array(
+                'type' => Stmt_Class::MODIFIER_FINAL
             )),
             $node
         );
     }
 
     public function testStatementOrder() {
-        $method = new PHPParser\Node\Stmt_ClassMethod('testMethod');
-        $property = new PHPParser\Node\Stmt_Property(
-            PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC,
-            array(new PHPParser\Node\Stmt_PropertyProperty('testProperty'))
+        $method = new ClassMethod('testMethod');
+        $property = new Property(
+            Stmt_Class::MODIFIER_PUBLIC,
+            array(new PropertyProperty('testProperty'))
         );
-        $const = new PHPParser\Node\Stmt_ClassConst(array(
-            new PHPParser\Node_Const('TEST_CONST', new String('ABC'))
+        $const = new ClassConst(array(
+            new Node_Const('TEST_CONST', new String('ABC'))
         ));
-        $use = new PHPParser\Node\Stmt_TraitUse(array(new PHPParser\Node\Name('SomeTrait')));
+        $use = new TraitUse(array(new Name('SomeTrait')));
 
         $node = $this->createClassBuilder('Test')
             ->addStmt($method)
@@ -74,7 +87,7 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser\Node\Stmt_Class('Test', array(
+            new Stmt_Class('Test', array(
                 'stmts' => array($use, $const, $property, $method)
             )),
             $node
@@ -87,7 +100,7 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidStmtError() {
         $this->createClassBuilder('Test')
-            ->addStmt(new PHPParser\Node\Stmt_Echo(array()))
+            ->addStmt(new Stmt_Echo(array()))
         ;
     }
 }

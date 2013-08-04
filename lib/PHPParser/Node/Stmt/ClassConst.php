@@ -2,10 +2,12 @@
 
 namespace PHPParser\Node\Stmt;
 
+use PHPParser\Node\Stmt;
+
 /**
  * @property PHPParser\Node\Const[] $consts Constant declarations
  */
-class ClassConst extends PHPParser\Node\Stmt
+class ClassConst extends Stmt
 {
     /**
      * Constructs a class const list node.

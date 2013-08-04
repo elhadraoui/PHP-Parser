@@ -5,9 +5,9 @@ namespace PHPParserTest;
 abstract class CodeTestAbstract extends \PHPUnit_Framework_TestCase
 {
     protected function getTests($directory, $fileExtension) {
-        $it = new RecursiveDirectoryIterator($directory);
-        $it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::LEAVES_ONLY);
-        $it = new RegexIterator($it, '(\.' . preg_quote($fileExtension) . '$)');
+        $it = new \RecursiveDirectoryIterator($directory);
+        $it = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::LEAVES_ONLY);
+        $it = new \RegexIterator($it, '(\.' . preg_quote($fileExtension) . '$)');
 
         $tests = array();
         foreach ($it as $file) {

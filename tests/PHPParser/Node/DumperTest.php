@@ -2,6 +2,16 @@
 
 namespace PHPParserTest\Node;
 
+use PHPParser\Node\Scalar\String;
+
+use PHPParser\Node\Dumper;
+
+use PHPParser\Node\Expr\ArrayItem;
+
+use PHPParser\Node\Expr_Array;
+
+use PHPParser\Node\Name;
+
 class DumperTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -30,7 +40,7 @@ class DumperTest extends \PHPUnit_Framework_TestCase
 )'
             ),
             array(
-                new PHPParser\Node\Name(array('Hallo', 'World')),
+                new Name(array('Hallo', 'World')),
 'Name(
     parts: array(
         0: Hallo
@@ -40,7 +50,7 @@ class DumperTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 new Expr_Array(array(
-                    new Expr_ArrayItem(new String('Foo'))
+                    new ArrayItem(new String('Foo'))
                 )),
 'Expr_Array(
     items: array(
@@ -62,7 +72,7 @@ class DumperTest extends \PHPUnit_Framework_TestCase
      * @expectedExceptionMessage Can only dump nodes and arrays.
      */
     public function testError() {
-        $dumper = new PHPParser\NodeDumper;
+        $dumper = new Dumper;
         $dumper->dump(new stdClass);
     }
 }

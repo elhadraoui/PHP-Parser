@@ -2,6 +2,12 @@
 
 namespace PHPParserTest;
 
+use PHPParser\Comment\Comment;
+
+use PHPParser\Comment\Doc;
+
+use PHPParser\Parser\Parser;
+
 class LexerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var PHPParser\Lexer */
@@ -56,7 +62,7 @@ class LexerTest extends \PHPUnit_Framework_TestCase
                 '<?php tokens ?>plaintext',
                 array(
                     array(
-                        PHPParser\Parser::T_STRING, 'tokens',
+                        Parser::T_STRING, 'tokens',
                         array('startLine' => 1), array('endLine' => 1)
                     ),
                     array(
@@ -64,7 +70,7 @@ class LexerTest extends \PHPUnit_Framework_TestCase
                         array('startLine' => 1), array('endLine' => 1)
                     ),
                     array(
-                        PHPParser\Parser::T_INLINE_HTML, 'plaintext',
+                        Parser::T_INLINE_HTML, 'plaintext',
                         array('startLine' => 1), array('endLine' => 1)
                     ),
                 )
@@ -78,14 +84,14 @@ class LexerTest extends \PHPUnit_Framework_TestCase
                         array('startLine' => 2), array('endLine' => 2)
                     ),
                     array(
-                        PHPParser\Parser::T_STRING, 'token',
+                        Parser::T_STRING, 'token',
                         array('startLine' => 2), array('endLine' => 2)
                     ),
                     array(
                         ord('$'), '$',
                         array(
                             'startLine' => 3,
-                            'comments' => array(new PHPParser\Comment_Doc('/** doc' . "\n" . 'comment */', 2))
+                            'comments' => array(new Doc('/** doc' . "\n" . 'comment */', 2))
                         ),
                         array('endLine' => 3)
                     ),
@@ -96,14 +102,14 @@ class LexerTest extends \PHPUnit_Framework_TestCase
                 '<?php /* comment */ // comment' . "\n" . '/** docComment 1 *//** docComment 2 */ token',
                 array(
                     array(
-                        PHPParser\Parser::T_STRING, 'token',
+                        Parser::T_STRING, 'token',
                         array(
                             'startLine' => 2,
                             'comments' => array(
-                                new PHPParser\Comment('/* comment */', 1),
-                                new PHPParser\Comment('// comment' . "\n", 1),
-                                new PHPParser\Comment_Doc('/** docComment 1 */', 2),
-                                new PHPParser\Comment_Doc('/** docComment 2 */', 2),
+                                new Comment('/* comment */', 1),
+                                new Comment('// comment' . "\n", 1),
+                                new Doc('/** docComment 1 */', 2),
+                                new Doc('/** docComment 2 */', 2),
                             ),
                         ),
                         array('endLine' => 2)
@@ -115,7 +121,7 @@ class LexerTest extends \PHPUnit_Framework_TestCase
                 '<?php "foo' . "\n" . 'bar"',
                 array(
                     array(
-                        PHPParser\Parser::T_CONSTANT_ENCAPSED_STRING, '"foo' . "\n" . 'bar"',
+                        Parser::T_CONSTANT_ENCAPSED_STRING, '"foo' . "\n" . 'bar"',
                         array('startLine' => 1), array('endLine' => 2)
                     ),
                 )
@@ -129,7 +135,7 @@ class LexerTest extends \PHPUnit_Framework_TestCase
     public function testHandleHaltCompiler($code, $remaining) {
         $this->lexer->startLexing($code);
 
-        while (PHPParser\Parser::T_HALT_COMPILER !== $this->lexer->getNextToken());
+        while (Parser::T_HALT_COMPILER !== $this->lexer->getNextToken());
 
         $this->assertEquals($this->lexer->handleHaltCompiler(), $remaining);
         $this->assertEquals(0, $this->lexer->getNextToken());

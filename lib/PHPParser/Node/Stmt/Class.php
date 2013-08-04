@@ -9,7 +9,7 @@ namespace PHPParser\Node;
  * @property PHPParser\Node\Name[]    $implements Names of implemented interfaces
  * @property PHPParser\Node[]         $stmts      Statements
  */
-class Stmt_Class extends PHPParser\Node\Stmt
+class Stmt_Class extends Stmt
 {
     const MODIFIER_PUBLIC    =  1;
     const MODIFIER_PROTECTED =  2;

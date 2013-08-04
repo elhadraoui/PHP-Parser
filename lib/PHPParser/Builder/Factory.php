@@ -2,6 +2,8 @@
 
 namespace PHPParser\Builder;
 
+use PHPParser\Builder_Interface;
+
 /**
  * "class", "interface" and "function" are reserved keywords, so the methods are defined as _class(),
  * _interface() and _function() in the class and are made available as class(), interface() and function()
@@ -21,7 +23,7 @@ class Factory
      * @return PHPParser\Builder_Class The created class builder
      */
     protected function _class($name) {
-        return new PHPParser\Builder_Class($name);
+        return new BuilderClass($name);
     }
 
     /**
@@ -32,7 +34,7 @@ class Factory
      * @return PHPParser\Builder_Class The created interface builder
      */
     protected function _interface($name) {
-        return new PHPParser\Builder_Interface($name);
+        return new Builder_Interface($name);
     }
 
     /**
@@ -43,7 +45,7 @@ class Factory
      * @return PHPParser\Builder_Method The created method builder
      */
     public function method($name) {
-        return new PHPParser\Builder_Method($name);
+        return new Method($name);
     }
 
     /**
@@ -54,7 +56,7 @@ class Factory
      * @return PHPParser\Builder_Param The created parameter builder
      */
     public function param($name) {
-        return new PHPParser\Builder_Param($name);
+        return new Param($name);
     }
 
     /**
@@ -65,7 +67,7 @@ class Factory
      * @return PHPParser\Builder_Property The created property builder
      */
     public function property($name) {
-        return new PHPParser\Builder_Property($name);
+        return new Property($name);
     }
 
     /**
@@ -76,7 +78,7 @@ class Factory
      * @return PHPParser\Builder_Property The created function builder
      */
     protected function _function($name) {
-        return new PHPParser\Builder_Function($name);
+        return new BuilderFunction($name);
     }
 
     public function __call($name, array $args) {
@@ -84,6 +86,6 @@ class Factory
             return call_user_func_array(array($this, '_' . $name), $args);
         }
 
-        throw new LogicException(sprintf('Method "%s" does not exist', $name));
+        throw new \LogicException(sprintf('Method "%s" does not exist', $name));
     }
 }

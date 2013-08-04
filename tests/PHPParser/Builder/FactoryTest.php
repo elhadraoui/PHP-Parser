@@ -2,13 +2,15 @@
 
 namespace PHPParserTest\Builder;
 
+use PHPParser\Builder\Factory;
+
 class FactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideTestFactory
      */
     public function testFactory($methodName, $className) {
-        $factory = new PHPParser\BuilderFactory;
+        $factory = new Factory;
         $this->assertInstanceOf($className, $factory->$methodName('test'));
     }
 

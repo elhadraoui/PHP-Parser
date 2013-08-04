@@ -6,7 +6,9 @@ namespace PHPParser\Node\Stmt;
  * @property PHPParser\Node\Name[]                    $traits      Traits
  * @property PHPParser\Node\Stmt_TraitUseAdaptation[] $adaptations Adaptations
  */
-class TraitUse extends PHPParser\Node\Stmt
+use PHPParser\Node\Stmt;
+
+class TraitUse extends Stmt
 {
     /**
      * Constructs a trait use node.

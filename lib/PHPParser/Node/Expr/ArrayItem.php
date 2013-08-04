@@ -1,6 +1,8 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expr;
+
+use PHPParser\Node\Expr;
 
 /**
  * @property PHPParser\Node\Expr      $value Value
@@ -17,7 +19,7 @@ class ArrayItem extends Expr
      * @param bool                     $byRef      Whether to assign by reference
      * @param array                    $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $value, PHPParser\Node\Expr $key = null, $byRef = false, array $attributes = array()) {
+    public function __construct(Expr $value, Expr $key = null, $byRef = false, array $attributes = array()) {
         parent::__construct(
             array(
                 'key'   => $key,

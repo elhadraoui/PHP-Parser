@@ -4,7 +4,7 @@ namespace PHPParserTest;
 
 require_once dirname(__FILE__) . '/CodeTestAbstract.php';
 
-class ParserTest extends PHPParser\Tests_CodeTestAbstract
+class ParserTest extends CodeTestAbstract
 {
     /**
      * @dataProvider provideTestParse

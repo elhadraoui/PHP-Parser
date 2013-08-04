@@ -2,6 +2,7 @@
 
 namespace PHPParserTest\Builder;
 
+use PHPParser\Node\Scalar\DirConst;
 use PHPParser\Builder\Param;
 use PHPParser\Node\Expr\ConstFetch;
 use PHPParser\Node\Expr_Array;
@@ -57,7 +58,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 array(1, 2, 3),
-                new Exp_Array(array(
+                new Expr_Array(array(
                     new ArrayItem(new LNumber(1)),
                     new ArrayItem(new LNumber(2)),
                     new ArrayItem(new LNumber(3)),

@@ -2,6 +2,8 @@
 
 namespace PHPParser;
 
+use PHPParser\Node\Stmt_Interface;
+
 use PHPParser\Builder\BuilderAbstract;
 
 class Builder_Interface extends BuilderAbstract
@@ -88,7 +90,7 @@ class Builder_Interface extends BuilderAbstract
      * @return PHPParser\Node\Stmt_Interface The built interface node
      */
     public function getNode() {
-        return new PHPParser\Node\Stmt_Interface($this->name, array(
+        return new Stmt_Interface($this->name, array(
             'extends' => $this->extends,
             'stmts' => array_merge($this->constants, $this->methods),
         ));

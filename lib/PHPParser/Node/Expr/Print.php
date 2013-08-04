@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property PHPParser\Node\Expr $expr Expression
  */
-class Expr_Print extends PHPParser\Node\Expr
+class Expr_Print extends Expr
 {
     /**
      * Constructs an print() node.
@@ -13,7 +13,7 @@ class Expr_Print extends PHPParser\Node\Expr
      * @param PHPParser\Node\Expr $expr       Expression
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $expr, array $attributes = array()) {
+    public function __construct(Expr $expr, array $attributes = array()) {
         parent::__construct(
             array(
                 'expr' => $expr

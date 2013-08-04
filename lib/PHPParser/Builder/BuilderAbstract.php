@@ -2,6 +2,10 @@
 
 namespace PHPParser\Builder;
 
+use PHPParser\Node\Stmt_Class;
+
+use PHPParser\Node\Name;
+
 abstract class BuilderAbstract implements Builder {
     /**
      * Normalizes a node: Converts builder objects to nodes.
@@ -17,7 +21,7 @@ abstract class BuilderAbstract implements Builder {
             return $node;
         }
 
-        throw new LogicException('Expected node or builder object');
+        throw new \LogicException('Expected node or builder object');
     }
 
     /**

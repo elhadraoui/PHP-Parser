@@ -2,6 +2,8 @@
 
 namespace PHPParser\Builder;
 
+use PHPParser\Node\Stmt_Function;
+
 class BuilderFunction extends BuilderAbstract
 {
     protected $name;
@@ -102,7 +104,7 @@ class BuilderFunction extends BuilderAbstract
      * @return PHPParser\Node\Stmt_Function The built function node
      */
     public function getNode() {
-        return new PHPParser\Node\Stmt_Function($this->name, array(
+        return new Stmt_Function($this->name, array(
             'byRef'  => $this->returnByRef,
             'params' => $this->params,
             'stmts'  => $this->stmts,
