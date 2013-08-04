@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_Builder_PropertyTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Builder;
+
+class PropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function createPropertyBuilder($name) {
         return new PHPParser_Builder_Property($name);
