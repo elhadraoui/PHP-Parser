@@ -2,7 +2,9 @@
 
 namespace PHPParser\Node\Scalar;
 
-class NSConst extends PHPParser\Node\Scalar
+use PHPParser\Node\Scalar;
+
+class NSConst extends Scalar
 {
     /**
      * Constructs a __NAMESPACE__ const node
