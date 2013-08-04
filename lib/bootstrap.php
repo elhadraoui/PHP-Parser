@@ -1,9 +1,7 @@
 <?php
 
-use PHPParser;
-
 require dirname(__FILE__) . '/PHPParser/Autoloader.php';
-Autoloader::register();
+PHPParser\Autoloader::register();
 
 /*
  * lcfirst() was added in PHP 5.3, so we have to emulate it for PHP 5.2.
