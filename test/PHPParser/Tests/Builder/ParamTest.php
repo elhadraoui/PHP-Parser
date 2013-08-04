@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_Builder_ParamTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Builder;
+
+class ParamTest extends \PHPUnit_Framework_TestCase
 {
     public function createParamBuilder($name) {
         return new PHPParser_Builder_Param($name);
