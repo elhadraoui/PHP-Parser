@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_ErrorTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest;
+
+class ErrorTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct() {
         $error = new PHPParser_Error('Some error', 10);
