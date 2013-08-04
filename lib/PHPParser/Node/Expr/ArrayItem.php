@@ -1,11 +1,13 @@
 <?php
 
+namespace PHPParser\Node\Expr;
+
 /**
  * @property PHPParser_Node_Expr      $value Value
  * @property null|PHPParser_Node_Expr $key   Key
  * @property bool                     $byRef Whether to assign by reference
  */
-class PHPParser_Node_Expr_ArrayItem extends PHPParser_Node_Expr
+class ArrayItem extends Expr
 {
     /**
      * Constructs an array item node.
