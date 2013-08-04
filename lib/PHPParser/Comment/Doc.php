@@ -1,5 +1,7 @@
-<?php
+<?php<?php
 
-class PHPParser_Comment_Doc extends PHPParser_Comment
+namespace PHPParser\Comment;
+
+class Doc extends Comment
 {
 }
