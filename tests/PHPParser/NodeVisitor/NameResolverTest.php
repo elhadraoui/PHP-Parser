@@ -175,7 +175,7 @@ EOC;
             new \PHPParser\Node\Stmt_Interface('B'),
             new \PHPParser\Node\Stmt_Function('C'),
             new \PHPParser\Node\Stmt_Const(array(
-                new \PHPParser\Node\Const('D', new String('E'))
+                new \PHPParser\Node_Const('D', new String('E'))
             )),
         ));
 

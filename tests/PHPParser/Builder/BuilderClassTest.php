@@ -62,7 +62,7 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
             array(new \PHPParser\Node\Stmt_PropertyProperty('testProperty'))
         );
         $const = new \PHPParser\Node\Stmt_ClassConst(array(
-            new \PHPParser\Node\Const('TEST_CONST', new String('ABC'))
+            new \PHPParser\Node_Const('TEST_CONST', new String('ABC'))
         ));
         $use = new \PHPParser\Node\Stmt_TraitUse(array(new \PHPParser\Node\Name('SomeTrait')));
 

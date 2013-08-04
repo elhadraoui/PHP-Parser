@@ -45,7 +45,7 @@ class BuilderInterfaceTest extends \PHPUnit_Framework_TestCase
 
     public function testAddConst() {
         $const = new \PHPParser\Node\Stmt_ClassConst(array(
-            new \PHPParser\Node\Const('SPEED_OF_LIGHT', new DNumber(299792458))
+            new \PHPParser\Node_Const('SPEED_OF_LIGHT', new DNumber(299792458))
         ));
         $contract = $this->builder->addStmt($const)->getNode();
         $this->assertEquals(299792458, $contract->stmts[0]->consts[0]->value->value);
@@ -53,7 +53,7 @@ class BuilderInterfaceTest extends \PHPUnit_Framework_TestCase
 
     public function testOrder() {
         $const = new \PHPParser\Node\Stmt_ClassConst(array(
-            new \PHPParser\Node\Const('SPEED_OF_LIGHT', new DNumber(299792458))
+            new \PHPParser\Node_Const('SPEED_OF_LIGHT', new DNumber(299792458))
         ));
         $method = new \PHPParser\Node\Stmt_ClassMethod('doSomething');
         $contract = $this->builder
@@ -76,7 +76,7 @@ class BuilderInterfaceTest extends \PHPUnit_Framework_TestCase
 
     public function testFullFunctional() {
         $const = new \PHPParser\Node\Stmt_ClassConst(array(
-            new \PHPParser\Node\Const('SPEED_OF_LIGHT', new DNumber(299792458))
+            new \PHPParser\Node_Const('SPEED_OF_LIGHT', new DNumber(299792458))
         ));
         $method = new \PHPParser\Node\Stmt_ClassMethod('doSomething');
         $contract = $this->builder
