@@ -1,10 +1,12 @@
 <?php
 
+namespace PHPParser\Node\Expr;
+
 /**
  * @property PHPParser_Node_Expr      $var Variable
  * @property null|PHPParser_Node_Expr $dim Array index / dim
  */
-class PHPParser_Node_Expr_ArrayDimFetch extends PHPParser_Node_Expr
+class ArrayDimFetch extends Expr
 {
     /**
      * Constructs an array index fetch node.
