@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_CommentTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\;
+
+class CommentTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetSet() {
         $comment = new PHPParser_Comment('/* Some comment */', 1);
