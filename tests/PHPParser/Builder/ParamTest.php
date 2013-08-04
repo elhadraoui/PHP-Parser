@@ -2,7 +2,7 @@
 
 namespace PHPParserTest\Builder;
 
-use Expr\ConstFetch;
+use PHPParser\Node\Expr\ConstFetch;
 
 class ParamTest extends \PHPUnit_Framework_TestCase
 {
