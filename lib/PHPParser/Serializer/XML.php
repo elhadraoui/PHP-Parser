@@ -2,7 +2,7 @@
 
 namespace PHPParser\Serializer;
 
-class XML implements PHPParser\Serializer
+class XML implements Serializer
 {
     protected $writer;
 
@@ -10,7 +10,7 @@ class XML implements PHPParser\Serializer
      * Constructs a XML serializer.
      */
     public function __construct() {
-        $this->writer = new XMLWriter;
+        $this->writer = new \XMLWriter;
         $this->writer->openMemory();
         $this->writer->setIndent(true);
     }
@@ -74,7 +74,7 @@ class XML implements PHPParser\Serializer
         } elseif (null === $node) {
             $this->writer->writeElement('scalar:null');
         } else {
-            throw new InvalidArgumentException('Unexpected node type');
+            throw new \InvalidArgumentException('Unexpected node type');
         }
     }
 }

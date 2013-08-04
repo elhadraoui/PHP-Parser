@@ -2,6 +2,16 @@
 
 namespace PHPParserTest\Unserializer;
 
+use PHPParser\Node\Scalar\ClassConst;
+
+use PHPParser\Comment\Doc;
+
+use PHPParser\Comment\Comment;
+
+use PHPParser\Node\Scalar\String;
+
+use PHPParser\Unserializer\XML;
+
 class XMLTest extends \PHPUnit_Framework_TestCase
 {
     public function testNode() {
@@ -26,13 +36,13 @@ class XMLTest extends \PHPUnit_Framework_TestCase
 </AST>
 XML;
 
-        $unserializer  = new PHPParser\Unserializer_XML;
+        $unserializer  = new XML;
         $this->assertEquals(
             new String('Test', array(
                 'startLine' => 1,
                 'comments'  => array(
-                    new PHPParser\Comment('// comment' . "\n", 2),
-                    new PHPParser\Comment_Doc('/** doc comment */', 3),
+                    new Comment('// comment' . "\n", 2),
+                    new Doc('/** doc comment */', 3),
                 ),
             )),
             $unserializer->unserialize($xml)
@@ -47,7 +57,7 @@ XML;
 </AST>
 XML;
 
-        $unserializer  = new PHPParser\Unserializer_XML;
+        $unserializer  = new XML;
 
         $this->assertEquals(
             new ClassConst,
@@ -82,7 +92,7 @@ XML;
             true, false, null
         );
 
-        $unserializer  = new PHPParser\Unserializer_XML;
+        $unserializer  = new XML;
         $this->assertEquals($result, $unserializer->unserialize($xml));
     }
 
@@ -96,7 +106,7 @@ XML;
 <notAST/>
 XML;
 
-        $unserializer = new PHPParser\Unserializer_XML;
+        $unserializer = new XML;
         $unserializer->unserialize($xml);
     }
 
@@ -116,7 +126,7 @@ XML;
 </AST>
 XML;
 
-        $unserializer = new PHPParser\Unserializer_XML;
+        $unserializer = new XML;
         $unserializer->unserialize($xml);
     }
 

@@ -2,12 +2,12 @@
 
 namespace PHPParser\Unserializer;
 
-class XML implements PHPParser\Unserializer
+class XML implements Unserializer
 {
     protected $reader;
 
     public function __construct() {
-        $this->reader = new XMLReader;
+        $this->reader = new \XMLReader;
     }
 
     public function unserialize($string) {
@@ -15,7 +15,7 @@ class XML implements PHPParser\Unserializer
 
         $this->reader->read();
         if ('AST' !== $this->reader->name) {
-            throw new DomainException('AST root element not found');
+            throw new \DomainException('AST root element not found');
         }
 
         return $this->read($this->reader->depth);
@@ -24,7 +24,7 @@ class XML implements PHPParser\Unserializer
     protected function read($depthLimit, $throw = true, &$nodeFound = null) {
         $nodeFound = true;
         while ($this->reader->read() && $depthLimit < $this->reader->depth) {
-            if (XMLReader::ELEMENT !== $this->reader->nodeType) {
+            if (\XMLReader::ELEMENT !== $this->reader->nodeType) {
                 continue;
             }
 

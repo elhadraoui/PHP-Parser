@@ -2,6 +2,12 @@
 
 namespace PHPParserTest\Serializer;
 
+use PHPParser\Serializer\XML;
+
+use PHPParser\Lexer\Lexer;
+
+use PHPParser\Parser\Parser;
+
 class XMLTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -136,8 +142,8 @@ CODE;
 </AST>
 XML;
 
-        $parser     = new PHPParser\Parser(new PHPParser\Lexer);
-        $serializer = new PHPParser\Serializer_XML;
+        $parser     = new Parser(new Lexer);
+        $serializer = new Serializer_XML;
 
         $stmts = $parser->parse($code);
         $this->assertXmlStringEqualsXmlString($xml, $serializer->serialize($stmts));
@@ -148,7 +154,7 @@ XML;
      * @expectedExceptionMessage Unexpected node type
      */
     public function testError() {
-        $serializer = new PHPParser\Serializer_XML;
-        $serializer->serialize(array(new stdClass));
+        $serializer = new XML;
+        $serializer->serialize(array(new \stdClass));
     }
 }

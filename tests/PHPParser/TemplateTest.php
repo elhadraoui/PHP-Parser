@@ -2,6 +2,10 @@
 
 namespace PHPParserTest;
 
+use PHPParser\Lexer\Lexer;
+
+use PHPParser\Parser\Parser;
+
 class TemplateTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -9,10 +13,10 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      * @covers PHPParser\Template
      */
     public function testPlaceholderReplacement($templateCode, $placeholders, $expectedPrettyPrint) {
-        $parser = new PHPParser\Parser(new PHPParser\Lexer);
-        $prettyPrinter = new PHPParser\PrettyPrinter_Default;
+        $parser = new Parser(new Lexer);
+        $prettyPrinter = new PrettyPrinter_Default;
 
-        $template = new PHPParser\Template($parser, $templateCode);
+        $template = new Template($parser, $templateCode);
         $this->assertEquals(
             $expectedPrettyPrint,
             $prettyPrinter->prettyPrint($template->getStmts($placeholders))
