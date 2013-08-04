@@ -1,9 +1,11 @@
 <?php
 
+namespace PHPParser\Lexer;
+
 /**
  * ATTENTION: This code is WRITE-ONLY. Do not try to read it.
  */
-class PHPParser_Lexer_Emulative extends PHPParser_Lexer
+class Emulative extends Lexer
 {
     protected $newKeywords;
     protected $inObjectAccess;
