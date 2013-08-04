@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Builder_Class extends PHPParser_BuilderAbstract
+namespace PHPParser\Builder;
+
+class Class extends Abstract
 {
     protected $name;
 
