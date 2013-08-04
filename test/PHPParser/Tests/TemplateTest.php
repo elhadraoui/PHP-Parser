@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_TemplateTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest;
+
+class TemplateTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideTestPlaceholderReplacement
