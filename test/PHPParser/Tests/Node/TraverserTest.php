@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_NodeTraverserTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Node;
+
+class TraverserTest extends \PHPUnit_Framework_TestCase
 {
     public function testNonModifying() {
         $str1Node = new PHPParser_Node_Scalar_String('Foo');
