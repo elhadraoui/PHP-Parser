@@ -57,19 +57,19 @@ class PHPParser_NodeVisitor_NameResolver extends PHPParser_NodeVisitorAbstract
             foreach ($node->consts as $const) {
                 $this->addNamespacedName($const);
             }
-        } elseif ($node instanceof PHPParser_Node_Expr_StaticCall
-                  || $node instanceof PHPParser_Node_Expr_StaticPropertyFetch
-                  || $node instanceof PHPParser_Node_Expr_ClassConstFetch
-                  || $node instanceof PHPParser_Node_Expr_New
-                  || $node instanceof PHPParser_Node_Expr_Instanceof
+        } elseif ($node instanceof StaticCall
+                  || $node instanceof StaticPropertyFetch
+                  || $node instanceof ClassConstFetch
+                  || $node instanceof Expr_New
+                  || $node instanceof Expr_Instanceof
         ) {
             if ($node->class instanceof PHPParser_Node_Name) {
                 $node->class = $this->resolveClassName($node->class);
             }
         } elseif ($node instanceof PHPParser_Node_Stmt_Catch) {
             $node->type = $this->resolveClassName($node->type);
-        } elseif ($node instanceof PHPParser_Node_Expr_FuncCall
-                  || $node instanceof PHPParser_Node_Expr_ConstFetch
+        } elseif ($node instanceof FuncCall
+                  || $node instanceof ConstFetch
         ) {
             if ($node->name instanceof PHPParser_Node_Name) {
                 $node->name = $this->resolveOtherName($node->name);

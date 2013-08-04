@@ -1,10 +1,12 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $left  The left hand side expression
  * @property PHPParser_Node_Expr $right The right hand side expression
  */
-class PHPParser_Node_Expr_Equal extends PHPParser_Node_Expr
+class Equal extends PHPParser_Node_Expr
 {
     /**
      * Constructs a equality comparison node.

@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPParser\Node\Expr;
+namespace Expr;
 
 /**
  * @property PHPParser_Node_Expr      $value Value

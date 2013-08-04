@@ -1,9 +1,11 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
  * @property PHPParser_Node_Expr $expr Expression
  */
-class PHPParser_Node_Expr_Print extends PHPParser_Node_Expr
+class Expr_Print extends PHPParser_Node_Expr
 {
     /**
      * Constructs an print() node.

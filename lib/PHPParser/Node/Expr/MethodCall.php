@@ -1,11 +1,13 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr        $var  Variable holding object
  * @property string|PHPParser_Node_Expr $name Method name
  * @property PHPParser_Node_Arg[]       $args Arguments
  */
-class PHPParser_Node_Expr_MethodCall extends PHPParser_Node_Expr
+class MethodCall extends PHPParser_Node_Expr
 {
     /**
      * Constructs a function call node.

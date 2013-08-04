@@ -1,10 +1,12 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property null|PHPParser_Node_Expr $value Value expression
  * @property null|PHPParser_Node_Expr $key   Key expression
  */
-class PHPParser_Node_Expr_Yield extends PHPParser_Node_Expr
+class Yield extends PHPParser_Node_Expr
 {
     /**
      * Constructs a yield expression node.

@@ -1,10 +1,12 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $var  Variable
  * @property PHPParser_Node_Expr $expr Expression
  */
-class PHPParser_Node_Expr_AssignConcat extends PHPParser_Node_Expr
+class AssignConcat extends PHPParser_Node_Expr
 {
     /**
      * Constructs an assignment with concat node.

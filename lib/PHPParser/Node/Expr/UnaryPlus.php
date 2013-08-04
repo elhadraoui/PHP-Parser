@@ -1,9 +1,11 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $expr Expression
  */
-class PHPParser_Node_Expr_UnaryPlus extends PHPParser_Node_Expr
+class UnaryPlus extends PHPParser_Node_Expr
 {
     /**
      * Constructs a unary plus node.

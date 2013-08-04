@@ -30,7 +30,7 @@ class TraverserTest extends \PHPUnit_Framework_TestCase
     public function testModifying() {
         $str1Node  = new PHPParser_Node_Scalar_String('Foo');
         $str2Node  = new PHPParser_Node_Scalar_String('Bar');
-        $printNode = new PHPParser_Node_Expr_Print($str1Node);
+        $printNode = new Expr_Print($str1Node);
 
         // first visitor changes the node, second verifies the change
         $visitor1 = $this->getMock('PHPParser_NodeVisitor');

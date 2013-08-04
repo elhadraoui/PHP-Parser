@@ -39,8 +39,8 @@ class DumperTest extends \PHPUnit_Framework_TestCase
 )'
             ),
             array(
-                new PHPParser_Node_Expr_Array(array(
-                    new PHPParser_Node_Expr_ArrayItem(new PHPParser_Node_Scalar_String('Foo'))
+                new Expr_Array(array(
+                    new Expr_ArrayItem(new PHPParser_Node_Scalar_String('Foo'))
                 )),
 'Expr_Array(
     items: array(

@@ -1,9 +1,11 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
  * @property array $vars List of variables to assign to
  */
-class PHPParser_Node_Expr_List extends PHPParser_Node_Expr
+class Expr_List extends PHPParser_Node_Expr
 {
     /**
      * Constructs a list() destructuring node.

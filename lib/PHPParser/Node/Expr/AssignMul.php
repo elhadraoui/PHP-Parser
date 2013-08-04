@@ -1,10 +1,12 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $var  Variable
  * @property PHPParser_Node_Expr $expr Expression
  */
-class PHPParser_Node_Expr_AssignMul extends PHPParser_Node_Expr
+class AssignMul extends PHPParser_Node_Expr
 {
     /**
      * Constructs an assignment with multiplication node.

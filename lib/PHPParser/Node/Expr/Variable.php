@@ -1,9 +1,11 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property string|PHPParser_Node_Expr $name Name
  */
-class PHPParser_Node_Expr_Variable extends PHPParser_Node_Expr
+class Variable extends PHPParser_Node_Expr
 {
     /**
      * Constructs a variable node.

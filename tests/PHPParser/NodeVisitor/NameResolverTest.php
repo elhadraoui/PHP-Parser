@@ -154,7 +154,7 @@ EOC;
     }
 
     public function testNoResolveSpecialName() {
-        $stmts = array(new PHPParser_Node_Expr_New(new PHPParser_Node_Name('self')));
+        $stmts = array(new Expr_New(new PHPParser_Node_Name('self')));
 
         $traverser = new PHPParser_NodeTraverser;
         $traverser->addVisitor(new PHPParser_NodeVisitor_NameResolver);

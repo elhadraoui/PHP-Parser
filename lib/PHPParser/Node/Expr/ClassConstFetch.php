@@ -1,10 +1,12 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Name|PHPParser_Node_Expr $class Class name
  * @property string                                  $name  Constant name
  */
-class PHPParser_Node_Expr_ClassConstFetch extends PHPParser_Node_Expr
+class ClassConstFetch extends PHPParser_Node_Expr
 {
     /**
      * Constructs a class const fetch node.

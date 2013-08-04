@@ -1,10 +1,12 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $var  Variable
  * @property PHPParser_Node_Expr $expr Expression
  */
-class PHPParser_Node_Expr_AssignMinus extends PHPParser_Node_Expr
+class AssignMinus extends PHPParser_Node_Expr
 {
     /**
      * Constructs an assignment with minus node.

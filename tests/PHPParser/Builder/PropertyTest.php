@@ -73,15 +73,15 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 null,
-                new PHPParser_Node_Expr_ConstFetch(new PHPParser_Node_Name('null'))
+                new ConstFetch(new PHPParser_Node_Name('null'))
             ),
             array(
                 true,
-                new PHPParser_Node_Expr_ConstFetch(new PHPParser_Node_Name('true'))
+                new ConstFetch(new PHPParser_Node_Name('true'))
             ),
             array(
                 false,
-                new PHPParser_Node_Expr_ConstFetch(new PHPParser_Node_Name('false'))
+                new ConstFetch(new PHPParser_Node_Name('false'))
             ),
             array(
                 31415,
@@ -97,20 +97,20 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 array(1, 2, 3),
-                new PHPParser_Node_Expr_Array(array(
-                    new PHPParser_Node_Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(1)),
-                    new PHPParser_Node_Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(2)),
-                    new PHPParser_Node_Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(3)),
+                new Expr_Array(array(
+                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(1)),
+                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(2)),
+                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(3)),
                 ))
             ),
             array(
                 array('foo' => 'bar', 'bar' => 'foo'),
-                new PHPParser_Node_Expr_Array(array(
-                    new PHPParser_Node_Expr_ArrayItem(
+                new Expr_Array(array(
+                    new Expr_ArrayItem(
                         new PHPParser_Node_Scalar_String('bar'),
                         new PHPParser_Node_Scalar_String('foo')
                     ),
-                    new PHPParser_Node_Expr_ArrayItem(
+                    new Expr_ArrayItem(
                         new PHPParser_Node_Scalar_String('foo'),
                         new PHPParser_Node_Scalar_String('bar')
                     ),

@@ -87,9 +87,9 @@ class MethodTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testStmts() {
-        $stmt1 = new PHPParser_Node_Expr_Print(new PHPParser_Node_Scalar_String('test1'));
-        $stmt2 = new PHPParser_Node_Expr_Print(new PHPParser_Node_Scalar_String('test2'));
-        $stmt3 = new PHPParser_Node_Expr_Print(new PHPParser_Node_Scalar_String('test3'));
+        $stmt1 = new Expr_Print(new PHPParser_Node_Scalar_String('test1'));
+        $stmt2 = new Expr_Print(new PHPParser_Node_Scalar_String('test2'));
+        $stmt3 = new Expr_Print(new PHPParser_Node_Scalar_String('test3'));
 
         $node = $this->createMethodBuilder('test')
             ->addStmt($stmt1)
@@ -112,7 +112,7 @@ class MethodTest extends \PHPUnit_Framework_TestCase
     public function testAddStmtToAbstractMethodError() {
         $this->createMethodBuilder('test')
             ->makeAbstract()
-            ->addStmt(new PHPParser_Node_Expr_Print(new PHPParser_Node_Scalar_String('test')))
+            ->addStmt(new Expr_Print(new PHPParser_Node_Scalar_String('test')))
         ;
     }
 
@@ -122,7 +122,7 @@ class MethodTest extends \PHPUnit_Framework_TestCase
      */
     public function testMakeMethodWithStmtsAbstractError() {
         $this->createMethodBuilder('test')
-            ->addStmt(new PHPParser_Node_Expr_Print(new PHPParser_Node_Scalar_String('test')))
+            ->addStmt(new Expr_Print(new PHPParser_Node_Scalar_String('test')))
             ->makeAbstract()
         ;
     }

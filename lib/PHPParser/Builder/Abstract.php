@@ -23,17 +23,17 @@ abstract class BuilderAbstract implements Builder {
     }
 
     /**
-     * Normalizes a name: Converts plain string names to PHPParser\Node\Name.
+     * Normalizes a name: Converts plain string names to Name.
      *
-     * @param PHPParser\Node\Name|string $name The name to normalize
+     * @param Name|string $name The name to normalize
      *
-     * @return PHPParser\Node\Name The normalized name
+     * @return Name The normalized name
      */
     protected function normalizeName($name) {
-        if ($name instanceof PHPParser\Node\Name) {
+        if ($name instanceof Name) {
             return $name;
         } else {
-            return new PHPParser\Node\Name($name);
+            return new Name($name);
         }
     }
 
@@ -43,25 +43,25 @@ abstract class BuilderAbstract implements Builder {
      *
      * @param mixed $value The value to normalize
      *
-     * @return PHPParser\Node\Expr The normalized value
+     * @return Expr The normalized value
      */
     protected function normalizeValue($value) {
         if ($value instanceof PHPParser\Node) {
             return $value;
         } elseif (is_null($value)) {
             return new ConstFetch(
-                new PHPParser\Node\Name('null')
+                new Name('null')
             );
         } elseif (is_bool($value)) {
             return new ConstFetch(
-                new PHPParser\Node\Name($value ? 'true' : 'false')
+                new Name($value ? 'true' : 'false')
             );
         } elseif (is_int($value)) {
-            return new PHPParser\Node\Scalar\LNumber($value);
+            return new Scalar\LNumber($value);
         } elseif (is_float($value)) {
-            return new PHPParser\Node\Scalar\DNumber($value);
+            return new Scalar\DNumber($value);
         } elseif (is_string($value)) {
-            return new PHPParser\Node\Scalar\String($value);
+            return new Scalar\String($value);
         } elseif (is_array($value)) {
             $items = array();
             $lastKey = -1;
@@ -92,7 +92,7 @@ abstract class BuilderAbstract implements Builder {
      * @param int $modifier Modifier to set
      */
     protected function setModifier($modifier) {
-        PHPParser\Node\Stmt_Class::verifyModifier($this->type, $modifier);
+        Stmt_Class::verifyModifier($this->type, $modifier);
         $this->type |= $modifier;
     }
 }

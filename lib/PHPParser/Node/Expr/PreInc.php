@@ -1,9 +1,11 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $var Variable
  */
-class PHPParser_Node_Expr_PreInc extends PHPParser_Node_Expr
+class PreInc extends PHPParser_Node_Expr
 {
     /**
      * Constructs a pre increment node.

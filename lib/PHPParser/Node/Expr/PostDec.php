@@ -1,9 +1,11 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $var Variable
  */
-class PHPParser_Node_Expr_PostDec extends PHPParser_Node_Expr
+class PostDec extends PHPParser_Node_Expr
 {
     /**
      * Constructs a post decrement node.

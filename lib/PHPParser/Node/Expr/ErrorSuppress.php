@@ -1,9 +1,11 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $expr Expression
  */
-class PHPParser_Node_Expr_ErrorSuppress extends PHPParser_Node_Expr
+class ErrorSuppress extends PHPParser_Node_Expr
 {
     /**
      * Constructs an error suppress node.

@@ -1,10 +1,12 @@
 <?php
 
+namespace Expr;
+
 /**
  * @property PHPParser_Node_Expr $left  The left hand side expression
  * @property PHPParser_Node_Expr $right The right hand side expression
  */
-class PHPParser_Node_Expr_BitwiseOr extends PHPParser_Node_Expr
+class BitwiseOr extends PHPParser_Node_Expr
 {
     /**
      * Constructs a bitwise or node.
