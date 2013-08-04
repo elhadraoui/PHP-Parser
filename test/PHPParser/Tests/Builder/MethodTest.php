@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_Builder_MethodTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Builder;
+
+class MethodTest extends \PHPUnit_Framework_TestCase
 {
     public function createMethodBuilder($name) {
         return new PHPParser_Builder_Method($name);
