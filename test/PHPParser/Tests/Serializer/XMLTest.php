@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_Serializer_XMLTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Serializer;
+
+class XMLTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers PHPParser_Serializer_XML<extended>
