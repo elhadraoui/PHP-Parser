@@ -1,5 +1,7 @@
 <?php
 
-class PHPParser_Node_Expr_Cast_Object extends PHPParser_Node_Expr_Cast
+namespace PHPParser\Node\Expr;
+
+class Cast_Object extends Cast
 {
 }
