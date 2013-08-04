@@ -3,6 +3,7 @@
 namespace PHPParserTest\Builder;
 
 use PHPParser\Node\Expr\ConstFetch;
+use PHPParser\Node\Name;
 
 class ParamTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,15 +27,15 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 null,
-                new ConstFetch(new PHPParser\Node\Name('null'))
+                new ConstFetch(new Name('null'))
             ),
             array(
                 true,
-                new ConstFetch(new PHPParser\Node\Name('true'))
+                new ConstFetch(new Name('true'))
             ),
             array(
                 false,
-                new ConstFetch(new PHPParser\Node\Name('false'))
+                new ConstFetch(new Name('false'))
             ),
             array(
                 31415,
