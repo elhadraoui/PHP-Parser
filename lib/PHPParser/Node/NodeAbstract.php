@@ -59,7 +59,7 @@ abstract class NodeAbstract implements PHPParser\Node, IteratorAggregate
      *
      * The doc comment has to be the last comment associated with the node.
      *
-     * @return null|\PHPParser\Comment_Doc Doc comment object or null
+     * @return null|PHPParser\Comment_Doc Doc comment object or null
      */
     public function getDocComment() {
         $comments = $this->getAttribute('comments');
@@ -68,7 +68,7 @@ abstract class NodeAbstract implements PHPParser\Node, IteratorAggregate
         }
 
         $lastComment = $comments[count($comments) - 1];
-        if (!$lastComment instanceof \PHPParser\Comment_Doc) {
+        if (!$lastComment instanceof PHPParser\Comment_Doc) {
             return null;
         }
 

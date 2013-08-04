@@ -13,11 +13,11 @@ class Loader
      *
      * The templates are loaded from {baseDir}/{name}{suffix}.
      *
-     * @param \PHPParser\Parser $parser  A PHP parser instance
+     * @param PHPParser\Parser $parser  A PHP parser instance
      * @param string           $baseDir The base directory to load templates from
      * @param string           $suffix  An optional suffix to append after the template name
      */
-    public function __construct(\PHPParser\Parser $parser, $baseDir, $suffix = '') {
+    public function __construct(PHPParser\Parser $parser, $baseDir, $suffix = '') {
         if (!is_dir($baseDir)) {
             throw new InvalidArgumentException(
                 sprintf('The specified base directory "%s" does not exist', $baseDir)
@@ -34,7 +34,7 @@ class Loader
      *
      * @param string $name The name of template
      *
-     * @return \PHPParser\Template The loaded template
+     * @return PHPParser\Template The loaded template
      */
     public function load($name) {
         $file = $this->baseDir . '/' . $name . $this->suffix;
@@ -45,6 +45,6 @@ class Loader
             );
         }
 
-        return new \PHPParser\Template($this->parser, file_get_contents($file));
+        return new PHPParser\Template($this->parser, file_get_contents($file));
     }
 }

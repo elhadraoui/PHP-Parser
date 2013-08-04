@@ -3,7 +3,7 @@
 namespace Expr;
 
 /**
- * @property \PHPParser\Node\Name|\PHPParser\Node\Expr $class Class name
+ * @property PHPParser\Node\Name|PHPParser\Node\Expr $class Class name
  * @property string                                  $name  Constant name
  */
 class ClassConstFetch extends PHPParser\Node\Expr
@@ -11,7 +11,7 @@ class ClassConstFetch extends PHPParser\Node\Expr
     /**
      * Constructs a class const fetch node.
      *
-     * @param \PHPParser\Node\Name|\PHPParser\Node\Expr $class      Class name
+     * @param PHPParser\Node\Name|PHPParser\Node\Expr $class      Class name
      * @param string                                  $name       Constant name
      * @param array                                   $attributes Additional attributes
      */

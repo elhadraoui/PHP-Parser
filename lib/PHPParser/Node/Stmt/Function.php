@@ -5,8 +5,8 @@ namespace PHPParser\Node;
 /**
  * @property bool                   $byRef  Whether returns by reference
  * @property string                 $name   Name
- * @property \PHPParser\Node\Param[] $params Parameters
- * @property \PHPParser\Node[]       $stmts  Statements
+ * @property PHPParser\Node\Param[] $params Parameters
+ * @property PHPParser\Node[]       $stmts  Statements
  */
 class Stmt_Function extends PHPParser\Node\Stmt
 {

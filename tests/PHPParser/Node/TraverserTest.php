@@ -7,10 +7,10 @@ class TraverserTest extends \PHPUnit_Framework_TestCase
     public function testNonModifying() {
         $str1Node = new String('Foo');
         $str2Node = new String('Bar');
-        $echoNode = new \PHPParser\Node\Stmt_Echo(array($str1Node, $str2Node));
+        $echoNode = new PHPParser\Node\Stmt_Echo(array($str1Node, $str2Node));
         $stmts    = array($echoNode);
 
-        $visitor = $this->getMock('\PHPParser\NodeVisitor');
+        $visitor = $this->getMock('PHPParser\NodeVisitor');
 
         $visitor->expects($this->at(0))->method('beforeTraverse')->with($stmts);
         $visitor->expects($this->at(1))->method('enterNode')->with($echoNode);
@@ -21,7 +21,7 @@ class TraverserTest extends \PHPUnit_Framework_TestCase
         $visitor->expects($this->at(6))->method('leaveNode')->with($echoNode);
         $visitor->expects($this->at(7))->method('afterTraverse')->with($stmts);
 
-        $traverser = new \PHPParser\NodeTraverser;
+        $traverser = new PHPParser\NodeTraverser;
         $traverser->addVisitor($visitor);
 
         $this->assertEquals($stmts, $traverser->traverse($stmts));
@@ -33,8 +33,8 @@ class TraverserTest extends \PHPUnit_Framework_TestCase
         $printNode = new Expr_Print($str1Node);
 
         // first visitor changes the node, second verifies the change
-        $visitor1 = $this->getMock('\PHPParser\NodeVisitor');
-        $visitor2 = $this->getMock('\PHPParser\NodeVisitor');
+        $visitor1 = $this->getMock('PHPParser\NodeVisitor');
+        $visitor2 = $this->getMock('PHPParser\NodeVisitor');
 
         // replace empty statements with string1 node
         $visitor1->expects($this->at(0))->method('beforeTraverse')->with(array())
@@ -66,7 +66,7 @@ class TraverserTest extends \PHPUnit_Framework_TestCase
                  ->will($this->returnValue(array()));
         $visitor2->expects($this->at(5))->method('afterTraverse')->with(array());
 
-        $traverser = new \PHPParser\NodeTraverser;
+        $traverser = new PHPParser\NodeTraverser;
         $traverser->addVisitor($visitor1);
         $traverser->addVisitor($visitor2);
 
@@ -78,13 +78,13 @@ class TraverserTest extends \PHPUnit_Framework_TestCase
         $str1Node = new String('Foo');
         $str2Node = new String('Bar');
 
-        $visitor = $this->getMock('\PHPParser\NodeVisitor');
+        $visitor = $this->getMock('PHPParser\NodeVisitor');
 
         // remove the string1 node, leave the string2 node
         $visitor->expects($this->at(2))->method('leaveNode')->with($str1Node)
                 ->will($this->returnValue(false));
 
-        $traverser = new \PHPParser\NodeTraverser;
+        $traverser = new PHPParser\NodeTraverser;
         $traverser->addVisitor($visitor);
 
         $this->assertEquals(array($str2Node), $traverser->traverse(array($str1Node, $str2Node)));
@@ -97,13 +97,13 @@ class TraverserTest extends \PHPUnit_Framework_TestCase
         $strR1     = new String('Replacement 1');
         $strR2     = new String('Replacement 2');
 
-        $visitor = $this->getMock('\PHPParser\NodeVisitor');
+        $visitor = $this->getMock('PHPParser\NodeVisitor');
 
         // replace strMiddle with strR1 and strR2 by merge
         $visitor->expects($this->at(4))->method('leaveNode')->with($strMiddle)
                 ->will($this->returnValue(array($strR1, $strR2)));
 
-        $traverser = new \PHPParser\NodeTraverser;
+        $traverser = new PHPParser\NodeTraverser;
         $traverser->addVisitor($visitor);
 
         $this->assertEquals(
@@ -116,10 +116,10 @@ class TraverserTest extends \PHPUnit_Framework_TestCase
         $strNode = new String('Foo');
         $stmts = array(array(array($strNode)));
 
-        $visitor = $this->getMock('\PHPParser\NodeVisitor');
+        $visitor = $this->getMock('PHPParser\NodeVisitor');
         $visitor->expects($this->at(1))->method('enterNode')->with($strNode);
 
-        $traverser = new \PHPParser\NodeTraverser;
+        $traverser = new PHPParser\NodeTraverser;
         $traverser->addVisitor($visitor);
 
         $this->assertEquals($stmts, $traverser->traverse($stmts));

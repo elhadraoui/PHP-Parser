@@ -5,7 +5,7 @@ namespace PHPParserTest\Builder;
 class MethodTest extends \PHPUnit_Framework_TestCase
 {
     public function createMethodBuilder($name) {
-        return new \PHPParser\Builder_Method($name);
+        return new PHPParser\Builder_Method($name);
     }
 
     public function testModifiers() {
@@ -17,10 +17,10 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_ClassMethod('test', array(
-                'type' => \PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC
-                        | \PHPParser\Node\Stmt_Class::MODIFIER_ABSTRACT
-                        | \PHPParser\Node\Stmt_Class::MODIFIER_STATIC,
+            new PHPParser\Node\Stmt_ClassMethod('test', array(
+                'type' => PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC
+                        | PHPParser\Node\Stmt_Class::MODIFIER_ABSTRACT
+                        | PHPParser\Node\Stmt_Class::MODIFIER_STATIC,
                 'stmts' => null,
             )),
             $node
@@ -33,9 +33,9 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_ClassMethod('test', array(
-                'type' => \PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED
-                        | \PHPParser\Node\Stmt_Class::MODIFIER_FINAL
+            new PHPParser\Node\Stmt_ClassMethod('test', array(
+                'type' => PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED
+                        | PHPParser\Node\Stmt_Class::MODIFIER_FINAL
             )),
             $node
         );
@@ -46,8 +46,8 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_ClassMethod('test', array(
-                'type' => \PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE
+            new PHPParser\Node\Stmt_ClassMethod('test', array(
+                'type' => PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE
             )),
             $node
         );
@@ -60,7 +60,7 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_ClassMethod('test', array(
+            new PHPParser\Node\Stmt_ClassMethod('test', array(
                 'byRef' => true
             )),
             $node
@@ -68,9 +68,9 @@ class MethodTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testParams() {
-        $param1 = new \PHPParser\Node\Param('test1');
-        $param2 = new \PHPParser\Node\Param('test2');
-        $param3 = new \PHPParser\Node\Param('test3');
+        $param1 = new PHPParser\Node\Param('test1');
+        $param2 = new PHPParser\Node\Param('test2');
+        $param3 = new PHPParser\Node\Param('test3');
 
         $node = $this->createMethodBuilder('test')
             ->addParam($param1)
@@ -79,7 +79,7 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_ClassMethod('test', array(
+            new PHPParser\Node\Stmt_ClassMethod('test', array(
                 'params' => array($param1, $param2, $param3)
             )),
             $node
@@ -98,7 +98,7 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_ClassMethod('test', array(
+            new PHPParser\Node\Stmt_ClassMethod('test', array(
                 'stmts' => array($stmt1, $stmt2, $stmt3)
             )),
             $node
@@ -133,7 +133,7 @@ class MethodTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidParamError() {
         $this->createMethodBuilder('test')
-            ->addParam(new \PHPParser\Node\Name('foo'))
+            ->addParam(new PHPParser\Node\Name('foo'))
         ;
     }
 }

@@ -3,7 +3,7 @@
 namespace PHPParser\Node\Stmt;
 
 /**
- * @property null|\PHPParser\Node\Name $trait       Trait name
+ * @property null|PHPParser\Node\Name $trait       Trait name
  * @property string                   $method      Method name
  * @property null|int                 $newModifier New modifier
  * @property null|string              $newName     New name
@@ -13,7 +13,7 @@ class TraitUseAdaptation_Alias extends PHPParser\Node\Stmt_TraitUseAdaptation
     /**
      * Constructs a trait use precedence adaptation node.
      *
-     * @param null|\PHPParser\Node\Name $trait       Trait name
+     * @param null|PHPParser\Node\Name $trait       Trait name
      * @param string                   $method      Method name
      * @param null|int                 $newModifier New modifier
      * @param null|string              $newName     New name

@@ -8,14 +8,14 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
 {
     // Special nodes
 
-    public function pParam(\PHPParser\Node\Param $node) {
+    public function pParam(PHPParser\Node\Param $node) {
         return ($node->type ? (is_string($node->type) ? $node->type : $this->p($node->type)) . ' ' : '')
              . ($node->byRef ? '&' : '')
              . '$' . $node->name
              . ($node->default ? ' = ' . $this->p($node->default) : '');
     }
 
-    public function pArg(\PHPParser\Node\Arg $node) {
+    public function pArg(PHPParser\Node\Arg $node) {
         return ($node->byRef ? '&' : '') . $this->p($node->value);
     }
 
@@ -25,15 +25,15 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
 
     // Names
 
-    public function pName(\PHPParser\Node\Name $node) {
+    public function pName(PHPParser\Node\Name $node) {
         return implode('\\', $node->parts);
     }
 
-    public function pName_FullyQualified(\PHPParser\Node\Name_FullyQualified $node) {
+    public function pName_FullyQualified(PHPParser\Node\Name_FullyQualified $node) {
         return '\\' . implode('\\', $node->parts);
     }
 
-    public function pName_Relative(\PHPParser\Node\Name_Relative $node) {
+    public function pName_Relative(PHPParser\Node\Name_Relative $node) {
         return 'namespace\\' . implode('\\', $node->parts);
     }
 
@@ -329,7 +329,7 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
 
     public function pExpr_StaticCall(StaticCall $node) {
         return $this->p($node->class) . '::'
-             . ($node->name instanceof \PHPParser\Node\Expr
+             . ($node->name instanceof PHPParser\Node\Expr
                 ? ($node->name instanceof Variable
                    || $node->name instanceof Expr_ArrayDimFetch
                    ? $this->p($node->name)
@@ -381,7 +381,7 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
     // Other
 
     public function pExpr_Variable(Variable $node) {
-        if ($node->name instanceof \PHPParser\Node\Expr) {
+        if ($node->name instanceof PHPParser\Node\Expr) {
             return '${' . $this->p($node->name) . '}';
         } else {
             return '$' . $node->name;
@@ -468,7 +468,7 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
 
     // Declarations
 
-    public function pStmt_Namespace(\PHPParser\Node\Stmt_Namespace $node) {
+    public function pStmt_Namespace(PHPParser\Node\Stmt_Namespace $node) {
         if ($this->canUseSemicolonNamespaces) {
             return 'namespace ' . $this->p($node->name) . ';' . "\n\n" . $this->pStmts($node->stmts, false);
         } else {
@@ -477,22 +477,22 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
         }
     }
 
-    public function pStmt_Use(\PHPParser\Node\Stmt_Use $node) {
+    public function pStmt_Use(PHPParser\Node\Stmt_Use $node) {
         return 'use ' . $this->pCommaSeparated($node->uses) . ';';
     }
 
-    public function pStmt_UseUse(\PHPParser\Node\Stmt_UseUse $node) {
+    public function pStmt_UseUse(PHPParser\Node\Stmt_UseUse $node) {
         return $this->p($node->name)
              . ($node->name->getLast() !== $node->alias ? ' as ' . $node->alias : '');
     }
 
-    public function pStmt_Interface(\PHPParser\Node\Stmt_Interface $node) {
+    public function pStmt_Interface(PHPParser\Node\Stmt_Interface $node) {
         return 'interface ' . $node->name
              . (!empty($node->extends) ? ' extends ' . $this->pCommaSeparated($node->extends) : '')
              . "\n" . '{' . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_Class(\PHPParser\Node\Stmt_Class $node) {
+    public function pStmt_Class(PHPParser\Node\Stmt_Class $node) {
         return $this->pModifiers($node->type)
              . 'class ' . $node->name
              . (null !== $node->extends ? ' extends ' . $this->p($node->extends) : '')
@@ -500,24 +500,24 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
              . "\n" . '{' . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_Trait(\PHPParser\Node\Stmt_Trait $node) {
+    public function pStmt_Trait(PHPParser\Node\Stmt_Trait $node) {
         return 'trait ' . $node->name
              . "\n" . '{' . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_TraitUse(\PHPParser\Node\Stmt_TraitUse $node) {
+    public function pStmt_TraitUse(PHPParser\Node\Stmt_TraitUse $node) {
         return 'use ' . $this->pCommaSeparated($node->traits)
              . (empty($node->adaptations)
                 ? ';'
                 : ' {' . "\n" . $this->pStmts($node->adaptations) . "\n" . '}');
     }
 
-    public function pStmt_TraitUseAdaptation_Precedence(\PHPParser\Node\Stmt_TraitUseAdaptation_Precedence $node) {
+    public function pStmt_TraitUseAdaptation_Precedence(PHPParser\Node\Stmt_TraitUseAdaptation_Precedence $node) {
         return $this->p($node->trait) . '::' . $node->method
              . ' insteadof ' . $this->pCommaSeparated($node->insteadof) . ';';
     }
 
-    public function pStmt_TraitUseAdaptation_Alias(\PHPParser\Node\Stmt_TraitUseAdaptation_Alias $node) {
+    public function pStmt_TraitUseAdaptation_Alias(PHPParser\Node\Stmt_TraitUseAdaptation_Alias $node) {
         return (null !== $node->trait ? $this->p($node->trait) . '::' : '')
              . $node->method . ' as'
              . (null !== $node->newModifier ? ' ' . $this->pModifiers($node->newModifier) : '')
@@ -525,16 +525,16 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
              . ';';
     }
 
-    public function pStmt_Property(\PHPParser\Node\Stmt_Property $node) {
+    public function pStmt_Property(PHPParser\Node\Stmt_Property $node) {
         return $this->pModifiers($node->type) . $this->pCommaSeparated($node->props) . ';';
     }
 
-    public function pStmt_PropertyProperty(\PHPParser\Node\Stmt_PropertyProperty $node) {
+    public function pStmt_PropertyProperty(PHPParser\Node\Stmt_PropertyProperty $node) {
         return '$' . $node->name
              . (null !== $node->default ? ' = ' . $this->p($node->default) : '');
     }
 
-    public function pStmt_ClassMethod(\PHPParser\Node\Stmt_ClassMethod $node) {
+    public function pStmt_ClassMethod(PHPParser\Node\Stmt_ClassMethod $node) {
         return $this->pModifiers($node->type)
              . 'function ' . ($node->byRef ? '&' : '') . $node->name
              . '(' . $this->pCommaSeparated($node->params) . ')'
@@ -543,48 +543,48 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
                 : ';');
     }
 
-    public function pStmt_ClassConst(\PHPParser\Node\Stmt_ClassConst $node) {
+    public function pStmt_ClassConst(PHPParser\Node\Stmt_ClassConst $node) {
         return 'const ' . $this->pCommaSeparated($node->consts) . ';';
     }
 
-    public function pStmt_Function(\PHPParser\Node\Stmt_Function $node) {
+    public function pStmt_Function(PHPParser\Node\Stmt_Function $node) {
         return 'function ' . ($node->byRef ? '&' : '') . $node->name
              . '(' . $this->pCommaSeparated($node->params) . ')'
              . "\n" . '{' . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_Const(\PHPParser\Node\Stmt_Const $node) {
+    public function pStmt_Const(PHPParser\Node\Stmt_Const $node) {
         return 'const ' . $this->pCommaSeparated($node->consts) . ';';
     }
 
-    public function pStmt_Declare(\PHPParser\Node\Stmt_Declare $node) {
+    public function pStmt_Declare(PHPParser\Node\Stmt_Declare $node) {
         return 'declare (' . $this->pCommaSeparated($node->declares) . ') {'
              . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_DeclareDeclare(\PHPParser\Node\Stmt_DeclareDeclare $node) {
+    public function pStmt_DeclareDeclare(PHPParser\Node\Stmt_DeclareDeclare $node) {
         return $node->key . ' = ' . $this->p($node->value);
     }
 
     // Control flow
 
-    public function pStmt_If(\PHPParser\Node\Stmt_If $node) {
+    public function pStmt_If(PHPParser\Node\Stmt_If $node) {
         return 'if (' . $this->p($node->cond) . ') {'
              . "\n" . $this->pStmts($node->stmts) . "\n" . '}'
              . $this->pImplode($node->elseifs)
              . (null !== $node->else ? $this->p($node->else) : '');
     }
 
-    public function pStmt_Elseif(\PHPParser\Node\Stmt_Elseif $node) {
+    public function pStmt_Elseif(PHPParser\Node\Stmt_Elseif $node) {
         return ' elseif (' . $this->p($node->cond) . ') {'
              . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_Else(\PHPParser\Node\Stmt_Else $node) {
+    public function pStmt_Else(PHPParser\Node\Stmt_Else $node) {
         return ' else {' . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_For(\PHPParser\Node\Stmt_For $node) {
+    public function pStmt_For(PHPParser\Node\Stmt_For $node) {
         return 'for ('
              . $this->pCommaSeparated($node->init) . ';' . (!empty($node->cond) ? ' ' : '')
              . $this->pCommaSeparated($node->cond) . ';' . (!empty($node->loop) ? ' ' : '')
@@ -592,34 +592,34 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
              . ') {' . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_Foreach(\PHPParser\Node\Stmt_Foreach $node) {
+    public function pStmt_Foreach(PHPParser\Node\Stmt_Foreach $node) {
         return 'foreach (' . $this->p($node->expr) . ' as '
              . (null !== $node->keyVar ? $this->p($node->keyVar) . ' => ' : '')
              . ($node->byRef ? '&' : '') . $this->p($node->valueVar) . ') {'
              . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_While(\PHPParser\Node\Stmt_While $node) {
+    public function pStmt_While(PHPParser\Node\Stmt_While $node) {
         return 'while (' . $this->p($node->cond) . ') {'
              . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_Do(\PHPParser\Node\Stmt_Do $node) {
+    public function pStmt_Do(PHPParser\Node\Stmt_Do $node) {
         return 'do {' . "\n" . $this->pStmts($node->stmts) . "\n"
              . '} while (' . $this->p($node->cond) . ');';
     }
 
-    public function pStmt_Switch(\PHPParser\Node\Stmt_Switch $node) {
+    public function pStmt_Switch(PHPParser\Node\Stmt_Switch $node) {
         return 'switch (' . $this->p($node->cond) . ') {'
              . "\n" . $this->pStmts($node->cases) . "\n" . '}';
     }
 
-    public function pStmt_Case(\PHPParser\Node\Stmt_Case $node) {
+    public function pStmt_Case(PHPParser\Node\Stmt_Case $node) {
         return (null !== $node->cond ? 'case ' . $this->p($node->cond) : 'default') . ':'
              . ($node->stmts ? "\n" . $this->pStmts($node->stmts) : '');
     }
 
-    public function pStmt_TryCatch(\PHPParser\Node\Stmt_TryCatch $node) {
+    public function pStmt_TryCatch(PHPParser\Node\Stmt_TryCatch $node) {
         return 'try {' . "\n" . $this->pStmts($node->stmts) . "\n" . '}'
              . $this->pImplode($node->catches)
              . ($node->finallyStmts !== null
@@ -627,70 +627,70 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
                 : '');
     }
 
-    public function pStmt_Catch(\PHPParser\Node\Stmt_Catch $node) {
+    public function pStmt_Catch(PHPParser\Node\Stmt_Catch $node) {
         return ' catch (' . $this->p($node->type) . ' $' . $node->var . ') {'
              . "\n" . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    public function pStmt_Break(\PHPParser\Node\Stmt_Break $node) {
+    public function pStmt_Break(PHPParser\Node\Stmt_Break $node) {
         return 'break' . ($node->num !== null ? ' ' . $this->p($node->num) : '') . ';';
     }
 
-    public function pStmt_Continue(\PHPParser\Node\Stmt_Continue $node) {
+    public function pStmt_Continue(PHPParser\Node\Stmt_Continue $node) {
         return 'continue' . ($node->num !== null ? ' ' . $this->p($node->num) : '') . ';';
     }
 
-    public function pStmt_Return(\PHPParser\Node\Stmt_Return $node) {
+    public function pStmt_Return(PHPParser\Node\Stmt_Return $node) {
         return 'return' . (null !== $node->expr ? ' ' . $this->p($node->expr) : '') . ';';
     }
 
-    public function pStmt_Throw(\PHPParser\Node\Stmt_Throw $node) {
+    public function pStmt_Throw(PHPParser\Node\Stmt_Throw $node) {
         return 'throw ' . $this->p($node->expr) . ';';
     }
 
-    public function pStmt_Label(\PHPParser\Node\Stmt_Label $node) {
+    public function pStmt_Label(PHPParser\Node\Stmt_Label $node) {
         return $node->name . ':';
     }
 
-    public function pStmt_Goto(\PHPParser\Node\Stmt_Goto $node) {
+    public function pStmt_Goto(PHPParser\Node\Stmt_Goto $node) {
         return 'goto ' . $node->name . ';';
     }
 
     // Other
 
-    public function pStmt_Echo(\PHPParser\Node\Stmt_Echo $node) {
+    public function pStmt_Echo(PHPParser\Node\Stmt_Echo $node) {
         return 'echo ' . $this->pCommaSeparated($node->exprs) . ';';
     }
 
-    public function pStmt_Static(\PHPParser\Node\Stmt_Static $node) {
+    public function pStmt_Static(PHPParser\Node\Stmt_Static $node) {
         return 'static ' . $this->pCommaSeparated($node->vars) . ';';
     }
 
-    public function pStmt_Global(\PHPParser\Node\Stmt_Global $node) {
+    public function pStmt_Global(PHPParser\Node\Stmt_Global $node) {
         return 'global ' . $this->pCommaSeparated($node->vars) . ';';
     }
 
-    public function pStmt_StaticVar(\PHPParser\Node\Stmt_StaticVar $node) {
+    public function pStmt_StaticVar(PHPParser\Node\Stmt_StaticVar $node) {
         return '$' . $node->name
              . (null !== $node->default ? ' = ' . $this->p($node->default) : '');
     }
 
-    public function pStmt_Unset(\PHPParser\Node\Stmt_Unset $node) {
+    public function pStmt_Unset(PHPParser\Node\Stmt_Unset $node) {
         return 'unset(' . $this->pCommaSeparated($node->vars) . ');';
     }
 
-    public function pStmt_InlineHTML(\PHPParser\Node\Stmt_InlineHTML $node) {
+    public function pStmt_InlineHTML(PHPParser\Node\Stmt_InlineHTML $node) {
         return '?>' . $this->pNoIndent("\n" . $node->value) . '<?php ';
     }
 
-    public function pStmt_HaltCompiler(\PHPParser\Node\Stmt_HaltCompiler $node) {
+    public function pStmt_HaltCompiler(PHPParser\Node\Stmt_HaltCompiler $node) {
         return '__halt_compiler();' . $node->remaining;
     }
 
     // Helpers
 
     public function pObjectProperty($node) {
-        if ($node instanceof \PHPParser\Node\Expr) {
+        if ($node instanceof PHPParser\Node\Expr) {
             return '{' . $this->p($node) . '}';
         } else {
             return $node;
@@ -698,12 +698,12 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
     }
 
     public function pModifiers($modifiers) {
-        return ($modifiers & \PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC    ? 'public '    : '')
-             . ($modifiers & \PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED ? 'protected ' : '')
-             . ($modifiers & \PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE   ? 'private '   : '')
-             . ($modifiers & \PHPParser\Node\Stmt_Class::MODIFIER_STATIC    ? 'static '    : '')
-             . ($modifiers & \PHPParser\Node\Stmt_Class::MODIFIER_ABSTRACT  ? 'abstract '  : '')
-             . ($modifiers & \PHPParser\Node\Stmt_Class::MODIFIER_FINAL     ? 'final '     : '');
+        return ($modifiers & PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC    ? 'public '    : '')
+             . ($modifiers & PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED ? 'protected ' : '')
+             . ($modifiers & PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE   ? 'private '   : '')
+             . ($modifiers & PHPParser\Node\Stmt_Class::MODIFIER_STATIC    ? 'static '    : '')
+             . ($modifiers & PHPParser\Node\Stmt_Class::MODIFIER_ABSTRACT  ? 'abstract '  : '')
+             . ($modifiers & PHPParser\Node\Stmt_Class::MODIFIER_FINAL     ? 'final '     : '');
     }
 
     public function pEncapsList(array $encapsList, $quote) {
@@ -719,7 +719,7 @@ class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
         return $return;
     }
 
-    public function pVarOrNewExpr(\PHPParser\Node $node) {
+    public function pVarOrNewExpr(PHPParser\Node $node) {
         if ($node instanceof Expr_New) {
             return '(' . $this->p($node) . ')';
         } else {

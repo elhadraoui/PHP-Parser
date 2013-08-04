@@ -3,8 +3,8 @@
 namespace Expr;
 
 /**
- * @property \PHPParser\Node[]                 $stmts  Statements
- * @property \PHPParser\Node\Param[]           $params Parameters
+ * @property PHPParser\Node[]                 $stmts  Statements
+ * @property PHPParser\Node\Param[]           $params Parameters
  * @property ClosureUse[] $uses   use()s
  * @property bool                             $byRef  Whether to return by reference
  * @property bool                             $static Whether the closure is static

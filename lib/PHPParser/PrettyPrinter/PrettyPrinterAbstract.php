@@ -75,7 +75,7 @@ abstract class PrettyPrinterAbstract
     /**
      * Pretty prints an array of statements.
      *
-     * @param \PHPParser\Node[] $stmts Array of statements
+     * @param PHPParser\Node[] $stmts Array of statements
      *
      * @return string Pretty printed statements
      */
@@ -88,18 +88,18 @@ abstract class PrettyPrinterAbstract
     /**
      * Pretty prints an expression.
      *
-     * @param \PHPParser\Node\Expr $node Expression node
+     * @param PHPParser\Node\Expr $node Expression node
      *
      * @return string Pretty printed node
      */
-    public function prettyPrintExpr(\PHPParser\Node\Expr $node) {
+    public function prettyPrintExpr(PHPParser\Node\Expr $node) {
         return str_replace("\n" . $this->noIndentToken, "\n", $this->p($node));
     }
 
     /**
      * Pretty prints a file of statements (includes the opening <?php tag if it is required).
      *
-     * @param \PHPParser\Node[] $stmts Array of statements
+     * @param PHPParser\Node[] $stmts Array of statements
      *
      * @return string Pretty printed statements
      */
@@ -119,13 +119,13 @@ abstract class PrettyPrinterAbstract
     /**
      * Preprocesses the top-level nodes to initialize pretty printer state.
      *
-     * @param \PHPParser\Node[] $nodes Array of nodes
+     * @param PHPParser\Node[] $nodes Array of nodes
      */
     protected function preprocessNodes(array $nodes) {
         /* We can use semicolon-namespaces unless there is a global namespace declaration */
         $this->canUseSemicolonNamespaces = true;
         foreach ($nodes as $node) {
-            if ($node instanceof \PHPParser\Node\Stmt_Namespace && null === $node->name) {
+            if ($node instanceof PHPParser\Node\Stmt_Namespace && null === $node->name) {
                 $this->canUseSemicolonNamespaces = false;
             }
         }
@@ -134,7 +134,7 @@ abstract class PrettyPrinterAbstract
     /**
      * Pretty prints an array of nodes (statements) and indents them optionally.
      *
-     * @param \PHPParser\Node[] $nodes  Array of nodes
+     * @param PHPParser\Node[] $nodes  Array of nodes
      * @param bool             $indent Whether to indent the printed nodes
      *
      * @return string Pretty printed statements
@@ -144,7 +144,7 @@ abstract class PrettyPrinterAbstract
         foreach ($nodes as $node) {
             $pNodes[] = $this->pComments($node->getAttribute('comments', array()))
                       . $this->p($node)
-                      . ($node instanceof \PHPParser\Node\Expr ? ';' : '');
+                      . ($node instanceof PHPParser\Node\Expr ? ';' : '');
         }
 
         if ($indent) {
@@ -161,15 +161,15 @@ abstract class PrettyPrinterAbstract
     /**
      * Pretty prints a node.
      *
-     * @param \PHPParser\Node $node Node to be pretty printed
+     * @param PHPParser\Node $node Node to be pretty printed
      *
      * @return string Pretty printed node
      */
-    protected function p(\PHPParser\Node $node) {
+    protected function p(PHPParser\Node $node) {
         return $this->{'p' . $node->getType()}($node);
     }
 
-    protected function pInfixOp($type, \PHPParser\Node $leftNode, $operatorString, \PHPParser\Node $rightNode) {
+    protected function pInfixOp($type, PHPParser\Node $leftNode, $operatorString, PHPParser\Node $rightNode) {
         list($precedence, $associativity) = $this->precedenceMap[$type];
 
         return $this->pPrec($leftNode, $precedence, $associativity, -1)
@@ -177,12 +177,12 @@ abstract class PrettyPrinterAbstract
              . $this->pPrec($rightNode, $precedence, $associativity, 1);
     }
 
-    protected function pPrefixOp($type, $operatorString, \PHPParser\Node $node) {
+    protected function pPrefixOp($type, $operatorString, PHPParser\Node $node) {
         list($precedence, $associativity) = $this->precedenceMap[$type];
         return $operatorString . $this->pPrec($node, $precedence, $associativity, 1);
     }
 
-    protected function pPostfixOp($type, \PHPParser\Node $node, $operatorString) {
+    protected function pPostfixOp($type, PHPParser\Node $node, $operatorString) {
         list($precedence, $associativity) = $this->precedenceMap[$type];
         return $this->pPrec($node, $precedence, $associativity, -1) . $operatorString;
     }
@@ -190,7 +190,7 @@ abstract class PrettyPrinterAbstract
     /**
      * Prints an expression node with the least amount of parentheses necessary to preserve the meaning.
      *
-     * @param \PHPParser\Node $node                Node to pretty print
+     * @param PHPParser\Node $node                Node to pretty print
      * @param int            $parentPrecedence    Precedence of the parent operator
      * @param int            $parentAssociativity Associativity of parent operator
      *                                            (-1 is left, 0 is nonassoc, 1 is right)
@@ -199,7 +199,7 @@ abstract class PrettyPrinterAbstract
      *
      * @return string The pretty printed node
      */
-    protected function pPrec(\PHPParser\Node $node, $parentPrecedence, $parentAssociativity, $childPosition) {
+    protected function pPrec(PHPParser\Node $node, $parentPrecedence, $parentAssociativity, $childPosition) {
         $type = $node->getType();
         if (isset($this->precedenceMap[$type])) {
             $childPrecedence = $this->precedenceMap[$type][0];
@@ -216,7 +216,7 @@ abstract class PrettyPrinterAbstract
     /**
      * Pretty prints an array of nodes and implodes the printed values.
      *
-     * @param \PHPParser\Node[] $nodes Array of Nodes to be printed
+     * @param PHPParser\Node[] $nodes Array of Nodes to be printed
      * @param string           $glue  Character to implode with
      *
      * @return string Imploded pretty printed nodes
@@ -233,7 +233,7 @@ abstract class PrettyPrinterAbstract
     /**
      * Pretty prints an array of nodes and implodes the printed values with commas.
      *
-     * @param \PHPParser\Node[] $nodes Array of Nodes to be printed
+     * @param PHPParser\Node[] $nodes Array of Nodes to be printed
      *
      * @return string Comma separated pretty printed nodes
      */

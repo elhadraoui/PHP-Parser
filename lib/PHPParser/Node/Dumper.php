@@ -7,12 +7,12 @@ class Dumper
     /**
      * Dumps a node or array.
      *
-     * @param array|\PHPParser\Node $node Node or array to dump
+     * @param array|PHPParser\Node $node Node or array to dump
      *
      * @return string Dumped value
      */
     public function dump($node) {
-        if ($node instanceof \PHPParser\Node) {
+        if ($node instanceof PHPParser\Node) {
             $r = $node->getType() . '(';
         } elseif (is_array($node)) {
             $r = 'array(';

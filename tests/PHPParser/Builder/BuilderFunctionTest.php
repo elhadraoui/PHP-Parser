@@ -5,7 +5,7 @@ namespace PHPParserTest\Builder;
 class BuilderFunctionTest extends \PHPUnit_Framework_TestCase
 {
     public function createFunctionBuilder($name) {
-        return new \PHPParser\Builder_Function($name);
+        return new PHPParser\Builder_Function($name);
     }
 
     public function testReturnByRef() {
@@ -15,7 +15,7 @@ class BuilderFunctionTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_Function('test', array(
+            new PHPParser\Node\Stmt_Function('test', array(
                 'byRef' => true
             )),
             $node
@@ -23,9 +23,9 @@ class BuilderFunctionTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testParams() {
-        $param1 = new \PHPParser\Node\Param('test1');
-        $param2 = new \PHPParser\Node\Param('test2');
-        $param3 = new \PHPParser\Node\Param('test3');
+        $param1 = new PHPParser\Node\Param('test1');
+        $param2 = new PHPParser\Node\Param('test2');
+        $param3 = new PHPParser\Node\Param('test3');
 
         $node = $this->createFunctionBuilder('test')
             ->addParam($param1)
@@ -34,7 +34,7 @@ class BuilderFunctionTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_Function('test', array(
+            new PHPParser\Node\Stmt_Function('test', array(
                 'params' => array($param1, $param2, $param3)
             )),
             $node
@@ -53,7 +53,7 @@ class BuilderFunctionTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_Function('test', array(
+            new PHPParser\Node\Stmt_Function('test', array(
                 'stmts' => array($stmt1, $stmt2, $stmt3)
             )),
             $node
@@ -66,7 +66,7 @@ class BuilderFunctionTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidParamError() {
         $this->createFunctionBuilder('test')
-            ->addParam(new \PHPParser\Node\Name('foo'))
+            ->addParam(new PHPParser\Node\Name('foo'))
         ;
     }
 }

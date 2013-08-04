@@ -3,10 +3,10 @@
 namespace PHPParser\Node;
 
 /**
- * @property \PHPParser\Node\Expr[] $init  Init expressions
- * @property \PHPParser\Node\Expr[] $cond  Loop conditions
- * @property \PHPParser\Node\Expr[] $loop  Loop expressions
- * @property \PHPParser\Node[]      $stmts Statements
+ * @property PHPParser\Node\Expr[] $init  Init expressions
+ * @property PHPParser\Node\Expr[] $cond  Loop conditions
+ * @property PHPParser\Node\Expr[] $loop  Loop expressions
+ * @property PHPParser\Node[]      $stmts Statements
  */
 class Stmt_For extends PHPParser\Node\Stmt
 {

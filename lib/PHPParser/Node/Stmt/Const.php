@@ -3,14 +3,14 @@
 namespace PHPParser\Node;
 
 /**
- * @property \PHPParser\Node\Const[] $consts Constant declarations
+ * @property PHPParser\Node\Const[] $consts Constant declarations
  */
 class Stmt_Const extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a const list node.
      *
-     * @param \PHPParser\Node\Const[] $consts     Constant declarations
+     * @param PHPParser\Node\Const[] $consts     Constant declarations
      * @param array                  $attributes Additional attributes
      */
     public function __construct(array $consts, array $attributes = array()) {

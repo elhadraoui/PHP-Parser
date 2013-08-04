@@ -4,7 +4,7 @@ namespace PHPParser\Node\Stmt;
 
 /**
  * @property string              $key   Key
- * @property \PHPParser\Node\Expr $value Value
+ * @property PHPParser\Node\Expr $value Value
  */
 class DeclareDeclare extends PHPParser\Node\Stmt
 {
@@ -12,10 +12,10 @@ class DeclareDeclare extends PHPParser\Node\Stmt
      * Constructs a declare key=>value pair node.
      *
      * @param string              $key        Key
-     * @param \PHPParser\Node\Expr $value      Value
+     * @param PHPParser\Node\Expr $value      Value
      * @param array               $attributes Additional attributes
      */
-    public function __construct($key, \PHPParser\Node\Expr $value, array $attributes = array()) {
+    public function __construct($key, PHPParser\Node\Expr $value, array $attributes = array()) {
         parent::__construct(
             array(
                 'key'   => $key,

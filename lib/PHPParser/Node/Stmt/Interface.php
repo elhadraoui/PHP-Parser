@@ -4,8 +4,8 @@ namespace PHPParser\Node;
 
 /**
  * @property string                $name    Name
- * @property \PHPParser\Node\Name[] $extends Extended interfaces
- * @property \PHPParser\Node[]      $stmts   Statements
+ * @property PHPParser\Node\Name[] $extends Extended interfaces
+ * @property PHPParser\Node[]      $stmts   Statements
  */
 class Stmt_Interface extends PHPParser\Node\Stmt
 {
@@ -35,12 +35,12 @@ class Stmt_Interface extends PHPParser\Node\Stmt
         $this->name = $name;
 
         if (isset(self::$specialNames[(string) $this->name])) {
-            throw new \PHPParser\Error(sprintf('Cannot use "%s" as interface name as it is reserved', $this->name));
+            throw new PHPParser\Error(sprintf('Cannot use "%s" as interface name as it is reserved', $this->name));
         }
 
         foreach ($this->extends as $interface) {
             if (isset(self::$specialNames[(string) $interface])) {
-                throw new \PHPParser\Error(sprintf('Cannot use "%s" as interface name as it is reserved', $interface));
+                throw new PHPParser\Error(sprintf('Cannot use "%s" as interface name as it is reserved', $interface));
             }
         }
     }

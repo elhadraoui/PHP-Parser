@@ -6,10 +6,10 @@ class DumperTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideTestDump
-     * @covers \PHPParser\NodeDumper::dump
+     * @covers PHPParser\NodeDumper::dump
      */
     public function testDump($node, $dump) {
-        $dumper = new \PHPParser\NodeDumper;
+        $dumper = new PHPParser\NodeDumper;
 
         $this->assertEquals($dump, $dumper->dump($node));
     }
@@ -30,7 +30,7 @@ class DumperTest extends \PHPUnit_Framework_TestCase
 )'
             ),
             array(
-                new \PHPParser\Node\Name(array('Hallo', 'World')),
+                new PHPParser\Node\Name(array('Hallo', 'World')),
 'Name(
     parts: array(
         0: Hallo
@@ -62,7 +62,7 @@ class DumperTest extends \PHPUnit_Framework_TestCase
      * @expectedExceptionMessage Can only dump nodes and arrays.
      */
     public function testError() {
-        $dumper = new \PHPParser\NodeDumper;
+        $dumper = new PHPParser\NodeDumper;
         $dumper->dump(new stdClass);
     }
 }

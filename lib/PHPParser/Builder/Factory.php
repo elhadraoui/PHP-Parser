@@ -7,9 +7,9 @@ namespace PHPParser\Builder;
  * _interface() and _function() in the class and are made available as class(), interface() and function()
  * through __call() magic.
  *
- * @method \PHPParser\Builder_Class     class(string $name)     Creates a class builder.
- * @method \PHPParser\Builder_Function  function(string $name)  Creates a function builder
- * @method \PHPParser\Builder_Interface interface(string $name) Creates an interface builder.
+ * @method PHPParser\Builder_Class     class(string $name)     Creates a class builder.
+ * @method PHPParser\Builder_Function  function(string $name)  Creates a function builder
+ * @method PHPParser\Builder_Interface interface(string $name) Creates an interface builder.
  */
 class Factory
 {
@@ -18,10 +18,10 @@ class Factory
      *
      * @param string $name Name of the class
      *
-     * @return \PHPParser\Builder_Class The created class builder
+     * @return PHPParser\Builder_Class The created class builder
      */
     protected function _class($name) {
-        return new \PHPParser\Builder_Class($name);
+        return new PHPParser\Builder_Class($name);
     }
 
     /**
@@ -29,10 +29,10 @@ class Factory
      *
      * @param string $name Name of the interface
      *
-     * @return \PHPParser\Builder_Class The created interface builder
+     * @return PHPParser\Builder_Class The created interface builder
      */
     protected function _interface($name) {
-        return new \PHPParser\Builder_Interface($name);
+        return new PHPParser\Builder_Interface($name);
     }
 
     /**
@@ -40,10 +40,10 @@ class Factory
      *
      * @param string $name Name of the method
      *
-     * @return \PHPParser\Builder_Method The created method builder
+     * @return PHPParser\Builder_Method The created method builder
      */
     public function method($name) {
-        return new \PHPParser\Builder_Method($name);
+        return new PHPParser\Builder_Method($name);
     }
 
     /**
@@ -51,10 +51,10 @@ class Factory
      *
      * @param string $name Name of the parameter
      *
-     * @return \PHPParser\Builder_Param The created parameter builder
+     * @return PHPParser\Builder_Param The created parameter builder
      */
     public function param($name) {
-        return new \PHPParser\Builder_Param($name);
+        return new PHPParser\Builder_Param($name);
     }
 
     /**
@@ -62,10 +62,10 @@ class Factory
      *
      * @param string $name Name of the property
      *
-     * @return \PHPParser\Builder_Property The created property builder
+     * @return PHPParser\Builder_Property The created property builder
      */
     public function property($name) {
-        return new \PHPParser\Builder_Property($name);
+        return new PHPParser\Builder_Property($name);
     }
 
     /**
@@ -73,10 +73,10 @@ class Factory
      *
      * @param string $name Name of the function
      *
-     * @return \PHPParser\Builder_Property The created function builder
+     * @return PHPParser\Builder_Property The created function builder
      */
     protected function _function($name) {
-        return new \PHPParser\Builder_Function($name);
+        return new PHPParser\Builder_Function($name);
     }
 
     public function __call($name, array $args) {

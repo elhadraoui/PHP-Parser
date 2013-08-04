@@ -8,8 +8,8 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
      * @dataProvider provideModifiers
      */
     public function testModifiers($modifier) {
-        $node = new \PHPParser\Node\Stmt_Property(
-            constant('\PHPParser\Node\Stmt_Class::MODIFIER_' . strtoupper($modifier)),
+        $node = new PHPParser\Node\Stmt_Property(
+            constant('PHPParser\Node\Stmt_Class::MODIFIER_' . strtoupper($modifier)),
             array() // invalid
         );
 
@@ -20,7 +20,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
      * @dataProvider provideModifiers
      */
     public function testNoModifiers($modifier) {
-        $node = new \PHPParser\Node\Stmt_Property(0, array());
+        $node = new PHPParser\Node\Stmt_Property(0, array());
 
         $this->assertFalse($node->{'is' . $modifier}());
     }

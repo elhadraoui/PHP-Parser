@@ -8,20 +8,20 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
         $attributes = array(
             'startLine' => 10,
             'comments'  => array(
-                new \PHPParser\Comment('// Comment' . "\n"),
-                new \PHPParser\Comment_Doc('/** doc comment */'),
+                new PHPParser\Comment('// Comment' . "\n"),
+                new PHPParser\Comment_Doc('/** doc comment */'),
             ),
         );
 
         $node = $this->getMockForAbstractClass(
-            '\PHPParser\NodeAbstract',
+            'PHPParser\NodeAbstract',
             array(
                 array(
                     'subNode' => 'value'
                 ),
                 $attributes
             ),
-            '\PHPParser\Node\Dummy'
+            'PHPParser\Node\Dummy'
         );
 
         $this->assertEquals('Dummy', $node->getType());
@@ -38,7 +38,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testConstruct
      */
-    public function testGetDocComment(\PHPParser\Node $node) {
+    public function testGetDocComment(PHPParser\Node $node) {
         $this->assertEquals('/** doc comment */', $node->getDocComment());
         array_pop($node->getAttribute('comments')); // remove doc comment
         $this->assertNull($node->getDocComment());
@@ -49,7 +49,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testConstruct
      */
-    public function testChange(\PHPParser\Node $node) {
+    public function testChange(PHPParser\Node $node) {
         // change of line
         $node->setLine(15);
         $this->assertEquals(15, $node->getLine());
@@ -69,8 +69,8 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testAttributes() {
-        /** @var $node \PHPParser\Node */
-        $node = $this->getMockForAbstractClass('\PHPParser\NodeAbstract');
+        /** @var $node PHPParser\Node */
+        $node = $this->getMockForAbstractClass('PHPParser\NodeAbstract');
 
         $this->assertEmpty($node->getAttributes());
 

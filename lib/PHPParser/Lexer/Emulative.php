@@ -15,20 +15,20 @@ class Emulative extends Lexer
 
         $newKeywordsPerVersion = array(
             '5.5.0-dev' => array(
-                'finally'       => \PHPParser\Parser::T_FINALLY,
-                'yield'         => \PHPParser\Parser::T_YIELD,
+                'finally'       => PHPParser\Parser::T_FINALLY,
+                'yield'         => PHPParser\Parser::T_YIELD,
             ),
             '5.4.0-dev' => array(
-                'callable'      => \PHPParser\Parser::T_CALLABLE,
-                'insteadof'     => \PHPParser\Parser::T_INSTEADOF,
-                'trait'         => \PHPParser\Parser::T_TRAIT,
-                '__trait__'     => \PHPParser\Parser::T_TRAIT_C,
+                'callable'      => PHPParser\Parser::T_CALLABLE,
+                'insteadof'     => PHPParser\Parser::T_INSTEADOF,
+                'trait'         => PHPParser\Parser::T_TRAIT,
+                '__trait__'     => PHPParser\Parser::T_TRAIT_C,
             ),
             '5.3.0-dev' => array(
-                '__dir__'       => \PHPParser\Parser::T_DIR,
-                'goto'          => \PHPParser\Parser::T_GOTO,
-                'namespace'     => \PHPParser\Parser::T_NAMESPACE,
-                '__namespace__' => \PHPParser\Parser::T_NS_C,
+                '__dir__'       => PHPParser\Parser::T_DIR,
+                'goto'          => PHPParser\Parser::T_GOTO,
+                'namespace'     => PHPParser\Parser::T_NAMESPACE,
+                '__namespace__' => PHPParser\Parser::T_NS_C,
             ),
         );
 
@@ -125,7 +125,7 @@ class Emulative extends Lexer
                     );
                 } elseif ('NS' === $matches[1]) {
                     // a \ single char token is returned here and replaced by a
-                    // \PHPParser\Parser::T_NS_SEPARATOR token in ->getNextToken(). This hacks around
+                    // PHPParser\Parser::T_NS_SEPARATOR token in ->getNextToken(). This hacks around
                     // the limitations arising from T_NS_SEPARATOR not being defined on 5.3
                     $replace = array('\\');
                 } elseif ('NOWDOC' === $matches[1]) {
@@ -183,15 +183,15 @@ class Emulative extends Lexer
         // replace new keywords by their respective tokens. This is not done
         // if we currently are in an object access (e.g. in $obj->namespace
         // "namespace" stays a T_STRING tokens and isn't converted to T_NAMESPACE)
-        if (\PHPParser\Parser::T_STRING === $token && !$this->inObjectAccess) {
+        if (PHPParser\Parser::T_STRING === $token && !$this->inObjectAccess) {
             if (isset($this->newKeywords[strtolower($value)])) {
                 return $this->newKeywords[strtolower($value)];
             }
         // backslashes are replaced by T_NS_SEPARATOR tokens
         } elseif (92 === $token) { // ord('\\')
-            return \PHPParser\Parser::T_NS_SEPARATOR;
+            return PHPParser\Parser::T_NS_SEPARATOR;
         // keep track of whether we currently are in an object access (after ->)
-        } elseif (\PHPParser\Parser::T_OBJECT_OPERATOR === $token) {
+        } elseif (PHPParser\Parser::T_OBJECT_OPERATOR === $token) {
             $this->inObjectAccess = true;
         } else {
             $this->inObjectAccess = false;

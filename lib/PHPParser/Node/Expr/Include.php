@@ -3,7 +3,7 @@
 namespace PHPParser\Node;
 
 /**
- * @property \PHPParser\Node\Expr $expr Expression
+ * @property PHPParser\Node\Expr $expr Expression
  * @property int                 $type Type of include
  */
 class Expr_Include extends PHPParser\Node\Expr
@@ -16,11 +16,11 @@ class Expr_Include extends PHPParser\Node\Expr
     /**
      * Constructs an include node.
      *
-     * @param \PHPParser\Node\Expr $expr       Expression
+     * @param PHPParser\Node\Expr $expr       Expression
      * @param int                 $type       Type of include
      * @param array               $attributes Additional attributes
      */
-    public function __construct(\PHPParser\Node\Expr $expr, $type, array $attributes = array()) {
+    public function __construct(PHPParser\Node\Expr $expr, $type, array $attributes = array()) {
         parent::__construct(
             array(
                 'expr' => $expr,

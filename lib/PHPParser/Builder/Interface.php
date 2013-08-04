@@ -25,10 +25,10 @@ class Builder_Interface extends BuilderAbstract
     /**
      * Extends one or more interfaces.
      *
-     * @param \PHPParser\Node\Name|string $interface Name of interface to extend
-     * @param \PHPParser\Node\Name|string $...       More interfaces to extend
+     * @param PHPParser\Node\Name|string $interface Name of interface to extend
+     * @param PHPParser\Node\Name|string $...       More interfaces to extend
      *
-     * @return \PHPParser\Builder_Interface The builder instance (for fluid interface)
+     * @return PHPParser\Builder_Interface The builder instance (for fluid interface)
      */
     public function extend() {
         foreach (func_get_args() as $interface) {
@@ -41,9 +41,9 @@ class Builder_Interface extends BuilderAbstract
     /**
      * Adds a statement.
      *
-     * @param \PHPParser\Node\Stmt|\PHPParser\Builder $stmt The statement to add
+     * @param PHPParser\Node\Stmt|PHPParser\Builder $stmt The statement to add
      *
-     * @return \PHPParser\Builder_Interface The builder instance (for fluid interface)
+     * @return PHPParser\Builder_Interface The builder instance (for fluid interface)
      */
     public function addStmt($stmt) {
         $stmt = $this->normalizeNode($stmt);
@@ -72,7 +72,7 @@ class Builder_Interface extends BuilderAbstract
      *
      * @param array $stmts The statements to add
      *
-     * @return \PHPParser\Builder_Class The builder instance (for fluid interface)
+     * @return PHPParser\Builder_Class The builder instance (for fluid interface)
      */
     public function addStmts(array $stmts) {
         foreach ($stmts as $stmt) {
@@ -85,10 +85,10 @@ class Builder_Interface extends BuilderAbstract
     /**
      * Returns the built class node.
      *
-     * @return \PHPParser\Node\Stmt_Interface The built interface node
+     * @return PHPParser\Node\Stmt_Interface The built interface node
      */
     public function getNode() {
-        return new \PHPParser\Node\Stmt_Interface($this->name, array(
+        return new PHPParser\Node\Stmt_Interface($this->name, array(
             'extends' => $this->extends,
             'stmts' => array_merge($this->constants, $this->methods),
         ));

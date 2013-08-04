@@ -5,7 +5,7 @@ namespace PHPParserTest;
 class CommentTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetSet() {
-        $comment = new \PHPParser\Comment('/* Some comment */', 1);
+        $comment = new PHPParser\Comment('/* Some comment */', 1);
 
         $this->assertEquals('/* Some comment */', $comment->getText());
         $this->assertEquals('/* Some comment */', (string) $comment);
@@ -23,7 +23,7 @@ class CommentTest extends \PHPUnit_Framework_TestCase
      * @dataProvider provideTestReformatting
      */
     public function testReformatting($commentText, $reformattedText) {
-        $comment = new \PHPParser\Comment($commentText);
+        $comment = new PHPParser\Comment($commentText);
         $this->assertEquals($reformattedText, $comment->getReformattedText());
     }
 

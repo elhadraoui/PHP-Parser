@@ -10,10 +10,10 @@ class Template
     /**
      * Creates a new code template from a template string.
      *
-     * @param \PHPParser\Parser $parser   A parser instance
+     * @param PHPParser\Parser $parser   A parser instance
      * @param string           $template The template string
      */
-    public function __construct(\PHPParser\Parser $parser, $template) {
+    public function __construct(PHPParser\Parser $parser, $template) {
         $this->parser   = $parser;
         $this->template = $template;
     }
@@ -24,7 +24,7 @@ class Template
      *
      * @param array $placeholders Placeholders
      *
-     * @return \PHPParser\Node[] Statements
+     * @return PHPParser\Node[] Statements
      */
     public function getStmts(array $placeholders) {
         return $this->parser->parse(

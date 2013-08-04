@@ -33,7 +33,7 @@ class XML implements PHPParser\Serializer
     }
 
     protected function _serialize($node) {
-        if ($node instanceof \PHPParser\Node) {
+        if ($node instanceof PHPParser\Node) {
             $this->writer->startElement('node:' . $node->getType());
 
             foreach ($node->getAttributes() as $name => $value) {
@@ -49,9 +49,9 @@ class XML implements PHPParser\Serializer
             }
 
             $this->writer->endElement();
-        } elseif ($node instanceof \PHPParser\Comment) {
+        } elseif ($node instanceof PHPParser\Comment) {
             $this->writer->startElement('comment');
-            $this->writer->writeAttribute('isDocComment', $node instanceof \PHPParser\Comment_Doc ? 'true' : 'false');
+            $this->writer->writeAttribute('isDocComment', $node instanceof PHPParser\Comment_Doc ? 'true' : 'false');
             $this->writer->writeAttribute('line', $node->getLine());
             $this->writer->text($node->getText());
             $this->writer->endElement();

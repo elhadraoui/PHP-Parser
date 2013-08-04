@@ -8,7 +8,7 @@ namespace PHPParser\Autoloader;
 class Autoloader
 {
     /**
-    * Registers \PHPParser\Autoloader as an SPL autoloader.
+    * Registers PHPParser\Autoloader as an SPL autoloader.
     */
     static public function register()
     {

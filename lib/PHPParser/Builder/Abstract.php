@@ -2,20 +2,20 @@
 
 namespace PHPParser\Builder;
 
-use \PHPParser\Builder;
+use PHPParser\Builder;
 
 abstract class BuilderAbstract implements Builder {
     /**
      * Normalizes a node: Converts builder objects to nodes.
      *
-     * @param \PHPParser\Node|\PHPParser\Builder $node The node to normalize
+     * @param PHPParser\Node|PHPParser\Builder $node The node to normalize
      *
-     * @return \PHPParser\Node The normalized node
+     * @return PHPParser\Node The normalized node
      */
     protected function normalizeNode($node) {
-        if ($node instanceof \PHPParser\Builder) {
+        if ($node instanceof PHPParser\Builder) {
             return $node->getNode();
-        } elseif ($node instanceof \PHPParser\Node) {
+        } elseif ($node instanceof PHPParser\Node) {
             return $node;
         }
 
@@ -46,7 +46,7 @@ abstract class BuilderAbstract implements Builder {
      * @return Expr The normalized value
      */
     protected function normalizeValue($value) {
-        if ($value instanceof \PHPParser\Node) {
+        if ($value instanceof PHPParser\Node) {
             return $value;
         } elseif (is_null($value)) {
             return new ConstFetch(

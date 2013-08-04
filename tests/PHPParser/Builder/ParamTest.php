@@ -7,7 +7,7 @@ use PHPParser\Node\Expr\ConstFetch;
 class ParamTest extends \PHPUnit_Framework_TestCase
 {
     public function createParamBuilder($name) {
-        return new \PHPParser\Builder_Param($name);
+        return new PHPParser\Builder_Param($name);
     }
 
     /**
@@ -26,15 +26,15 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 null,
-                new ConstFetch(new \PHPParser\Node\Name('null'))
+                new ConstFetch(new PHPParser\Node\Name('null'))
             ),
             array(
                 true,
-                new ConstFetch(new \PHPParser\Node\Name('true'))
+                new ConstFetch(new PHPParser\Node\Name('true'))
             ),
             array(
                 false,
-                new ConstFetch(new \PHPParser\Node\Name('false'))
+                new ConstFetch(new PHPParser\Node\Name('false'))
             ),
             array(
                 31415,
@@ -83,7 +83,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Param('test', null, 'array'),
+            new PHPParser\Node\Param('test', null, 'array'),
             $node
         );
 
@@ -93,7 +93,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Param('test', null, 'callable'),
+            new PHPParser\Node\Param('test', null, 'callable'),
             $node
         );
 
@@ -103,7 +103,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Param('test', null, new \PHPParser\Node\Name('Some\Class')),
+            new PHPParser\Node\Param('test', null, new PHPParser\Node\Name('Some\Class')),
             $node
         );
     }
@@ -115,7 +115,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Param('test', null, null, true),
+            new PHPParser\Node\Param('test', null, null, true),
             $node
         );
     }

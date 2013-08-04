@@ -11,9 +11,9 @@ interface Visitor
      *  * null:      $nodes stays as-is
      *  * otherwise: $nodes is set to the return value
      *
-     * @param \PHPParser\Node[] $nodes Array of nodes
+     * @param PHPParser\Node[] $nodes Array of nodes
      *
-     * @return null|\PHPParser\Node[] Array of nodes
+     * @return null|PHPParser\Node[] Array of nodes
      */
     public function beforeTraverse(array $nodes);
 
@@ -24,11 +24,11 @@ interface Visitor
      *  * null:      $node stays as-is
      *  * otherwise: $node is set to the return value
      *
-     * @param \PHPParser\Node $node Node
+     * @param PHPParser\Node $node Node
      *
-     * @return null|\PHPParser\Node Node
+     * @return null|PHPParser\Node Node
      */
-    public function enterNode(\PHPParser\Node $node);
+    public function enterNode(PHPParser\Node $node);
 
     /**
      * Called when leaving a node.
@@ -39,11 +39,11 @@ interface Visitor
      *  * array:     The return value is merged into the parent array (at the position of the $node)
      *  * otherwise: $node is set to the return value
      *
-     * @param \PHPParser\Node $node Node
+     * @param PHPParser\Node $node Node
      *
-     * @return null|\PHPParser\Node|false|\PHPParser\Node[] Node
+     * @return null|PHPParser\Node|false|PHPParser\Node[] Node
      */
-    public function leaveNode(\PHPParser\Node $node);
+    public function leaveNode(PHPParser\Node $node);
 
     /**
      * Called once after traversal.
@@ -52,9 +52,9 @@ interface Visitor
      *  * null:      $nodes stays as-is
      *  * otherwise: $nodes is set to the return value
      *
-     * @param \PHPParser\Node[] $nodes Array of nodes
+     * @param PHPParser\Node[] $nodes Array of nodes
      *
-     * @return null|\PHPParser\Node[] Array of nodes
+     * @return null|PHPParser\Node[] Array of nodes
      */
     public function afterTraverse(array $nodes);
 }

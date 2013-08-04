@@ -3,18 +3,18 @@
 namespace Expr;
 
 /**
- * @property \PHPParser\Node\Name|\PHPParser\Node\Expr $class Class name
- * @property string|\PHPParser\Node\Expr              $name  Method name
- * @property \PHPParser\Node\Arg[]                    $args  Arguments
+ * @property PHPParser\Node\Name|PHPParser\Node\Expr $class Class name
+ * @property string|PHPParser\Node\Expr              $name  Method name
+ * @property PHPParser\Node\Arg[]                    $args  Arguments
  */
 class StaticCall extends PHPParser\Node\Expr
 {
     /**
      * Constructs a static method call node.
      *
-     * @param \PHPParser\Node\Name|\PHPParser\Node\Expr $class      Class name
-     * @param string|\PHPParser\Node\Expr              $name       Method name
-     * @param \PHPParser\Node\Arg[]                    $args       Arguments
+     * @param PHPParser\Node\Name|PHPParser\Node\Expr $class      Class name
+     * @param string|PHPParser\Node\Expr              $name       Method name
+     * @param PHPParser\Node\Arg[]                    $args       Arguments
      * @param array                                   $attributes Additional attributes
      */
     public function __construct($class, $name, array $args = array(), array $attributes = array()) {

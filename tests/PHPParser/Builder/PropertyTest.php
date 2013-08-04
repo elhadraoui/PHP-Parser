@@ -5,7 +5,7 @@ namespace PHPParserTest\Builder;
 class PropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function createPropertyBuilder($name) {
-        return new \PHPParser\Builder_Property($name);
+        return new PHPParser\Builder_Property($name);
     }
 
     public function testModifiers() {
@@ -16,11 +16,11 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_Property(
-                \PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE
-              | \PHPParser\Node\Stmt_Class::MODIFIER_STATIC,
+            new PHPParser\Node\Stmt_Property(
+                PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE
+              | PHPParser\Node\Stmt_Class::MODIFIER_STATIC,
                 array(
-                    new \PHPParser\Node\Stmt_PropertyProperty('test')
+                    new PHPParser\Node\Stmt_PropertyProperty('test')
                 )
             ),
             $node
@@ -32,10 +32,10 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_Property(
-                \PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED,
+            new PHPParser\Node\Stmt_Property(
+                PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED,
                 array(
-                    new \PHPParser\Node\Stmt_PropertyProperty('test')
+                    new PHPParser\Node\Stmt_PropertyProperty('test')
                 )
             ),
             $node
@@ -47,10 +47,10 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new \PHPParser\Node\Stmt_Property(
-                \PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC,
+            new PHPParser\Node\Stmt_Property(
+                PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC,
                 array(
-                    new \PHPParser\Node\Stmt_PropertyProperty('test')
+                    new PHPParser\Node\Stmt_PropertyProperty('test')
                 )
             ),
             $node
@@ -73,15 +73,15 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 null,
-                new ConstFetch(new \PHPParser\Node\Name('null'))
+                new ConstFetch(new PHPParser\Node\Name('null'))
             ),
             array(
                 true,
-                new ConstFetch(new \PHPParser\Node\Name('true'))
+                new ConstFetch(new PHPParser\Node\Name('true'))
             ),
             array(
                 false,
-                new ConstFetch(new \PHPParser\Node\Name('false'))
+                new ConstFetch(new PHPParser\Node\Name('false'))
             ),
             array(
                 31415,

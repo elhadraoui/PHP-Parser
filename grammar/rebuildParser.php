@@ -48,14 +48,14 @@ $grammarCode = resolveArrays($grammarCode);
 file_put_contents($tmpGrammarFile, $grammarCode);
 
 echo "Building parser.\n";
-$output = trim(shell_exec("$kmyacc -l -m $skeletonFile -p \PHPParser\Parser $tmpGrammarFile 2>&1"));
+$output = trim(shell_exec("$kmyacc -l -m $skeletonFile -p PHPParser\Parser $tmpGrammarFile 2>&1"));
 echo "Output: \"$output\"\n";
 
 moveFileWithDirCheck($tmpResultFile, $parserResultFile);
 
 if ($optionDebug) {
     echo "Building debug parser.\n";
-    $output = trim(shell_exec("$kmyacc -t -v -l -m $skeletonFile -p \PHPParser\Parser $tmpGrammarFile 2>&1"));
+    $output = trim(shell_exec("$kmyacc -t -v -l -m $skeletonFile -p PHPParser\Parser $tmpGrammarFile 2>&1"));
     echo "Output: \"$output\"\n";
 
     moveFileWithDirCheck($tmpResultFile, $debugParserResultFile);
@@ -70,7 +70,7 @@ if (!$optionKeepTmpGrammar) {
 ///////////////////////////////
 
 function resolveConstants($code) {
-    return preg_replace('~[A-Z][a-zA-Z_]++::~', '\PHPParser\Node\$0', $code);
+    return preg_replace('~[A-Z][a-zA-Z_]++::~', 'PHPParser\Node\$0', $code);
 }
 
 function resolveNodes($code) {
@@ -90,7 +90,7 @@ function resolveNodes($code) {
                 $paramCode .= $param . ', ';
             }
 
-            return 'new \\PHPParser\\Node\\' . $matches['name'] . '(' . $paramCode . '$attributes)';
+            return 'new \PHPParser\\Node\\' . $matches['name'] . '(' . $paramCode . '$attributes)';
         },
         $code
     );
@@ -112,7 +112,7 @@ function resolveMacros($code) {
             if ('error' == $name) {
                 assertArgs(1, $args, $name);
 
-                return 'throw new \PHPParser\Error(' . $args[0] . ')';
+                return 'throw new PHPParser\Error(' . $args[0] . ')';
             }
 
             if ('init' == $name) {
