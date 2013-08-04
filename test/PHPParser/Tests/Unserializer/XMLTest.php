@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_Unserializer_XMLTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Unserializer;
+
+class XMLTest extends \PHPUnit_Framework_TestCase
 {
     public function testNode() {
         $xml = <<<XML
