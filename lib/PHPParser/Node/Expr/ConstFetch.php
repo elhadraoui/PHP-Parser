@@ -1,8 +1,6 @@
 <?php
 
-namespace Expr;
-
-use PHPParser\Expr\Expr;
+namespace PHPParser\Expr;
 
 /**
  * @property \PHPParser\Node\Name $name Constant name
