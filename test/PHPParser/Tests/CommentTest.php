@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPParserTest\;
+namespace PHPParserTest;
 
 class CommentTest extends \PHPUnit_Framework_TestCase
 {

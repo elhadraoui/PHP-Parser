@@ -1,8 +1,8 @@
-<?php<?php
+<?php
 
 namespace PHPParser\Builder;
 
-class Property extends Abstract
+class Property extends BuilderAbstract
 {
     protected $name;
 

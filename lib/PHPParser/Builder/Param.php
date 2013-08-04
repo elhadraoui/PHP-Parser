@@ -1,8 +1,8 @@
-<?php<?php
+<?php
 
 namespace PHPParser\Builder;
 
-class Param extends Abstract
+class Param extends BuilderAbstract
 {
     protected $name;
 

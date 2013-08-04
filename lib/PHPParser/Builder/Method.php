@@ -2,7 +2,7 @@
 
 namespace PHPParser\Builder;
 
-class Method extends Abstract
+class Method extends BuilderAbstract
 {
     protected $name;
 
