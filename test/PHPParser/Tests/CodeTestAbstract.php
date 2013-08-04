@@ -1,6 +1,8 @@
 <?php
 
-abstract class PHPParser_Tests_CodeTestAbstract extends PHPUnit_Framework_TestCase
+namespace PHPParserTest;
+
+abstract class CodeTestAbstract extends \PHPUnit_Framework_TestCase
 {
     protected function getTests($directory, $fileExtension) {
         $it = new RecursiveDirectoryIterator($directory);
