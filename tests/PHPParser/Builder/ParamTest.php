@@ -7,6 +7,7 @@ use PHPParser\Node\Name;
 use PHPParser\Builder\Param;
 use PHPParser\Node\Scalar\LNumber;
 use PHPParser\Node\Scalar\DNumber;
+use PHPParser\Node\Scalar\String;
 
 class ParamTest extends \PHPUnit_Framework_TestCase
 {
