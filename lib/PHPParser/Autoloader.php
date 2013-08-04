@@ -1,9 +1,11 @@
 <?php
 
+namespace PHPParser;
+
 /**
  * @codeCoverageIgnore
  */
-class PHPParser_Autoloader
+class Autoloader
 {
     /**
     * Registers PHPParser_Autoloader as an SPL autoloader.
