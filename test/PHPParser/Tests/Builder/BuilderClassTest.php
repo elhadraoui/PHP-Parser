@@ -2,7 +2,7 @@
 
 namespace PHPParserTest\Builder;
 
-class BuilderClassTest extends PHPUnit_Framework_TestCase
+class BuilderClassTest extends \PHPUnit_Framework_TestCase
 {
     protected function createClassBuilder($class) {
         return new PHPParser_Builder_Class($class);
