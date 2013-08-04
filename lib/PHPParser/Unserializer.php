@@ -1,6 +1,8 @@
 <?php
 
-interface PHPParser_Unserializer
+namespace PHPParser;
+
+interface Unserializer
 {
     /**
      * Unserializes a string in some format into a node tree.
