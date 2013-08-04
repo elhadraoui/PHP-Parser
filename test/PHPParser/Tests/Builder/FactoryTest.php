@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_BuilderFactoryTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Builder;
+
+class FactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideTestFactory
