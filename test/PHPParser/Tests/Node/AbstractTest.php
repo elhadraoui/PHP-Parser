@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_NodeAbstractTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Node;
+
+class AbstractTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct() {
         $attributes = array(
