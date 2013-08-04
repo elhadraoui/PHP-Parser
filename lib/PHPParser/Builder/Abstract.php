@@ -2,18 +2,20 @@
 
 namespace PHPParser\Builder;
 
-abstract class BuilderAbstract implements PHPParser_Builder {
+use PHPParser\Builder;
+
+abstract class BuilderAbstract implements Builder {
     /**
      * Normalizes a node: Converts builder objects to nodes.
      *
-     * @param PHPParser_Node|PHPParser_Builder $node The node to normalize
+     * @param PHPParser\Node|PHPParser\Builder $node The node to normalize
      *
-     * @return PHPParser_Node The normalized node
+     * @return PHPParser\Node The normalized node
      */
     protected function normalizeNode($node) {
-        if ($node instanceof PHPParser_Builder) {
+        if ($node instanceof PHPParser\Builder) {
             return $node->getNode();
-        } elseif ($node instanceof PHPParser_Node) {
+        } elseif ($node instanceof PHPParser\Node) {
             return $node;
         }
 
@@ -21,17 +23,17 @@ abstract class BuilderAbstract implements PHPParser_Builder {
     }
 
     /**
-     * Normalizes a name: Converts plain string names to PHPParser_Node_Name.
+     * Normalizes a name: Converts plain string names to PHPParser\Node\Name.
      *
-     * @param PHPParser_Node_Name|string $name The name to normalize
+     * @param PHPParser\Node\Name|string $name The name to normalize
      *
-     * @return PHPParser_Node_Name The normalized name
+     * @return PHPParser\Node\Name The normalized name
      */
     protected function normalizeName($name) {
-        if ($name instanceof PHPParser_Node_Name) {
+        if ($name instanceof PHPParser\Node\Name) {
             return $name;
         } else {
-            return new PHPParser_Node_Name($name);
+            return new PHPParser\Node\Name($name);
         }
     }
 
@@ -41,44 +43,44 @@ abstract class BuilderAbstract implements PHPParser_Builder {
      *
      * @param mixed $value The value to normalize
      *
-     * @return PHPParser_Node_Expr The normalized value
+     * @return PHPParser\Node\Expr The normalized value
      */
     protected function normalizeValue($value) {
-        if ($value instanceof PHPParser_Node) {
+        if ($value instanceof PHPParser\Node) {
             return $value;
         } elseif (is_null($value)) {
-            return new PHPParser_Node_Expr_ConstFetch(
-                new PHPParser_Node_Name('null')
+            return new ConstFetch(
+                new PHPParser\Node\Name('null')
             );
         } elseif (is_bool($value)) {
-            return new PHPParser_Node_Expr_ConstFetch(
-                new PHPParser_Node_Name($value ? 'true' : 'false')
+            return new ConstFetch(
+                new PHPParser\Node\Name($value ? 'true' : 'false')
             );
         } elseif (is_int($value)) {
-            return new PHPParser_Node_Scalar_LNumber($value);
+            return new PHPParser\Node\Scalar\LNumber($value);
         } elseif (is_float($value)) {
-            return new PHPParser_Node_Scalar_DNumber($value);
+            return new PHPParser\Node\Scalar\DNumber($value);
         } elseif (is_string($value)) {
-            return new PHPParser_Node_Scalar_String($value);
+            return new PHPParser\Node\Scalar\String($value);
         } elseif (is_array($value)) {
             $items = array();
             $lastKey = -1;
             foreach ($value as $itemKey => $itemValue) {
                 // for consecutive, numeric keys don't generate keys
                 if (null !== $lastKey && ++$lastKey === $itemKey) {
-                    $items[] = new PHPParser_Node_Expr_ArrayItem(
+                    $items[] = new ArrayItem(
                         $this->normalizeValue($itemValue)
                     );
                 } else {
                     $lastKey = null;
-                    $items[] = new PHPParser_Node_Expr_ArrayItem(
+                    $items[] = new ArrayItem(
                         $this->normalizeValue($itemValue),
                         $this->normalizeValue($itemKey)
                     );
                 }
             }
 
-            return new PHPParser_Node_Expr_Array($items);
+            return new Expr_Array($items);
         } else {
             throw new LogicException('Invalid value');
         }
@@ -90,7 +92,7 @@ abstract class BuilderAbstract implements PHPParser_Builder {
      * @param int $modifier Modifier to set
      */
     protected function setModifier($modifier) {
-        PHPParser_Node_Stmt_Class::verifyModifier($this->type, $modifier);
+        PHPParser\Node\Stmt_Class::verifyModifier($this->type, $modifier);
         $this->type |= $modifier;
     }
 }

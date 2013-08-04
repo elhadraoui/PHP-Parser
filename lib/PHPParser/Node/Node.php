@@ -1,6 +1,8 @@
 <?php
 
-interface PHPParser_Node
+namespace PHPParser\Node;
+
+interface Node
 {
     /**
      * Gets the type of the node.
@@ -35,7 +37,7 @@ interface PHPParser_Node
      *
      * The doc comment has to be the last comment associated with the node.
      *
-     * @return null|PHPParser_Comment_Doc Doc comment object or null
+     * @return null|PHPParser\Comment\Doc Doc comment object or null
      */
     public function getDocComment();
 
