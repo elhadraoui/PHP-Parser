@@ -1,9 +1,11 @@
 <?php
 
+namespace PHPParserTest\Builder;
+
 /**
  * This class unit-tests the interface builder
  */
-class PHPParser_Tests_Builder_InterfaceTest extends PHPUnit_Framework_TestCase
+class BuilderInterfaceTest extends \PHPUnit_Framework_TestCase
 {
     /** @var PHPParser_Builder_Interface */
     protected $builder;
