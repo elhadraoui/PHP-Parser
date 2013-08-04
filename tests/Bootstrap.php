@@ -29,6 +29,8 @@ set_include_path(implode(PATH_SEPARATOR, $path));
 
 function __autoload($className)
 {
+	global $vCoreLibrary;
+	
     $className = ltrim($className, '\\');
     $fileName  = '';
     $namespace = '';
@@ -39,7 +41,7 @@ function __autoload($className)
     }
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
-    require $fileName;
+    require $vCoreLibrary . DIRECTORY_SEPARATOR . $fileName;
 }
 
 /*
