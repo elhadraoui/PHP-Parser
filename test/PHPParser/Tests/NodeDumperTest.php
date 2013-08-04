@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_NodeDumperTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Node;
+
+class DumperTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideTestDump
