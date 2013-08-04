@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_NodeVisitor_NameResolverTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\NodeVisitor;
+
+class NameResolverTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers PHPParser_NodeVisitor_NameResolver
