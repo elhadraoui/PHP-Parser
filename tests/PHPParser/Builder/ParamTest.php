@@ -2,10 +2,10 @@
 
 namespace PHPParserTest\Builder;
 
+use PHPParser\Builder\Param;
 use PHPParser\Node\Expr\ConstFetch;
 use PHPParser\Node\Expr_Array;
 use PHPParser\Node\Name;
-use PHPParser\Builder\Param;
 use PHPParser\Node\Scalar\LNumber;
 use PHPParser\Node\Scalar\DNumber;
 use PHPParser\Node\Scalar\String;
