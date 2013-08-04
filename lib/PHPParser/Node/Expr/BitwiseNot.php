@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property \PHPParser\Node\Expr $expr Expression
  */
-class BitwiseNot extends \PHPParser\Node\Expr
+class BitwiseNot extends PHPParser\Node\Expr
 {
     /**
      * Constructs a bitwise not node.

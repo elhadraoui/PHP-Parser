@@ -2,7 +2,7 @@
 
 namespace PHPParser\Node;
 
-abstract class NodeAbstract implements \PHPParser\Node, IteratorAggregate
+abstract class NodeAbstract implements PHPParser\Node, IteratorAggregate
 {
     protected $subNodes;
     protected $attributes;

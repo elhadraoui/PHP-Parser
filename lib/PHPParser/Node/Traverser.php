@@ -2,7 +2,7 @@
 
 namespace PHPParser\Node;
 
-class Traverser implements \PHPParser\NodeTraverserInterface
+class Traverser implements PHPParser\NodeTraverserInterface
 {
     /**
      * @var \PHPParser\NodeVisitor[] Visitors

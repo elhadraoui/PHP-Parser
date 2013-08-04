@@ -2,7 +2,7 @@
 
 namespace PHPParser\Unserializer;
 
-class XML implements \PHPParser\Unserializer
+class XML implements PHPParser\Unserializer
 {
     protected $reader;
 

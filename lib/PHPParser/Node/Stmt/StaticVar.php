@@ -6,7 +6,7 @@ namespace PHPParser\Node\Stmt;
  * @property string                   $name    Name
  * @property null|\PHPParser\Node\Expr $default Default value
  */
-class StaticVar extends \PHPParser\Node\Stmt
+class StaticVar extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a static variable node.

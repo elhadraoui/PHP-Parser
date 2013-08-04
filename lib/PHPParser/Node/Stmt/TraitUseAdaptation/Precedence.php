@@ -7,7 +7,7 @@ namespace PHPParser\Node\Stmt;
  * @property string                $method    Method name
  * @property \PHPParser\Node\Name[] $insteadof Overwritten traits
  */
-class TraitUseAdaptation_Precedence extends \PHPParser\Node\Stmt_TraitUseAdaptation
+class TraitUseAdaptation_Precedence extends PHPParser\Node\Stmt_TraitUseAdaptation
 {
     /**
      * Constructs a trait use precedence adaptation node.

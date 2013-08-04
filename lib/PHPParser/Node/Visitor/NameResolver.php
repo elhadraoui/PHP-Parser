@@ -2,7 +2,7 @@
 
 namespace PHPParser\Node\Visitor;
 
-class NameResolver extends \PHPParser\NodeVisitorAbstract
+class NameResolver extends PHPParser\NodeVisitorAbstract
 {
     /**
      * @var null|\PHPParser\Node\Name Current namespace

@@ -2,7 +2,7 @@
 
 namespace PHPParser\Node\Scalar;
 
-class DirConst extends \PHPParser\Node\Scalar
+class DirConst extends PHPParser\Node\Scalar
 {
     /**
      * Constructs a __DIR__ const node

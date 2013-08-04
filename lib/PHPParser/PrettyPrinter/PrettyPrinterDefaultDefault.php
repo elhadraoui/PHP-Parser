@@ -4,7 +4,7 @@ namespace PHPParser\PrettyPrinter;
 
 use PHPParser\Node\Node_Const;
 
-class PrettyPrinterDefault extends \PHPParser\PrettyPrinterAbstract
+class PrettyPrinterDefault extends PHPParser\PrettyPrinterAbstract
 {
     // Special nodes
 

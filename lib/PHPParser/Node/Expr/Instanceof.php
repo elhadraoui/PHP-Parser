@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Expr $expr  Expression
  * @property \PHPParser\Node\Name|\PHPParser\Node\Expr $class Class name
  */
-class Expr_Instanceof extends \PHPParser\Node\Expr
+class Expr_Instanceof extends PHPParser\Node\Expr
 {
     /**
      * Constructs an instanceof check node.

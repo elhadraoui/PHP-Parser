@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property \PHPParser\Node\Expr[] $vars Variables to unset
  */
-class Stmt_Unset extends \PHPParser\Node\Stmt
+class Stmt_Unset extends PHPParser\Node\Stmt
 {
     /**
      * Constructs an unset node.

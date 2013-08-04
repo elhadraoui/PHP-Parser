@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Expr        $var  Variable holding object
  * @property string|\PHPParser\Node\Expr $name Property Name
  */
-class PropertyFetch extends \PHPParser\Node\Expr
+class PropertyFetch extends PHPParser\Node\Expr
 {
     /**
      * Constructs a function call node.

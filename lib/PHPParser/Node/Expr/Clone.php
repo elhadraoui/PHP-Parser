@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property \PHPParser\Node\Expr $expr Expression
  */
-class Expr_Clone extends \PHPParser\Node\Expr
+class Expr_Clone extends PHPParser\Node\Expr
 {
     /**
      * Constructs a clone node.

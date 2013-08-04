@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property \PHPParser\Node\Expr[] $exprs Expressions
  */
-class Stmt_Echo extends \PHPParser\Node\Stmt
+class Stmt_Echo extends PHPParser\Node\Stmt
 {
     /**
      * Constructs an echo node.

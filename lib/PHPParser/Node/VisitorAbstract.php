@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @codeCoverageIgnore
  */
-class VisitorAbstract implements \PHPParser\NodeVisitor
+class VisitorAbstract implements PHPParser\NodeVisitor
 {
     public function beforeTraverse(array $nodes)    { }
     public function enterNode(\PHPParser\Node $node) { }

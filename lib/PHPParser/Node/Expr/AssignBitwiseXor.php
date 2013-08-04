@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Expr $var  Variable
  * @property \PHPParser\Node\Expr $expr Expression
  */
-class AssignBitwiseXor extends \PHPParser\Node\Expr
+class AssignBitwiseXor extends PHPParser\Node\Expr
 {
     /**
      * Constructs an assignment with bitwise xor node.

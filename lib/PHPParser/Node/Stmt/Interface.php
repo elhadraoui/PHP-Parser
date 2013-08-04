@@ -7,7 +7,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Name[] $extends Extended interfaces
  * @property \PHPParser\Node[]      $stmts   Statements
  */
-class Stmt_Interface extends \PHPParser\Node\Stmt
+class Stmt_Interface extends PHPParser\Node\Stmt
 {
     protected static $specialNames = array(
         'self'   => true,

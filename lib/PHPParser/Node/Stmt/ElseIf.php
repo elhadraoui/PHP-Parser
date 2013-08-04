@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Expr $cond  Condition
  * @property \PHPParser\Node[]    $stmts Statements
  */
-class Stmt_ElseIf extends \PHPParser\Node\Stmt
+class Stmt_ElseIf extends PHPParser\Node\Stmt
 {
     /**
      * Constructs an elseif node.

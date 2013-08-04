@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Stmt_DeclareDeclare[] $declares List of declares
  * @property \PHPParser\Node[]                     $stmts    Statements
  */
-class Stmt_Declare extends \PHPParser\Node\Stmt
+class Stmt_Declare extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a declare node.

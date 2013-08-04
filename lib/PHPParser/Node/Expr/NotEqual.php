@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Expr $left  The left hand side expression
  * @property \PHPParser\Node\Expr $right The right hand side expression
  */
-class NotEqual extends \PHPParser\Node\Expr
+class NotEqual extends PHPParser\Node\Expr
 {
     /**
      * Constructs a not equal comparison node.

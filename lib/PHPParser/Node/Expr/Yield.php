@@ -6,7 +6,7 @@ namespace Expr;
  * @property null|\PHPParser\Node\Expr $value Value expression
  * @property null|\PHPParser\Node\Expr $key   Key expression
  */
-class Yield extends \PHPParser\Node\Expr
+class Yield extends PHPParser\Node\Expr
 {
     /**
      * Constructs a yield expression node.

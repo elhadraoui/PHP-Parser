@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Expr $left  The left hand side expression
  * @property \PHPParser\Node\Expr $right The right hand side expression
  */
-class ShiftLeft extends \PHPParser\Node\Expr
+class ShiftLeft extends PHPParser\Node\Expr
 {
     /**
      * Constructs a shift left node.

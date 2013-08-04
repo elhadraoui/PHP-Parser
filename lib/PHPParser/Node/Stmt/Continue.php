@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property null|\PHPParser\Node\Expr $num Number of loops to continue
  */
-class Stmt_Continue extends \PHPParser\Node\Stmt
+class Stmt_Continue extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a continue node.

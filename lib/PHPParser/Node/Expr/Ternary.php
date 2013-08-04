@@ -7,7 +7,7 @@ namespace Expr;
  * @property null|\PHPParser\Node\Expr $if   Expression for true
  * @property \PHPParser\Node\Expr      $else Expression for false
  */
-class Ternary extends \PHPParser\Node\Expr
+class Ternary extends PHPParser\Node\Expr
 {
     /**
      * Constructs a ternary operator node.

@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property \PHPParser\Node\Expr $var Variable
  */
-class PostInc extends \PHPParser\Node\Expr
+class PostInc extends PHPParser\Node\Expr
 {
     /**
      * Constructs a post increment node.

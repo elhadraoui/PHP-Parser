@@ -6,7 +6,7 @@ namespace PHPParser\Node\Stmt;
  * @property string           $name  Name
  * @property \PHPParser\Node[] $stmts Statements
  */
-class Trait extends \PHPParser\Node\Stmt
+class Trait extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a trait node.

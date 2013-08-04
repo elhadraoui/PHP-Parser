@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Expr $expr Expression
  * @property int                 $type Type of include
  */
-class Expr_Include extends \PHPParser\Node\Expr
+class Expr_Include extends PHPParser\Node\Expr
 {
     const TYPE_INCLUDE      = 1;
     const TYPE_INCLUDE_ONCE = 2;

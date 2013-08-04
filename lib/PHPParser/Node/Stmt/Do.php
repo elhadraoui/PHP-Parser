@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Expr $cond  Condition
  * @property \PHPParser\Node[]    $stmts Statements
  */
-class Stmt_Do extends \PHPParser\Node\Stmt
+class Stmt_Do extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a do while node.

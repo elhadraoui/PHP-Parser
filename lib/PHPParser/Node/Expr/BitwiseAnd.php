@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Expr $left  The left hand side expression
  * @property \PHPParser\Node\Expr $right The right hand side expression
  */
-class BitwiseAnd extends \PHPParser\Node\Expr
+class BitwiseAnd extends PHPParser\Node\Expr
 {
     /**
      * Constructs a bitwise and node.

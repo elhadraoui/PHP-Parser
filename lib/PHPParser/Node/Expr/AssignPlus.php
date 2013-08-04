@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Expr $var  Variable
  * @property \PHPParser\Node\Expr $expr Expression
  */
-class AssignPlus extends \PHPParser\Node\Expr
+class AssignPlus extends PHPParser\Node\Expr
 {
     /**
      * Constructs an assignment with addition node.

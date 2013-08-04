@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property \PHPParser\Node\Expr $var Variable
  */
-class PreDec extends \PHPParser\Node\Expr
+class PreDec extends PHPParser\Node\Expr
 {
     /**
      * Constructs a pre decrement node.

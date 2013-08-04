@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property array $parts Encapsed string array
  */
-class ShellExec extends \PHPParser\Node\Expr
+class ShellExec extends PHPParser\Node\Expr
 {
     /**
      * Constructs a shell exec (backtick) node.

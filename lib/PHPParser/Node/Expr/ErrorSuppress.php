@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property \PHPParser\Node\Expr $expr Expression
  */
-class ErrorSuppress extends \PHPParser\Node\Expr
+class ErrorSuppress extends PHPParser\Node\Expr
 {
     /**
      * Constructs an error suppress node.

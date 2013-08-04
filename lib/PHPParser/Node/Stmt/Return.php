@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property null|\PHPParser\Node\Expr $expr Expression
  */
-class Stmt_Return extends \PHPParser\Node\Stmt
+class Stmt_Return extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a return node.

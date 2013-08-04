@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property \PHPParser\Node\Expr $expr Expression
  */
-abstract class Cast extends \PHPParser\Node\Expr
+abstract class Cast extends PHPParser\Node\Expr
 {
     /**
      * Constructs a cast node.

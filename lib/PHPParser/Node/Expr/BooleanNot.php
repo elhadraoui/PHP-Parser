@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property \PHPParser\Node\Expr $expr Expression
  */
-class BooleanNot extends \PHPParser\Node\Expr
+class BooleanNot extends PHPParser\Node\Expr
 {
     /**
      * Constructs a boolean not node.

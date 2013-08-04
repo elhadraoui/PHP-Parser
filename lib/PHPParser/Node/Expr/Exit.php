@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property null|\PHPParser\Node\Expr $expr Expression
  */
-class Expr_Exit extends \PHPParser\Node\Expr
+class Expr_Exit extends PHPParser\Node\Expr
 {
     /**
      * Constructs an exit() node.

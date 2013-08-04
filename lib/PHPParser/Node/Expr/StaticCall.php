@@ -7,7 +7,7 @@ namespace Expr;
  * @property string|\PHPParser\Node\Expr              $name  Method name
  * @property \PHPParser\Node\Arg[]                    $args  Arguments
  */
-class StaticCall extends \PHPParser\Node\Expr
+class StaticCall extends PHPParser\Node\Expr
 {
     /**
      * Constructs a static method call node.

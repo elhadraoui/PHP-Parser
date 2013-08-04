@@ -7,7 +7,7 @@ namespace PHPParser\Node;
  * @property string              $var   Variable for exception
  * @property \PHPParser\Node[]    $stmts Statements
  */
-class Stmt_Catch extends \PHPParser\Node\Stmt
+class Stmt_Catch extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a catch node.

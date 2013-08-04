@@ -9,7 +9,7 @@ namespace Expr;
  * @property bool                             $byRef  Whether to return by reference
  * @property bool                             $static Whether the closure is static
  */
-class Closure extends \PHPParser\Node\Expr
+class Closure extends PHPParser\Node\Expr
 {
     /**
      * Constructs a lambda function node.

@@ -6,7 +6,7 @@ namespace PHPParser\Node\Stmt;
  * @property string              $key   Key
  * @property \PHPParser\Node\Expr $value Value
  */
-class DeclareDeclare extends \PHPParser\Node\Stmt
+class DeclareDeclare extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a declare key=>value pair node.

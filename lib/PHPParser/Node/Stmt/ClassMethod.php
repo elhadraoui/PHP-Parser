@@ -9,7 +9,7 @@ namespace PHPParser\Node\Stmt;
  * @property \PHPParser\Node\Param[] $params Parameters
  * @property \PHPParser\Node[]       $stmts  Statements
  */
-class ClassMethod extends \PHPParser\Node\Stmt
+class ClassMethod extends PHPParser\Node\Stmt
 {
 
     /**

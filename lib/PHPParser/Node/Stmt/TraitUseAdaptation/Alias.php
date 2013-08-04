@@ -8,7 +8,7 @@ namespace PHPParser\Node\Stmt;
  * @property null|int                 $newModifier New modifier
  * @property null|string              $newName     New name
  */
-class TraitUseAdaptation_Alias extends \PHPParser\Node\Stmt_TraitUseAdaptation
+class TraitUseAdaptation_Alias extends PHPParser\Node\Stmt_TraitUseAdaptation
 {
     /**
      * Constructs a trait use precedence adaptation node.

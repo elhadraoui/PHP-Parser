@@ -2,7 +2,7 @@
 
 namespace PHPParser\Node\Scalar;
 
-class FuncConst extends \PHPParser\Node\Scalar
+class FuncConst extends PHPParser\Node\Scalar
 {
     /**
      * Constructs a __FUNCTION__ const node

@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property \PHPParser\Node\Expr $expr Expression
  */
-class UnaryMinus extends \PHPParser\Node\Expr
+class UnaryMinus extends PHPParser\Node\Expr
 {
     /**
      * Constructs a unary minus node.

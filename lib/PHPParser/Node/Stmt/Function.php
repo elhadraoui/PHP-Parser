@@ -8,7 +8,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Param[] $params Parameters
  * @property \PHPParser\Node[]       $stmts  Statements
  */
-class Stmt_Function extends \PHPParser\Node\Stmt
+class Stmt_Function extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a function node.

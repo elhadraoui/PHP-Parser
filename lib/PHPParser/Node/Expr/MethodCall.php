@@ -7,7 +7,7 @@ namespace Expr;
  * @property string|\PHPParser\Node\Expr $name Method name
  * @property \PHPParser\Node\Arg[]       $args Arguments
  */
-class MethodCall extends \PHPParser\Node\Expr
+class MethodCall extends PHPParser\Node\Expr
 {
     /**
      * Constructs a function call node.

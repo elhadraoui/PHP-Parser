@@ -6,7 +6,7 @@ namespace Expr;
  * @property string $var   Name of variable
  * @property bool   $byRef Whether to use by reference
  */
-class ClosureUse extends \PHPParser\Node\Expr
+class ClosureUse extends PHPParser\Node\Expr
 {
     /**
      * Constructs a closure use node.

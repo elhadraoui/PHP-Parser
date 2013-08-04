@@ -5,7 +5,7 @@ namespace PHPParser\Node\Scalar;
 /**
  * @property float $value Number value
  */
-class DNumber extends \PHPParser\Node\Scalar
+class DNumber extends PHPParser\Node\Scalar
 {
     /**
      * Constructs a float number scalar node.

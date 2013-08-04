@@ -5,7 +5,7 @@ namespace PHPParser\Node\Scalar;
 /**
  * @property string $value String value
  */
-class String extends \PHPParser\Node\Scalar
+class String extends PHPParser\Node\Scalar
 {
     protected static $replacements = array(
         '\\' => '\\',

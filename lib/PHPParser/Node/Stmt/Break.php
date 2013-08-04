@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property null|\PHPParser\Node\Expr $num Number of loops to break
  */
-class Stmt_Break extends \PHPParser\Node\Stmt
+class Stmt_Break extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a break node.

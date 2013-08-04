@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property null|\PHPParser\Node\Name $name  Name
  * @property \PHPParser\Node[]         $stmts Statements
  */
-class Stmt_Namespace extends \PHPParser\Node\Stmt
+class Stmt_Namespace extends PHPParser\Node\Stmt
 {
     protected static $specialNames = array(
         'self'   => true,

@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Name|\PHPParser\Node\Expr $class Class name
  * @property string|\PHPParser\Node\Expr              $name  Property name
  */
-class StaticPropertyFetch extends \PHPParser\Node\Expr
+class StaticPropertyFetch extends PHPParser\Node\Expr
 {
     /**
      * Constructs a static property fetch node.

@@ -9,7 +9,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Expr      $valueVar Variable to assign value to
  * @property \PHPParser\Node[]         $stmts    Statements
  */
-class Stmt_Foreach extends \PHPParser\Node\Stmt
+class Stmt_Foreach extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a foreach node.

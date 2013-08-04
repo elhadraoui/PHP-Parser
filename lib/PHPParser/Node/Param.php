@@ -8,7 +8,7 @@ namespace PHPParser\Node;
  * @property null|string|\PHPParser\Node\Name $type    Typehint
  * @property bool                            $byRef   Whether is passed by reference
  */
-class Param extends \PHPParser\NodeAbstract
+class Param extends PHPParser\NodeAbstract
 {
     /**
      * Constructs a parameter node.

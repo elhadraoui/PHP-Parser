@@ -7,7 +7,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Stmt_Catch[] $catches      Catches
  * @property \PHPParser\Node[]            $finallyStmts Finally statements
  */
-class Stmt_TryCatch extends \PHPParser\Node\Stmt
+class Stmt_TryCatch extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a try catch node.

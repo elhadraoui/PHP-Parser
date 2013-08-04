@@ -8,7 +8,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Stmt_ElseIf[]  $elseifs Elseif clauses
  * @property null|\PHPParser\Node\Stmt_Else $else    Else clause
  */
-class Stmt_If extends \PHPParser\Node\Stmt
+class Stmt_If extends PHPParser\Node\Stmt
 {
 
     /**

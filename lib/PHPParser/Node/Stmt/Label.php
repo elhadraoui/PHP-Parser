@@ -5,7 +5,7 @@ namespace PHPParser\Node\Stmt;
 /**
  * @property string $name Name
  */
-class Label extends \PHPParser\Node\Stmt
+class Label extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a label node.

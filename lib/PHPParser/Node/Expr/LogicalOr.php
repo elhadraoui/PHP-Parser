@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Expr $left  The left hand side expression
  * @property \PHPParser\Node\Expr $right The right hand side expression
  */
-class LogicalOr extends \PHPParser\Node\Expr
+class LogicalOr extends PHPParser\Node\Expr
 {
     /**
      * Constructs a logical or node.

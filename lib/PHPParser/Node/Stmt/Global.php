@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property \PHPParser\Node\Expr[] $vars Variables
  */
-class Stmt_Global extends \PHPParser\Node\Stmt
+class Stmt_Global extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a global variables list node.

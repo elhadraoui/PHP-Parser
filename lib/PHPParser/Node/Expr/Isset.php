@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property \PHPParser\Node\Expr[] $vars Variables
  */
-class Expr_Isset extends \PHPParser\Node\Expr
+class Expr_Isset extends PHPParser\Node\Expr
 {
     /**
      * Constructs an array node.

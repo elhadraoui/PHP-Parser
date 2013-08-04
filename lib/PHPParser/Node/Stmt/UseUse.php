@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Name $name  Namespace/Class to alias
  * @property string              $alias Alias
  */
-class Stmt_UseUse extends \PHPParser\Node\Stmt
+class Stmt_UseUse extends PHPParser\Node\Stmt
 {
     /**
      * Constructs an alias (use) node.

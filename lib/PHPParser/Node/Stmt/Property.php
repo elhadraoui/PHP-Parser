@@ -6,7 +6,7 @@ namespace PHPParser\Node\Stmt;
  * @property int                                    $type  Modifiers
  * @property \PHPParser\Node\Stmt_PropertyProperty[] $props Properties
  */
-class Property extends \PHPParser\Node\Stmt
+class Property extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a class property list node.

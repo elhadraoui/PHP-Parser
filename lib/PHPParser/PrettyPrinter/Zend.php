@@ -7,6 +7,6 @@ namespace PHPParser\PrettyPrinter;
  *
  * @deprecated
  */
-class Zend extends \PHPParser\PrettyPrinter_Default
+class Zend extends PHPParser\PrettyPrinter_Default
 {
 }

@@ -6,7 +6,7 @@ namespace PHPParser\Node\Stmt;
  * @property string                   $name    Name
  * @property null|\PHPParser\Node\Expr $default Default
  */
-class PropertyProperty extends \PHPParser\Node\Stmt
+class PropertyProperty extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a class property node.

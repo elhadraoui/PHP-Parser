@@ -2,7 +2,7 @@
 
 namespace PHPParser\Serializer;
 
-class XML implements \PHPParser\Serializer
+class XML implements PHPParser\Serializer
 {
     protected $writer;
 

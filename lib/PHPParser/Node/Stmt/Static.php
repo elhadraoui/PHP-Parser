@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property \PHPParser\Node\Stmt_StaticVar[] $vars Variable definitions
  */
-class Stmt_Static extends \PHPParser\Node\Stmt
+class Stmt_Static extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a static variables list node.

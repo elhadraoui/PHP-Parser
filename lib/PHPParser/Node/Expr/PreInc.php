@@ -5,7 +5,7 @@ namespace Expr;
 /**
  * @property \PHPParser\Node\Expr $var Variable
  */
-class PreInc extends \PHPParser\Node\Expr
+class PreInc extends PHPParser\Node\Expr
 {
     /**
      * Constructs a pre increment node.

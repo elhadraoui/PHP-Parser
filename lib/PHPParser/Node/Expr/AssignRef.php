@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Expr $var  Variable reference is assigned to
  * @property \PHPParser\Node\Expr $expr Variable which is referenced
  */
-class AssignRef extends \PHPParser\Node\Expr
+class AssignRef extends PHPParser\Node\Expr
 {
     /**
      * Constructs an assignment node.

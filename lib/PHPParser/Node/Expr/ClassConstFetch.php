@@ -6,7 +6,7 @@ namespace Expr;
  * @property \PHPParser\Node\Name|\PHPParser\Node\Expr $class Class name
  * @property string                                  $name  Constant name
  */
-class ClassConstFetch extends \PHPParser\Node\Expr
+class ClassConstFetch extends PHPParser\Node\Expr
 {
     /**
      * Constructs a class const fetch node.

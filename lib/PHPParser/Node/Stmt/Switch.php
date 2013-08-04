@@ -6,7 +6,7 @@ namespace PHPParser\Node;
  * @property \PHPParser\Node\Expr        $cond  Condition
  * @property \PHPParser\Node\Stmt_Case[] $cases Case list
  */
-class Stmt_Switch extends \PHPParser\Node\Stmt
+class Stmt_Switch extends PHPParser\Node\Stmt
 {
     /**
      * Constructs a case node.

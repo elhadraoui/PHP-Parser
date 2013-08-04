@@ -5,7 +5,7 @@ namespace PHPParser\Node;
 /**
  * @property \PHPParser\Node[] $stmts Statements
  */
-class Stmt_Else extends \PHPParser\Node\Stmt
+class Stmt_Else extends PHPParser\Node\Stmt
 {
     /**
      * Constructs an else node.
