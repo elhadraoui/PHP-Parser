@@ -27,7 +27,7 @@ $path = array(
 );
 set_include_path(implode(PATH_SEPARATOR, $path));
 
-function autoload($className)
+function __autoload($className)
 {
     $className = ltrim($className, '\\');
     $fileName  = '';
