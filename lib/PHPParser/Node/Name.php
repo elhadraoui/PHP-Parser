@@ -2,10 +2,12 @@
 
 namespace PHPParser\Node;
 
+use PHPParser\Node\NodeAbstract;
+
 /**
  * @property array $parts Parts of the name
  */
-class Name extends PHPParser\NodeAbstract
+class Name extends NodeAbstract
 {
     /**
      * Constructs a name node.
