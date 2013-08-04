@@ -1,8 +1,6 @@
 <?php
 
-namespace PHPParser\Node\Arg;
-
-use PHPParser\Node\NodeAbstract;
+namespace PHPParser\Node;
 
 /**
  * @property PHPParser\Node\Expr $value Value to pass
@@ -18,7 +16,7 @@ class Arg extends NodeAbstract
      * @param bool                $byRef      Whether to pass by ref
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $value, $byRef = false, array $attributes = array()) {
+    public function __construct(Expr $value, $byRef = false, array $attributes = array()) {
         parent::__construct(
             array(
                 'value' => $value,
