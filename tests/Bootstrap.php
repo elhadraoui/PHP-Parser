@@ -29,7 +29,8 @@ set_include_path(implode(PATH_SEPARATOR, $path));
 
 function autoload($className)
 {
-	global $vCoreLibrary;
+	$vRoot        = realpath(dirname(__DIR__));
+$vCoreLibrary = "$vRoot/lib";
 	
     $className = ltrim($className, '\\');
     $fileName  = '';
