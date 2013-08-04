@@ -2,6 +2,8 @@
 
 namespace Expr;
 
+use PHPParser\Expr\Expr;
+
 /**
  * @property \PHPParser\Node\Name $name Constant name
  */
