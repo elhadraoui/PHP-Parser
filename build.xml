@@ -12,7 +12,7 @@
          bootstrap="./lib/bootstrap.php">
     <testsuites>
         <testsuite name="PHPParser Test Suite">
-            <directory>./test/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
 
