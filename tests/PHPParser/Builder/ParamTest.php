@@ -3,6 +3,7 @@
 namespace PHPParserTest\Builder;
 
 use PHPParser\Node\Expr\ConstFetch;
+use PHPParser\Node\Expr_Array;
 use PHPParser\Node\Name;
 use PHPParser\Builder\Param;
 use PHPParser\Node\Scalar\LNumber;
