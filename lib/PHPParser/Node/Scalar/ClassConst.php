@@ -2,7 +2,9 @@
 
 namespace PHPParser\Node\Scalar;
 
-class ClassConst extends PHPParser\Node\Scalar
+use PHPParser\Node\Scalar;
+
+class ClassConst extends Scalar
 {
     /**
      * Constructs a __CLASS__ const node
