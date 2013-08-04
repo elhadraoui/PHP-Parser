@@ -30,7 +30,7 @@ $path = array(
 );
 set_include_path(implode(PATH_SEPARATOR, $path));
 
-function __autoload($className)
+function autoload($className)
 {
 	global $vCoreLibrary;
 	
@@ -48,6 +48,8 @@ function __autoload($className)
 
     require $vCoreLibrary . DIRECTORY_SEPARATOR . $fileName;
 }
+
+spl_autoload_register('autoload');
 
 /*
  * Unset global variables that are no longer needed.
