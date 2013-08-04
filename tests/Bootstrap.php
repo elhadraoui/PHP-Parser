@@ -29,8 +29,8 @@ set_include_path(implode(PATH_SEPARATOR, $path));
 
 function autoload($className)
 {
-	$vRoot        = realpath(dirname(__DIR__));
-$vCoreLibrary = "$vRoot/lib";
+    $vRoot        = realpath(dirname(__DIR__));
+    $vCoreLibrary = "$vRoot/lib";
 	
     $className = ltrim($className, '\\');
     $fileName  = '';
@@ -41,8 +41,6 @@ $vCoreLibrary = "$vRoot/lib";
         $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
     }
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-    
-    echo $fileName . PHP_EOL;
 
     if(file_exists($vCoreLibrary . DIRECTORY_SEPARATOR . $fileName))    
     	require $fileName;
