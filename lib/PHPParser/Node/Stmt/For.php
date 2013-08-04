@@ -1,12 +1,14 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
- * @property PHPParser_Node_Expr[] $init  Init expressions
- * @property PHPParser_Node_Expr[] $cond  Loop conditions
- * @property PHPParser_Node_Expr[] $loop  Loop expressions
- * @property PHPParser_Node[]      $stmts Statements
+ * @property \PHPParser\Node\Expr[] $init  Init expressions
+ * @property \PHPParser\Node\Expr[] $cond  Loop conditions
+ * @property \PHPParser\Node\Expr[] $loop  Loop expressions
+ * @property \PHPParser\Node[]      $stmts Statements
  */
-class PHPParser_Node_Stmt_For extends PHPParser_Node_Stmt
+class Stmt_For extends \PHPParser\Node\Stmt
 {
     /**
      * Constructs a for loop node.

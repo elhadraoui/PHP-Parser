@@ -5,7 +5,7 @@ namespace PHPParserTest\Serializer;
 class XMLTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers PHPParser_Serializer_XML<extended>
+     * @covers \PHPParser\Serializer_XML<extended>
      */
     public function testSerialize() {
         $code = <<<CODE
@@ -18,7 +18,7 @@ function functionName(&\$a = 0, \$b = 1.0) {
 CODE;
         $xml = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<AST xmlns:node="http://nikic.github.com/PHPParser/XML/node" xmlns:subNode="http://nikic.github.com/PHPParser/XML/subNode" xmlns:attribute="http://nikic.github.com/PHPParser/XML/attribute" xmlns:scalar="http://nikic.github.com/PHPParser/XML/scalar">
+<AST xmlns:node="http://nikic.github.com/\PHPParser/XML/node" xmlns:subNode="http://nikic.github.com/\PHPParser/XML/subNode" xmlns:attribute="http://nikic.github.com/\PHPParser/XML/attribute" xmlns:scalar="http://nikic.github.com/\PHPParser/XML/scalar">
  <scalar:array>
   <node:Stmt_Function>
    <attribute:comments>
@@ -136,8 +136,8 @@ CODE;
 </AST>
 XML;
 
-        $parser     = new PHPParser_Parser(new PHPParser_Lexer);
-        $serializer = new PHPParser_Serializer_XML;
+        $parser     = new \PHPParser\Parser(new \PHPParser\Lexer);
+        $serializer = new \PHPParser\Serializer_XML;
 
         $stmts = $parser->parse($code);
         $this->assertXmlStringEqualsXmlString($xml, $serializer->serialize($stmts));
@@ -148,7 +148,7 @@ XML;
      * @expectedExceptionMessage Unexpected node type
      */
     public function testError() {
-        $serializer = new PHPParser_Serializer_XML;
+        $serializer = new \PHPParser\Serializer_XML;
         $serializer->serialize(array(new stdClass));
     }
 }

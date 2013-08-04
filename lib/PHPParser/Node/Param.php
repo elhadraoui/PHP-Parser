@@ -1,19 +1,21 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
  * @property string                          $name    Name
- * @property null|PHPParser_Node_Expr        $default Default value
- * @property null|string|PHPParser_Node_Name $type    Typehint
+ * @property null|\PHPParser\Node\Expr        $default Default value
+ * @property null|string|\PHPParser\Node\Name $type    Typehint
  * @property bool                            $byRef   Whether is passed by reference
  */
-class PHPParser_Node_Param extends PHPParser_NodeAbstract
+class Param extends \PHPParser\NodeAbstract
 {
     /**
      * Constructs a parameter node.
      *
      * @param string                          $name       Name
-     * @param null|PHPParser_Node_Expr        $default    Default value
-     * @param null|string|PHPParser_Node_Name $type       Typehint
+     * @param null|\PHPParser\Node\Expr        $default    Default value
+     * @param null|string|\PHPParser\Node\Name $type       Typehint
      * @param bool                            $byRef      Whether is passed by reference
      * @param array                           $attributes Additional attributes
      */

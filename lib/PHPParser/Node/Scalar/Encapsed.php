@@ -1,9 +1,11 @@
 <?php
 
+namespace PHPParser\Node\Scalar;
+
 /**
  * @property array $parts Encaps list
  */
-class PHPParser_Node_Scalar_Encapsed extends PHPParser_Node_Scalar
+class Encapsed extends \PHPParser\Node\Scalar
 {
     /**
      * Constructs an encapsed string node.

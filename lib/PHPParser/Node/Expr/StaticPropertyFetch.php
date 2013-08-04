@@ -3,16 +3,16 @@
 namespace Expr;
 
 /**
- * @property PHPParser_Node_Name|PHPParser_Node_Expr $class Class name
- * @property string|PHPParser_Node_Expr              $name  Property name
+ * @property \PHPParser\Node\Name|\PHPParser\Node\Expr $class Class name
+ * @property string|\PHPParser\Node\Expr              $name  Property name
  */
-class StaticPropertyFetch extends PHPParser_Node_Expr
+class StaticPropertyFetch extends \PHPParser\Node\Expr
 {
     /**
      * Constructs a static property fetch node.
      *
-     * @param PHPParser_Node_Name|PHPParser_Node_Expr $class      Class name
-     * @param string|PHPParser_Node_Expr              $name       Property name
+     * @param \PHPParser\Node\Name|\PHPParser\Node\Expr $class      Class name
+     * @param string|\PHPParser\Node\Expr              $name       Property name
      * @param array                                   $attributes Additional attributes
      */
     public function __construct($class, $name, array $attributes = array()) {

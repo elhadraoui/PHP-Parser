@@ -3,16 +3,16 @@
 namespace Expr;
 
 /**
- * @property PHPParser_Node_Name|PHPParser_Node_Expr $name Function name
- * @property PHPParser_Node_Arg[]                    $args Arguments
+ * @property \PHPParser\Node\Name|\PHPParser\Node\Expr $name Function name
+ * @property \PHPParser\Node\Arg[]                    $args Arguments
  */
-class FuncCall extends PHPParser_Node_Expr
+class FuncCall extends \PHPParser\Node\Expr
 {
     /**
      * Constructs a function call node.
      *
-     * @param PHPParser_Node_Name|PHPParser_Node_Expr $name       Function name
-     * @param PHPParser_Node_Arg[]                    $args       Arguments
+     * @param \PHPParser\Node\Name|\PHPParser\Node\Expr $name       Function name
+     * @param \PHPParser\Node\Arg[]                    $args       Arguments
      * @param array                                   $attributes Additional attributes
      */
     public function __construct($name, array $args = array(), array $attributes = array()) {

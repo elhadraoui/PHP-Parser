@@ -3,14 +3,14 @@
 namespace PHPParser\Node;
 
 /**
- * @property PHPParser_Node_Expr[] $vars Variables
+ * @property \PHPParser\Node\Expr[] $vars Variables
  */
-class Expr_Isset extends PHPParser_Node_Expr
+class Expr_Isset extends \PHPParser\Node\Expr
 {
     /**
      * Constructs an array node.
      *
-     * @param PHPParser_Node_Expr[] $vars       Variables
+     * @param \PHPParser\Node\Expr[] $vars       Variables
      * @param array                 $attributes Additional attributes
      */
     public function __construct(array $vars, array $attributes = array()) {

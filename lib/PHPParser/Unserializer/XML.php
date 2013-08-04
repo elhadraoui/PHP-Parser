@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Unserializer_XML implements PHPParser_Unserializer
+namespace PHPParser\Unserializer;
+
+class XML implements \PHPParser\Unserializer
 {
     protected $reader;
 
@@ -45,7 +47,7 @@ class PHPParser_Unserializer_XML implements PHPParser_Unserializer
 
     protected function readNode()
     {
-        $className = 'PHPParser_Node_' . $this->reader->localName;
+        $className = '\\PHPParser\\Node\\' . $this->reader->localName;
 
         // create the node without calling it's constructor
         $node = unserialize(
@@ -122,8 +124,8 @@ class PHPParser_Unserializer_XML implements PHPParser_Unserializer
 
     protected function readComment() {
         $className = $this->reader->getAttribute('isDocComment') === 'true'
-            ? 'PHPParser_Comment_Doc'
-            : 'PHPParser_Comment'
+            ? '\PHPParser\Comment_Doc'
+            : '\PHPParser\Comment'
         ;
         return new $className(
             $this->reader->readString(),

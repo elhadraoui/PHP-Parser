@@ -2,10 +2,12 @@
 
 namespace PHPParserTest\Builder;
 
+use Expr\ConstFetch;
+
 class ParamTest extends \PHPUnit_Framework_TestCase
 {
     public function createParamBuilder($name) {
-        return new PHPParser_Builder_Param($name);
+        return new \PHPParser\Builder_Param($name);
     }
 
     /**
@@ -24,52 +26,52 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 null,
-                new ConstFetch(new PHPParser_Node_Name('null'))
+                new ConstFetch(new \PHPParser\Node\Name('null'))
             ),
             array(
                 true,
-                new ConstFetch(new PHPParser_Node_Name('true'))
+                new ConstFetch(new \PHPParser\Node\Name('true'))
             ),
             array(
                 false,
-                new ConstFetch(new PHPParser_Node_Name('false'))
+                new ConstFetch(new \PHPParser\Node\Name('false'))
             ),
             array(
                 31415,
-                new PHPParser_Node_Scalar_LNumber(31415)
+                new \LNumber(31415)
             ),
             array(
                 3.1415,
-                new PHPParser_Node_Scalar_DNumber(3.1415)
+                new DNumber(3.1415)
             ),
             array(
                 'Hallo World',
-                new PHPParser_Node_Scalar_String('Hallo World')
+                new String('Hallo World')
             ),
             array(
                 array(1, 2, 3),
                 new Expr_Array(array(
-                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(1)),
-                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(2)),
-                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(3)),
+                    new Expr_ArrayItem(new LNumber(1)),
+                    new Expr_ArrayItem(new LNumber(2)),
+                    new Expr_ArrayItem(new LNumber(3)),
                 ))
             ),
             array(
                 array('foo' => 'bar', 'bar' => 'foo'),
                 new Expr_Array(array(
                     new Expr_ArrayItem(
-                        new PHPParser_Node_Scalar_String('bar'),
-                        new PHPParser_Node_Scalar_String('foo')
+                        new String('bar'),
+                        new String('foo')
                     ),
                     new Expr_ArrayItem(
-                        new PHPParser_Node_Scalar_String('foo'),
-                        new PHPParser_Node_Scalar_String('bar')
+                        new String('foo'),
+                        new String('bar')
                     ),
                 ))
             ),
             array(
-                new PHPParser_Node_Scalar_DirConst,
-                new PHPParser_Node_Scalar_DirConst
+                new DirConst,
+                new DirConst
             )
         );
     }
@@ -81,7 +83,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser_Node_Param('test', null, 'array'),
+            new \PHPParser\Node\Param('test', null, 'array'),
             $node
         );
 
@@ -91,7 +93,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser_Node_Param('test', null, 'callable'),
+            new \PHPParser\Node\Param('test', null, 'callable'),
             $node
         );
 
@@ -101,7 +103,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser_Node_Param('test', null, new PHPParser_Node_Name('Some\Class')),
+            new \PHPParser\Node\Param('test', null, new \PHPParser\Node\Name('Some\Class')),
             $node
         );
     }
@@ -113,7 +115,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser_Node_Param('test', null, null, true),
+            new \PHPParser\Node\Param('test', null, null, true),
             $node
         );
     }

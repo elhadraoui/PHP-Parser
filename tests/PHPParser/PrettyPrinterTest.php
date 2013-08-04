@@ -4,11 +4,11 @@ namespace PHPParserTest;
 
 require_once dirname(__FILE__) . '/CodeTestAbstract.php';
 
-class PrettyPrinterTest extends \PHPParser_Tests_CodeTestAbstract
+class PrettyPrinterTest extends \PHPParser\Tests_CodeTestAbstract
 {
     protected function doTestPrettyPrintMethod($method, $name, $code, $dump) {
-        $parser = new PHPParser_Parser(new PHPParser_Lexer_Emulative);
-        $prettyPrinter = new PHPParser_PrettyPrinter_Default;
+        $parser = new \PHPParser\Parser(new \PHPParser\Lexer_Emulative);
+        $prettyPrinter = new \PHPParser\PrettyPrinter_Default;
 
         $stmts = $parser->parse($code);
         $this->assertEquals(
@@ -20,7 +20,7 @@ class PrettyPrinterTest extends \PHPParser_Tests_CodeTestAbstract
 
     /**
      * @dataProvider provideTestPrettyPrint
-     * @covers PHPParser_PrettyPrinter_Default<extended>
+     * @covers \PHPParser\PrettyPrinter_Default<extended>
      */
     public function testPrettyPrint($name, $code, $dump) {
         $this->doTestPrettyPrintMethod('prettyPrint', $name, $code, $dump);
@@ -28,7 +28,7 @@ class PrettyPrinterTest extends \PHPParser_Tests_CodeTestAbstract
 
     /**
      * @dataProvider provideTestPrettyPrintFile
-     * @covers PHPParser_PrettyPrinter_Default<extended>
+     * @covers \PHPParser\PrettyPrinter_Default<extended>
      */
     public function testPrettyPrintFile($name, $code, $dump) {
         $this->doTestPrettyPrintMethod('prettyPrintFile', $name, $code, $dump);

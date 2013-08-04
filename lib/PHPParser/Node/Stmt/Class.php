@@ -1,13 +1,15 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
  * @property int                      $type       Type
  * @property string                   $name       Name
- * @property null|PHPParser_Node_Name $extends    Name of extended class
- * @property PHPParser_Node_Name[]    $implements Names of implemented interfaces
- * @property PHPParser_Node[]         $stmts      Statements
+ * @property null|\PHPParser\Node\Name $extends    Name of extended class
+ * @property \PHPParser\Node\Name[]    $implements Names of implemented interfaces
+ * @property \PHPParser\Node[]         $stmts      Statements
  */
-class PHPParser_Node_Stmt_Class extends PHPParser_Node_Stmt
+class Stmt_Class extends \PHPParser\Node\Stmt
 {
     const MODIFIER_PUBLIC    =  1;
     const MODIFIER_PROTECTED =  2;
@@ -46,16 +48,16 @@ class PHPParser_Node_Stmt_Class extends PHPParser_Node_Stmt
         $this->name = $name;
 
         if (isset(self::$specialNames[(string) $this->name])) {
-            throw new PHPParser_Error(sprintf('Cannot use "%s" as class name as it is reserved', $this->name));
+            throw new \PHPParser\Error(sprintf('Cannot use "%s" as class name as it is reserved', $this->name));
         }
 
         if (isset(self::$specialNames[(string) $this->extends])) {
-            throw new PHPParser_Error(sprintf('Cannot use "%s" as class name as it is reserved', $this->extends));
+            throw new \PHPParser\Error(sprintf('Cannot use "%s" as class name as it is reserved', $this->extends));
         }
 
         foreach ($this->implements as $interface) {
             if (isset(self::$specialNames[(string) $interface])) {
-                throw new PHPParser_Error(sprintf('Cannot use "%s" as interface name as it is reserved', $interface));
+                throw new \PHPParser\Error(sprintf('Cannot use "%s" as interface name as it is reserved', $interface));
             }
         }
     }
@@ -71,7 +73,7 @@ class PHPParser_Node_Stmt_Class extends PHPParser_Node_Stmt
     public function getMethods() {
         $methods = array();
         foreach ($this->stmts as $stmt) {
-            if ($stmt instanceof PHPParser_Node_Stmt_ClassMethod) {
+            if ($stmt instanceof \PHPParser\Node\Stmt_ClassMethod) {
                 $methods[] = $stmt;
             }
         }
@@ -80,23 +82,23 @@ class PHPParser_Node_Stmt_Class extends PHPParser_Node_Stmt
 
     public static function verifyModifier($a, $b) {
         if ($a & 7 && $b & 7) {
-            throw new PHPParser_Error('Multiple access type modifiers are not allowed');
+            throw new \PHPParser\Error('Multiple access type modifiers are not allowed');
         }
 
         if ($a & self::MODIFIER_ABSTRACT && $b & self::MODIFIER_ABSTRACT) {
-            throw new PHPParser_Error('Multiple abstract modifiers are not allowed');
+            throw new \PHPParser\Error('Multiple abstract modifiers are not allowed');
         }
 
         if ($a & self::MODIFIER_STATIC && $b & self::MODIFIER_STATIC) {
-            throw new PHPParser_Error('Multiple static modifiers are not allowed');
+            throw new \PHPParser\Error('Multiple static modifiers are not allowed');
         }
 
         if ($a & self::MODIFIER_FINAL && $b & self::MODIFIER_FINAL) {
-            throw new PHPParser_Error('Multiple final modifiers are not allowed');
+            throw new \PHPParser\Error('Multiple final modifiers are not allowed');
         }
 
         if ($a & 48 && $b & 48) {
-            throw new PHPParser_Error('Cannot use the final and abstract modifier at the same time');
+            throw new \PHPParser\Error('Cannot use the final and abstract modifier at the same time');
         }
     }
 }

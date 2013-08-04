@@ -1,14 +1,16 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
- * @property PHPParser_Node_Const[] $consts Constant declarations
+ * @property \PHPParser\Node\Const[] $consts Constant declarations
  */
-class PHPParser_Node_Stmt_Const extends PHPParser_Node_Stmt
+class Stmt_Const extends \PHPParser\Node\Stmt
 {
     /**
      * Constructs a const list node.
      *
-     * @param PHPParser_Node_Const[] $consts     Constant declarations
+     * @param \PHPParser\Node\Const[] $consts     Constant declarations
      * @param array                  $attributes Additional attributes
      */
     public function __construct(array $consts, array $attributes = array()) {

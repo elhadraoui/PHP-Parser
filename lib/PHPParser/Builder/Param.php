@@ -28,7 +28,7 @@ class Param extends BuilderAbstract
      *
      * @param mixed $value Default value to use
      *
-     * @return PHPParser_Builder_Param The builder instance (for fluid interface)
+     * @return \PHPParser\Builder_Param The builder instance (for fluid interface)
      */
     public function setDefault($value) {
         $this->default = $this->normalizeValue($value);
@@ -39,9 +39,9 @@ class Param extends BuilderAbstract
     /**
      * Sets type hint for the parameter.
      *
-     * @param string|PHPParser_Node_Name $type Type hint to use
+     * @param string|\PHPParser\Node\Name $type Type hint to use
      *
-     * @return PHPParser_Builder_Param The builder instance (for fluid interface)
+     * @return \PHPParser\Builder_Param The builder instance (for fluid interface)
      */
     public function setTypeHint($type) {
         if ($type === 'array' || $type === 'callable') {
@@ -56,7 +56,7 @@ class Param extends BuilderAbstract
     /**
      * Make the parameter accept the value by reference.
      *
-     * @return PHPParser_Builder_Param The builder instance (for fluid interface)
+     * @return \PHPParser\Builder_Param The builder instance (for fluid interface)
      */
     public function makeByRef() {
         $this->byRef = true;
@@ -67,10 +67,10 @@ class Param extends BuilderAbstract
     /**
      * Returns the built parameter node.
      *
-     * @return PHPParser_Node_Param The built parameter node
+     * @return \PHPParser\Node\Param The built parameter node
      */
     public function getNode() {
-        return new PHPParser_Node_Param(
+        return new \PHPParser\Node\Param(
             $this->name, $this->default, $this->type, $this->byRef
         );
     }

@@ -7,7 +7,7 @@ class XMLTest extends \PHPUnit_Framework_TestCase
     public function testNode() {
         $xml = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<AST xmlns:node="http://nikic.github.com/PHPParser/XML/node" xmlns:subNode="http://nikic.github.com/PHPParser/XML/subNode" xmlns:attribute="http://nikic.github.com/PHPParser/XML/attribute" xmlns:scalar="http://nikic.github.com/PHPParser/XML/scalar">
+<AST xmlns:node="http://nikic.github.com/\PHPParser/XML/node" xmlns:subNode="http://nikic.github.com/\PHPParser/XML/subNode" xmlns:attribute="http://nikic.github.com/\PHPParser/XML/attribute" xmlns:scalar="http://nikic.github.com/\PHPParser/XML/scalar">
  <node:Scalar_String line="1" docComment="/** doc comment */">
   <attribute:startLine>
    <scalar:int>1</scalar:int>
@@ -26,13 +26,13 @@ class XMLTest extends \PHPUnit_Framework_TestCase
 </AST>
 XML;
 
-        $unserializer  = new PHPParser_Unserializer_XML;
+        $unserializer  = new \PHPParser\Unserializer_XML;
         $this->assertEquals(
-            new PHPParser_Node_Scalar_String('Test', array(
+            new String('Test', array(
                 'startLine' => 1,
                 'comments'  => array(
-                    new PHPParser_Comment('// comment' . "\n", 2),
-                    new PHPParser_Comment_Doc('/** doc comment */', 3),
+                    new \PHPParser\Comment('// comment' . "\n", 2),
+                    new \PHPParser\Comment_Doc('/** doc comment */', 3),
                 ),
             )),
             $unserializer->unserialize($xml)
@@ -42,15 +42,15 @@ XML;
     public function testEmptyNode() {
         $xml = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<AST xmlns:node="http://nikic.github.com/PHPParser/XML/node">
+<AST xmlns:node="http://nikic.github.com/\PHPParser/XML/node">
  <node:Scalar_ClassConst />
 </AST>
 XML;
 
-        $unserializer  = new PHPParser_Unserializer_XML;
+        $unserializer  = new \PHPParser\Unserializer_XML;
 
         $this->assertEquals(
-            new PHPParser_Node_Scalar_ClassConst,
+            new ClassConst,
             $unserializer->unserialize($xml)
         );
     }
@@ -58,7 +58,7 @@ XML;
     public function testScalars() {
         $xml = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<AST xmlns:scalar="http://nikic.github.com/PHPParser/XML/scalar">
+<AST xmlns:scalar="http://nikic.github.com/\PHPParser/XML/scalar">
  <scalar:array>
   <scalar:array></scalar:array>
   <scalar:array/>
@@ -82,7 +82,7 @@ XML;
             true, false, null
         );
 
-        $unserializer  = new PHPParser_Unserializer_XML;
+        $unserializer  = new \PHPParser\Unserializer_XML;
         $this->assertEquals($result, $unserializer->unserialize($xml));
     }
 
@@ -96,7 +96,7 @@ XML;
 <notAST/>
 XML;
 
-        $unserializer = new PHPParser_Unserializer_XML;
+        $unserializer = new \PHPParser\Unserializer_XML;
         $unserializer->unserialize($xml);
     }
 
@@ -108,15 +108,15 @@ XML;
 
         $xml = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<AST xmlns:scalar="http://nikic.github.com/PHPParser/XML/scalar"
-     xmlns:node="http://nikic.github.com/PHPParser/XML/node"
-     xmlns:subNode="http://nikic.github.com/PHPParser/XML/subNode"
-     xmlns:foo="http://nikic.github.com/PHPParser/XML/foo">
+<AST xmlns:scalar="http://nikic.github.com/\PHPParser/XML/scalar"
+     xmlns:node="http://nikic.github.com/\PHPParser/XML/node"
+     xmlns:subNode="http://nikic.github.com/\PHPParser/XML/subNode"
+     xmlns:foo="http://nikic.github.com/\PHPParser/XML/foo">
  $xml
 </AST>
 XML;
 
-        $unserializer = new PHPParser_Unserializer_XML;
+        $unserializer = new \PHPParser\Unserializer_XML;
         $unserializer->unserialize($xml);
     }
 

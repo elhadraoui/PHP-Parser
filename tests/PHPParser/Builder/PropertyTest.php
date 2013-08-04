@@ -5,7 +5,7 @@ namespace PHPParserTest\Builder;
 class PropertyTest extends \PHPUnit_Framework_TestCase
 {
     public function createPropertyBuilder($name) {
-        return new PHPParser_Builder_Property($name);
+        return new \PHPParser\Builder_Property($name);
     }
 
     public function testModifiers() {
@@ -16,11 +16,11 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser_Node_Stmt_Property(
-                PHPParser_Node_Stmt_Class::MODIFIER_PRIVATE
-              | PHPParser_Node_Stmt_Class::MODIFIER_STATIC,
+            new \PHPParser\Node\Stmt_Property(
+                \PHPParser\Node\Stmt_Class::MODIFIER_PRIVATE
+              | \PHPParser\Node\Stmt_Class::MODIFIER_STATIC,
                 array(
-                    new PHPParser_Node_Stmt_PropertyProperty('test')
+                    new \PHPParser\Node\Stmt_PropertyProperty('test')
                 )
             ),
             $node
@@ -32,10 +32,10 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser_Node_Stmt_Property(
-                PHPParser_Node_Stmt_Class::MODIFIER_PROTECTED,
+            new \PHPParser\Node\Stmt_Property(
+                \PHPParser\Node\Stmt_Class::MODIFIER_PROTECTED,
                 array(
-                    new PHPParser_Node_Stmt_PropertyProperty('test')
+                    new \PHPParser\Node\Stmt_PropertyProperty('test')
                 )
             ),
             $node
@@ -47,10 +47,10 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new PHPParser_Node_Stmt_Property(
-                PHPParser_Node_Stmt_Class::MODIFIER_PUBLIC,
+            new \PHPParser\Node\Stmt_Property(
+                \PHPParser\Node\Stmt_Class::MODIFIER_PUBLIC,
                 array(
-                    new PHPParser_Node_Stmt_PropertyProperty('test')
+                    new \PHPParser\Node\Stmt_PropertyProperty('test')
                 )
             ),
             $node
@@ -73,52 +73,52 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
         return array(
             array(
                 null,
-                new ConstFetch(new PHPParser_Node_Name('null'))
+                new ConstFetch(new \PHPParser\Node\Name('null'))
             ),
             array(
                 true,
-                new ConstFetch(new PHPParser_Node_Name('true'))
+                new ConstFetch(new \PHPParser\Node\Name('true'))
             ),
             array(
                 false,
-                new ConstFetch(new PHPParser_Node_Name('false'))
+                new ConstFetch(new \PHPParser\Node\Name('false'))
             ),
             array(
                 31415,
-                new PHPParser_Node_Scalar_LNumber(31415)
+                new LNumber(31415)
             ),
             array(
                 3.1415,
-                new PHPParser_Node_Scalar_DNumber(3.1415)
+                new DNumber(3.1415)
             ),
             array(
                 'Hallo World',
-                new PHPParser_Node_Scalar_String('Hallo World')
+                new String('Hallo World')
             ),
             array(
                 array(1, 2, 3),
                 new Expr_Array(array(
-                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(1)),
-                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(2)),
-                    new Expr_ArrayItem(new PHPParser_Node_Scalar_LNumber(3)),
+                    new Expr_ArrayItem(new LNumber(1)),
+                    new Expr_ArrayItem(new LNumber(2)),
+                    new Expr_ArrayItem(new LNumber(3)),
                 ))
             ),
             array(
                 array('foo' => 'bar', 'bar' => 'foo'),
                 new Expr_Array(array(
                     new Expr_ArrayItem(
-                        new PHPParser_Node_Scalar_String('bar'),
-                        new PHPParser_Node_Scalar_String('foo')
+                        new String('bar'),
+                        new String('foo')
                     ),
                     new Expr_ArrayItem(
-                        new PHPParser_Node_Scalar_String('foo'),
-                        new PHPParser_Node_Scalar_String('bar')
+                        new String('foo'),
+                        new String('bar')
                     ),
                 ))
             ),
             array(
-                new PHPParser_Node_Scalar_DirConst,
-                new PHPParser_Node_Scalar_DirConst
+                new DirConst,
+                new DirConst
             )
         );
     }

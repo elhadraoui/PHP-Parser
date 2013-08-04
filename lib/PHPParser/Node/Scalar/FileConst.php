@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Node_Scalar_FileConst extends PHPParser_Node_Scalar
+namespace PHPParser\Node\Scalar;
+
+class FileConst extends \PHPParser\Node\Scalar
 {
     /**
      * Constructs a __FILE__ const node

@@ -3,17 +3,17 @@
 namespace Expr;
 
 /**
- * @property PHPParser_Node_Expr $expr Expression
+ * @property \PHPParser\Node\Expr $expr Expression
  */
-class ErrorSuppress extends PHPParser_Node_Expr
+class ErrorSuppress extends \PHPParser\Node\Expr
 {
     /**
      * Constructs an error suppress node.
      *
-     * @param PHPParser_Node_Expr $expr       Expression
+     * @param \PHPParser\Node\Expr $expr       Expression
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser_Node_Expr $expr, array $attributes = array()) {
+    public function __construct(\PHPParser\Node\Expr $expr, array $attributes = array()) {
         parent::__construct(
             array(
                 'expr' => $expr

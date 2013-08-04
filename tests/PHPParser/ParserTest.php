@@ -4,14 +4,14 @@ namespace PHPParserTest;
 
 require_once dirname(__FILE__) . '/CodeTestAbstract.php';
 
-class ParserTest extends \PHPParser_Tests_CodeTestAbstract
+class ParserTest extends \PHPParser\Tests_CodeTestAbstract
 {
     /**
      * @dataProvider provideTestParse
      */
     public function testParse($name, $code, $dump) {
-        $parser = new PHPParser_Parser(new PHPParser_Lexer_Emulative);
-        $dumper = new PHPParser_NodeDumper;
+        $parser = new \PHPParser\Parser(new \PHPParser\Lexer_Emulative);
+        $dumper = new \PHPParser\NodeDumper;
 
         $stmts = $parser->parse($code);
         $this->assertEquals(
@@ -29,13 +29,13 @@ class ParserTest extends \PHPParser_Tests_CodeTestAbstract
      * @dataProvider provideTestParseFail
      */
     public function testParseFail($name, $code, $msg) {
-        $parser = new PHPParser_Parser(new PHPParser_Lexer_Emulative);
+        $parser = new \PHPParser\Parser(new \PHPParser\Lexer_Emulative);
 
         try {
             $parser->parse($code);
 
-            $this->fail(sprintf('"%s": Expected PHPParser_Error', $name));
-        } catch (PHPParser_Error $e) {
+            $this->fail(sprintf('"%s": Expected \PHPParser\Error', $name));
+        } catch (\PHPParser\Error $e) {
             $this->assertEquals($msg, $e->getMessage(), $name);
         }
     }

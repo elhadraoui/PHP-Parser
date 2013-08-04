@@ -1,19 +1,21 @@
 <?php
 
+namespace PHPParser\Node\Stmt;
+
 /**
  * @property string                   $name    Name
- * @property null|PHPParser_Node_Expr $default Default
+ * @property null|\PHPParser\Node\Expr $default Default
  */
-class PHPParser_Node_Stmt_PropertyProperty extends PHPParser_Node_Stmt
+class PropertyProperty extends \PHPParser\Node\Stmt
 {
     /**
      * Constructs a class property node.
      *
      * @param string                   $name       Name
-     * @param null|PHPParser_Node_Expr $default    Default value
+     * @param null|\PHPParser\Node\Expr $default    Default value
      * @param array                    $attributes Additional attributes
      */
-    public function __construct($name, PHPParser_Node_Expr $default = null, array $attributes = array()) {
+    public function __construct($name, \PHPParser\Node\Expr $default = null, array $attributes = array()) {
         parent::__construct(
             array(
                 'name'    => $name,

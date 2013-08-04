@@ -1,16 +1,18 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
- * @property PHPParser_Node_Stmt_DeclareDeclare[] $declares List of declares
- * @property PHPParser_Node[]                     $stmts    Statements
+ * @property \PHPParser\Node\Stmt_DeclareDeclare[] $declares List of declares
+ * @property \PHPParser\Node[]                     $stmts    Statements
  */
-class PHPParser_Node_Stmt_Declare extends PHPParser_Node_Stmt
+class Stmt_Declare extends \PHPParser\Node\Stmt
 {
     /**
      * Constructs a declare node.
      *
-     * @param PHPParser_Node_Stmt_DeclareDeclare[] $declares   List of declares
-     * @param PHPParser_Node[]                     $stmts      Statements
+     * @param \PHPParser\Node\Stmt_DeclareDeclare[] $declares   List of declares
+     * @param \PHPParser\Node[]                     $stmts      Statements
      * @param array                                $attributes Additional attributes
      */
     public function __construct(array $declares, array $stmts, array $attributes = array()) {

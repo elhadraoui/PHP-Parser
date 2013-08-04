@@ -10,7 +10,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     public function testParseEscapeSequences($expected, $string, $quote) {
         $this->assertEquals(
             $expected,
-            PHPParser_Node_Scalar_String::parseEscapeSequences($string, $quote)
+            String::parseEscapeSequences($string, $quote)
         );
     }
 
@@ -20,7 +20,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     public function testCreate($expected, $string) {
         $this->assertEquals(
             $expected,
-            PHPParser_Node_Scalar_String::parse($string)
+            String::parse($string)
         );
     }
 

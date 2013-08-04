@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPParser;
+namespace PHPParser\Autoloader;
 
 /**
  * @codeCoverageIgnore
@@ -8,7 +8,7 @@ namespace PHPParser;
 class Autoloader
 {
     /**
-    * Registers PHPParser_Autoloader as an SPL autoloader.
+    * Registers \PHPParser\Autoloader as an SPL autoloader.
     */
     static public function register()
     {
@@ -23,7 +23,7 @@ class Autoloader
     */
     static public function autoload($class)
     {
-        if (0 !== strpos($class, 'PHPParser')) {
+        if (0 !== strpos($class, '\PHPParser')) {
             return;
         }
 

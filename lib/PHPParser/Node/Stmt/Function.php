@@ -1,12 +1,14 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
  * @property bool                   $byRef  Whether returns by reference
  * @property string                 $name   Name
- * @property PHPParser_Node_Param[] $params Parameters
- * @property PHPParser_Node[]       $stmts  Statements
+ * @property \PHPParser\Node\Param[] $params Parameters
+ * @property \PHPParser\Node[]       $stmts  Statements
  */
-class PHPParser_Node_Stmt_Function extends PHPParser_Node_Stmt
+class Stmt_Function extends \PHPParser\Node\Stmt
 {
     /**
      * Constructs a function node.

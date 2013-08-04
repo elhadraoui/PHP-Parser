@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPParser;
+namespace PHPParser\Unserializer;
 
 interface Unserializer
 {

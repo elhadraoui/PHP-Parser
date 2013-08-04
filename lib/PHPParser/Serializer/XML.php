@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Serializer_XML implements PHPParser_Serializer
+namespace PHPParser\Serializer;
+
+class XML implements \PHPParser\Serializer
 {
     protected $writer;
 
@@ -18,10 +20,10 @@ class PHPParser_Serializer_XML implements PHPParser_Serializer
         $this->writer->startDocument('1.0', 'UTF-8');
 
         $this->writer->startElement('AST');
-        $this->writer->writeAttribute('xmlns:node',      'http://nikic.github.com/PHPParser/XML/node');
-        $this->writer->writeAttribute('xmlns:subNode',   'http://nikic.github.com/PHPParser/XML/subNode');
-        $this->writer->writeAttribute('xmlns:attribute', 'http://nikic.github.com/PHPParser/XML/attribute');
-        $this->writer->writeAttribute('xmlns:scalar',    'http://nikic.github.com/PHPParser/XML/scalar');
+        $this->writer->writeAttribute('xmlns:node',      'http://nikic.github.com/\PHPParser/XML/node');
+        $this->writer->writeAttribute('xmlns:subNode',   'http://nikic.github.com/\PHPParser/XML/subNode');
+        $this->writer->writeAttribute('xmlns:attribute', 'http://nikic.github.com/\PHPParser/XML/attribute');
+        $this->writer->writeAttribute('xmlns:scalar',    'http://nikic.github.com/\PHPParser/XML/scalar');
 
         $this->_serialize($nodes);
 
@@ -31,7 +33,7 @@ class PHPParser_Serializer_XML implements PHPParser_Serializer
     }
 
     protected function _serialize($node) {
-        if ($node instanceof PHPParser_Node) {
+        if ($node instanceof \PHPParser\Node) {
             $this->writer->startElement('node:' . $node->getType());
 
             foreach ($node->getAttributes() as $name => $value) {
@@ -47,9 +49,9 @@ class PHPParser_Serializer_XML implements PHPParser_Serializer
             }
 
             $this->writer->endElement();
-        } elseif ($node instanceof PHPParser_Comment) {
+        } elseif ($node instanceof \PHPParser\Comment) {
             $this->writer->startElement('comment');
-            $this->writer->writeAttribute('isDocComment', $node instanceof PHPParser_Comment_Doc ? 'true' : 'false');
+            $this->writer->writeAttribute('isDocComment', $node instanceof \PHPParser\Comment_Doc ? 'true' : 'false');
             $this->writer->writeAttribute('line', $node->getLine());
             $this->writer->text($node->getText());
             $this->writer->endElement();

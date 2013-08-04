@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Node_Scalar_TraitConst extends PHPParser_Node_Scalar
+namespace PHPParser\Node\Scalar;
+
+class TraitConst extends \PHPParser\Node\Scalar
 {
     /**
      * Constructs a __TRAIT__ const node

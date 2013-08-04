@@ -6,13 +6,13 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideTestPlaceholderReplacement
-     * @covers PHPParser_Template
+     * @covers \PHPParser\Template
      */
     public function testPlaceholderReplacement($templateCode, $placeholders, $expectedPrettyPrint) {
-        $parser = new PHPParser_Parser(new PHPParser_Lexer);
-        $prettyPrinter = new PHPParser_PrettyPrinter_Default;
+        $parser = new \PHPParser\Parser(new \PHPParser\Lexer);
+        $prettyPrinter = new \PHPParser\PrettyPrinter_Default;
 
-        $template = new PHPParser_Template($parser, $templateCode);
+        $template = new \PHPParser\Template($parser, $templateCode);
         $this->assertEquals(
             $expectedPrettyPrint,
             $prettyPrinter->prettyPrint($template->getStmts($placeholders))

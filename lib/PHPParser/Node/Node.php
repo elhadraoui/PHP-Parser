@@ -37,7 +37,7 @@ interface Node
      *
      * The doc comment has to be the last comment associated with the node.
      *
-     * @return null|PHPParser\Comment\Doc Doc comment object or null
+     * @return null|\PHPParser\Comment\Doc Doc comment object or null
      */
     public function getDocComment();
 

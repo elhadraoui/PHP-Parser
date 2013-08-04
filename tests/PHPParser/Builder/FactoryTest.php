@@ -8,18 +8,18 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
      * @dataProvider provideTestFactory
      */
     public function testFactory($methodName, $className) {
-        $factory = new PHPParser_BuilderFactory;
+        $factory = new \PHPParser\BuilderFactory;
         $this->assertInstanceOf($className, $factory->$methodName('test'));
     }
 
     public function provideTestFactory() {
         return array(
-            array('class',     'PHPParser_Builder_Class'),
-            array('interface', 'PHPParser_Builder_Interface'),
-            array('method',    'PHPParser_Builder_Method'),
-            array('function',  'PHPParser_Builder_Function'),
-            array('property',  'PHPParser_Builder_Property'),
-            array('param',     'PHPParser_Builder_Param'),
+            array('class',     '\PHPParser\Builder_Class'),
+            array('interface', '\PHPParser\Builder_Interface'),
+            array('method',    '\PHPParser\Builder_Method'),
+            array('function',  '\PHPParser\Builder_Function'),
+            array('property',  '\PHPParser\Builder_Property'),
+            array('param',     '\PHPParser\Builder_Param'),
         );
     }
 }

@@ -1,14 +1,16 @@
 <?php
 
+namespace PHPParser\Node;
+
 /**
- * @property PHPParser_Node_Stmt_StaticVar[] $vars Variable definitions
+ * @property \PHPParser\Node\Stmt_StaticVar[] $vars Variable definitions
  */
-class PHPParser_Node_Stmt_Static extends PHPParser_Node_Stmt
+class Stmt_Static extends \PHPParser\Node\Stmt
 {
     /**
      * Constructs a static variables list node.
      *
-     * @param PHPParser_Node_Stmt_StaticVar[] $vars       Variable definitions
+     * @param \PHPParser\Node\Stmt_StaticVar[] $vars       Variable definitions
      * @param array                           $attributes Additional attributes
      */
     public function __construct(array $vars, array $attributes = array()) {

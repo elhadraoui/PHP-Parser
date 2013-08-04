@@ -26,7 +26,7 @@ class BuilderFunction extends BuilderAbstract
     /**
      * Make the function return by reference.
      *
-     * @return PHPParser_Builder_Function The builder instance (for fluid interface)
+     * @return \PHPParser\Builder_Function The builder instance (for fluid interface)
      */
     public function makeReturnByRef() {
         $this->returnByRef = true;
@@ -37,14 +37,14 @@ class BuilderFunction extends BuilderAbstract
     /**
      * Adds a parameter.
      *
-     * @param PHPParser_Node_Param|PHPParser_Builder_Param $param The parameter to add
+     * @param \PHPParser\Node\Param|\PHPParser\Builder_Param $param The parameter to add
      *
-     * @return PHPParser_Builder_Function The builder instance (for fluid interface)
+     * @return \PHPParser\Builder_Function The builder instance (for fluid interface)
      */
     public function addParam($param) {
         $param = $this->normalizeNode($param);
 
-        if (!$param instanceof PHPParser_Node_Param) {
+        if (!$param instanceof \PHPParser\Node\Param) {
             throw new LogicException(sprintf('Expected parameter node, got "%s"', $param->getType()));
         }
 
@@ -58,7 +58,7 @@ class BuilderFunction extends BuilderAbstract
      *
      * @param array $params The parameters to add
      *
-     * @return PHPParser_Builder_Function The builder instance (for fluid interface)
+     * @return \PHPParser\Builder_Function The builder instance (for fluid interface)
      */
     public function addParams(array $params) {
         foreach ($params as $param) {
@@ -71,9 +71,9 @@ class BuilderFunction extends BuilderAbstract
     /**
      * Adds a statement.
      *
-     * @param PHPParser_Node|PHPParser_Builder $stmt The statement to add
+     * @param \PHPParser\Node|\PHPParser\Builder $stmt The statement to add
      *
-     * @return PHPParser_Builder_Function The builder instance (for fluid interface)
+     * @return \PHPParser\Builder_Function The builder instance (for fluid interface)
      */
     public function addStmt($stmt) {
         $this->stmts[] = $this->normalizeNode($stmt);
@@ -86,7 +86,7 @@ class BuilderFunction extends BuilderAbstract
      *
      * @param array $stmts The statements to add
      *
-     * @return PHPParser_Builder_Function The builder instance (for fluid interface)
+     * @return \PHPParser\Builder_Function The builder instance (for fluid interface)
      */
     public function addStmts(array $stmts) {
         foreach ($stmts as $stmt) {
@@ -99,10 +99,10 @@ class BuilderFunction extends BuilderAbstract
     /**
      * Returns the built function node.
      *
-     * @return PHPParser_Node_Stmt_Function The built function node
+     * @return \PHPParser\Node\Stmt_Function The built function node
      */
     public function getNode() {
-        return new PHPParser_Node_Stmt_Function($this->name, array(
+        return new \PHPParser\Node\Stmt_Function($this->name, array(
             'byRef'  => $this->returnByRef,
             'params' => $this->params,
             'stmts'  => $this->stmts,

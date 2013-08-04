@@ -3,15 +3,15 @@
 namespace Expr;
 
 /**
- * @property PHPParser_Node_Name|PHPParser_Node_Expr $class Class name
+ * @property \PHPParser\Node\Name|\PHPParser\Node\Expr $class Class name
  * @property string                                  $name  Constant name
  */
-class ClassConstFetch extends PHPParser_Node_Expr
+class ClassConstFetch extends \PHPParser\Node\Expr
 {
     /**
      * Constructs a class const fetch node.
      *
-     * @param PHPParser_Node_Name|PHPParser_Node_Expr $class      Class name
+     * @param \PHPParser\Node\Name|\PHPParser\Node\Expr $class      Class name
      * @param string                                  $name       Constant name
      * @param array                                   $attributes Additional attributes
      */

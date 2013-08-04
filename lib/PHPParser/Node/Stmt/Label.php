@@ -1,9 +1,11 @@
 <?php
 
+namespace PHPParser\Node\Stmt;
+
 /**
  * @property string $name Name
  */
-class PHPParser_Node_Stmt_Label extends PHPParser_Node_Stmt
+class Label extends \PHPParser\Node\Stmt
 {
     /**
      * Constructs a label node.

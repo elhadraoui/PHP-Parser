@@ -1,16 +1,18 @@
 <?php
 
-class PHPParser_NodeDumper
+namespace PHPParser\Node;
+
+class Dumper
 {
     /**
      * Dumps a node or array.
      *
-     * @param array|PHPParser_Node $node Node or array to dump
+     * @param array|\PHPParser\Node $node Node or array to dump
      *
      * @return string Dumped value
      */
     public function dump($node) {
-        if ($node instanceof PHPParser_Node) {
+        if ($node instanceof \PHPParser\Node) {
             $r = $node->getType() . '(';
         } elseif (is_array($node)) {
             $r = 'array(';

@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Node_Scalar_MethodConst extends PHPParser_Node_Scalar
+namespace PHPParser\Node\Scalar;
+
+class MethodConst extends \PHPParser\Node\Scalar
 {
     /**
      * Constructs a __METHOD__ const node

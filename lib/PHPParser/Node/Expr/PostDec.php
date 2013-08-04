@@ -3,17 +3,17 @@
 namespace Expr;
 
 /**
- * @property PHPParser_Node_Expr $var Variable
+ * @property \PHPParser\Node\Expr $var Variable
  */
-class PostDec extends PHPParser_Node_Expr
+class PostDec extends \PHPParser\Node\Expr
 {
     /**
      * Constructs a post decrement node.
      *
-     * @param PHPParser_Node_Expr $var        Variable
+     * @param \PHPParser\Node\Expr $var        Variable
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser_Node_Expr $var, array $attributes = array()) {
+    public function __construct(\PHPParser\Node\Expr $var, array $attributes = array()) {
         parent::__construct(
             array(
                 'var' => $var
