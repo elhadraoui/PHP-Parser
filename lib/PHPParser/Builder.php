@@ -1,6 +1,8 @@
 <?php
 
-interface PHPParser_Builder
+namespace PHPParser;
+
+interface Builder
 {
     /**
      * Returns the built node.
