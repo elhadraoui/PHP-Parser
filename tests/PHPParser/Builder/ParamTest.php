@@ -4,11 +4,12 @@ namespace PHPParserTest\Builder;
 
 use PHPParser\Node\Expr\ConstFetch;
 use PHPParser\Node\Name;
+use PHPParser\Builder\Param;
 
 class ParamTest extends \PHPUnit_Framework_TestCase
 {
     public function createParamBuilder($name) {
-        return new PHPParser\Builder_Param($name);
+        return new Param($name);
     }
 
     /**
