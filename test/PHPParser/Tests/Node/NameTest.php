@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_Node_NameTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Node;
+
+class NameTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct() {
         $name = new PHPParser_Node_Name(array('foo', 'bar'));
