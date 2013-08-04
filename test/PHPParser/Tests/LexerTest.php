@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_LexerTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest;
+
+class LexerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var PHPParser_Lexer */
     protected $lexer;
