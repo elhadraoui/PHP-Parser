@@ -1,6 +1,8 @@
 <?php
 
-class PHPParser_Tests_TemplateLoaderTest extends PHPUnit_Framework_TestCase
+namespace PHPParserTest\Template;
+
+class LoaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testLoadWithoutSuffix() {
         $templateLoader = new PHPParser_TemplateLoader(
