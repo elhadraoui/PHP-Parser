@@ -57,20 +57,20 @@ class ParamTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 array(1, 2, 3),
-                new Expr_Array(array(
-                    new Expr_ArrayItem(new LNumber(1)),
-                    new Expr_ArrayItem(new LNumber(2)),
-                    new Expr_ArrayItem(new LNumber(3)),
+                new Exp_Array(array(
+                    new ArrayItem(new LNumber(1)),
+                    new ArrayItem(new LNumber(2)),
+                    new ArrayItem(new LNumber(3)),
                 ))
             ),
             array(
                 array('foo' => 'bar', 'bar' => 'foo'),
                 new Expr_Array(array(
-                    new Expr_ArrayItem(
+                    new ArrayItem(
                         new String('bar'),
                         new String('foo')
                     ),
-                    new Expr_ArrayItem(
+                    new ArrayItem(
                         new String('foo'),
                         new String('bar')
                     ),
