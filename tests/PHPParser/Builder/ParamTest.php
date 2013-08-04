@@ -39,7 +39,7 @@ class ParamTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 31415,
-                new \LNumber(31415)
+                new LNumber(31415)
             ),
             array(
                 3.1415,
