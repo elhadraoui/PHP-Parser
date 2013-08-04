@@ -2,6 +2,6 @@
 
 namespace PHPParser\Node;
 
-abstract class Scalar extends PHPParser\Node\Expr
+abstract class Scalar extends Expr
 {
 }
