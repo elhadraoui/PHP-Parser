@@ -40,6 +40,8 @@ function autoload($className)
         $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
     }
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+    
+    echo $fileName . PHP_EOL;
 
     if(file_exists($vCoreLibrary . DIRECTORY_SEPARATOR . $fileName))    
     	require $fileName;
