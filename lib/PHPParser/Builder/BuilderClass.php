@@ -2,6 +2,8 @@
 
 namespace PHPParser\Builder;
 
+use PHPParser\Node\Stmt_Class;
+
 class BuilderClass extends BuilderAbstract
 {
     protected $name;
@@ -65,7 +67,7 @@ class BuilderClass extends BuilderAbstract
      * @return PHPParser\Builder_Class The builder instance (for fluid interface)
      */
     public function makeAbstract() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_ABSTRACT);
+        $this->setModifier(Stmt_Class::MODIFIER_ABSTRACT);
 
         return $this;
     }
@@ -76,7 +78,7 @@ class BuilderClass extends BuilderAbstract
      * @return PHPParser\Builder_Class The builder instance (for fluid interface)
      */
     public function makeFinal() {
-        $this->setModifier(PHPParser\Node\Stmt_Class::MODIFIER_FINAL);
+        $this->setModifier(Stmt_Class::MODIFIER_FINAL);
 
         return $this;
     }
@@ -129,7 +131,7 @@ class BuilderClass extends BuilderAbstract
      * @return PHPParser\Node\Stmt_Class The built class node
      */
     public function getNode() {
-        return new PHPParser\Node\Stmt_Class($this->name, array(
+        return new Stmt_Class($this->name, array(
             'type' => $this->type,
             'extends' => $this->extends,
             'implements' => $this->implements,
