@@ -6,7 +6,6 @@
 error_reporting( E_ALL | E_STRICT );
 
 if (class_exists('PHPUnit_Runner_Version', true)) {
-	echo 'Class PHPUnit_Runner_Version exists' . PHP_EOL;
     $phpUnitVersion = PHPUnit_Runner_Version::id();
     if ('@package_version@' !== $phpUnitVersion && version_compare($phpUnitVersion, '3.7.0', '<')) {
         echo 'This version of PHPUnit (' . PHPUnit_Runner_Version::id() . ') is not supported'
@@ -15,8 +14,6 @@ if (class_exists('PHPUnit_Runner_Version', true)) {
         exit(1);
     }
     unset($phpUnitVersion);
-} else {
-	echo 'Class PHPUnit_Runner_Version not found' . PHP_EOL;
 }
 
 $vRoot        = realpath(dirname(__DIR__));
