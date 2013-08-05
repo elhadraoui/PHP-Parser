@@ -1,13 +1,12 @@
 <?php
 
-namespace PHPParser\Node;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Expr $expr Expression
  * @property int                 $type Type of include
  */
-class Expr_Include extends PHPParser\Node\Expr
-{
+class IncludeExpression extends Expression
     const TYPE_INCLUDE      = 1;
     const TYPE_INCLUDE_ONCE = 2;
     const TYPE_REQUIRE      = 3;
@@ -20,7 +19,7 @@ class Expr_Include extends PHPParser\Node\Expr
      * @param int                 $type       Type of include
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $expr, $type, array $attributes = array()) {
+    public function __construct(Expression $expr, $type, array $attributes = array()) {
         parent::__construct(
             array(
                 'expr' => $expr,
