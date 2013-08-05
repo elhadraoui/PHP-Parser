@@ -1,13 +1,13 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Name|PHPParser\Node\Expr $class Class name
  * @property string|PHPParser\Node\Expr              $name  Method name
  * @property PHPParser\Node\Arg[]                    $args  Arguments
  */
-class StaticCall extends PHPParser\Node\Expr
+class StaticCallExpression extends Expression
 {
     /**
      * Constructs a static method call node.
