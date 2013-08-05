@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPParser\Node;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Expr $expr Expression
  */
-class Expr_Clone extends PHPParser\Node\Expr
+class CloneExpression extends Expression
 {
     /**
      * Constructs a clone node.
@@ -13,7 +13,7 @@ class Expr_Clone extends PHPParser\Node\Expr
      * @param PHPParser\Node\Expr $expr       Expression
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $expr, array $attributes = array()) {
+    public function __construct(Expression $expr, array $attributes = array()) {
         parent::__construct(
             array(
                 'expr' => $expr
