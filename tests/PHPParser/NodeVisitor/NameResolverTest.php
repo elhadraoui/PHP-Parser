@@ -2,20 +2,22 @@
 
 namespace PHPParserTest\NodeVisitor;
 
-use PHPParser\Node\Stmt_Use;
+use PHPParser\PrettyPrinter\PrettyPrinterDefault;
 
-use PHPParser\Node\Stmt_Trait;
+use PHPParser\Node\Statement_Use;
 
-use PHPParser\Node\Stmt_Namespace;
+use PHPParser\Node\Statement_Trait;
+
+use PHPParser\Node\Statement_Namespace;
 
 use PHPParser\Node\Scalar\String;
 
 use PHPParser\Node\Node_Const;
 
-use PHPParser\Node\Stmt_Class;
-use PHPParser\Node\Stmt_Interface;
-use PHPParser\Node\Stmt_Function;
-use PHPParser\Node\Stmt_Const;
+use PHPParser\Node\Statement\ClassStatement;
+use PHPParser\Node\Statement_Interface;
+use PHPParser\Node\Statement\FunctionStatement;
+use PHPParser\Node\Statement_Const;
 
 use PHPParser\Node\Traverser;
 
@@ -103,14 +105,14 @@ namespace {
 EOC;
 
         $parser        = new Parser(new Emulative);
-        $prettyPrinter = new PrettyPrinter_Default;
-        $traverser     = new NodeTraverser;
-        $traverser->addVisitor(new NodeVisitor_NameResolver);
+        $prettyPrinter = new PrettyPrinterDefault;
+        $traverser     = new Traverser;
+        $traverser->addVisitor(new NameResolver);
 
-        $stmts = $parser->parse($code);
-        $stmts = $traverser->traverse($stmts);
+        $Statements = $parser->parse($code);
+        $Statements = $traverser->traverse($Statements);
 
-        $this->assertEquals($expectedCode, $prettyPrinter->prettyPrint($stmts));
+        $this->assertEquals($expectedCode, $prettyPrinter->prettyPrint($Statements));
     }
 
     /**
@@ -170,38 +172,38 @@ try {
 EOC;
 
         $parser        = new Parser(new Emulative);
-        $prettyPrinter = new PrettyPrinter_Default;
-        $traverser     = new NodeTraverser;
-        $traverser->addVisitor(new NodeVisitor_NameResolver);
+        $prettyPrinter = new PrettyPrinterDefault;
+        $traverser     = new Traverser;
+        $traverser->addVisitor(new NameResolver);
 
-        $stmts = $parser->parse($code);
-        $stmts = $traverser->traverse($stmts);
+        $Statements = $parser->parse($code);
+        $Statements = $traverser->traverse($Statements);
 
-        $this->assertEquals($expectedCode, $prettyPrinter->prettyPrint($stmts));
+        $this->assertEquals($expectedCode, $prettyPrinter->prettyPrint($Statements));
     }
 
     public function testNoResolveSpecialName() {
-        $stmts = array(new Expr_New(new Name('self')));
+        $Statements = array(new Expr_New(new Name('self')));
 
         $traverser = new Traverser;
         $traverser->addVisitor(new NameResolver);
 
-        $this->assertEquals($stmts, $traverser->traverse($stmts));
+        $this->assertEquals($Statements, $traverser->traverse($Statements));
     }
 
-    protected function createNamespacedAndNonNamespaced(array $stmts) {
+    protected function createNamespacedAndNonNamespaced(array $Statements) {
         return array(
-            new Stmt_Namespace(new Name('NS'), $stmts),
-            new Stmt_Namespace(null,                          $stmts),
+            new Statement_Namespace(new Name('NS'), $Statements),
+            new Statement_Namespace(null,                          $Statements),
         );
     }
 
     public function testAddNamespacedName() {
-        $stmts = $this->createNamespacedAndNonNamespaced(array(
-            new Stmt_Class('A'),
-            new Stmt_Interface('B'),
-            new Stmt_Function('C'),
-            new Stmt_Const(array(
+        $Statements = $this->createNamespacedAndNonNamespaced(array(
+            new ClassStatement('A'),
+            new Statement_Interface('B'),
+            new FunctionStatement('C'),
+            new Statement_Const(array(
                 new Node_Const('D', new String('E'))
             )),
         ));
@@ -209,30 +211,30 @@ EOC;
         $traverser = new Traverser;
         $traverser->addVisitor(new NameResolver);
 
-        $stmts = $traverser->traverse($stmts);
+        $Statements = $traverser->traverse($Statements);
 
-        $this->assertEquals('NS\\A', (string) $stmts[0]->stmts[0]->namespacedName);
-        $this->assertEquals('NS\\B', (string) $stmts[0]->stmts[1]->namespacedName);
-        $this->assertEquals('NS\\C', (string) $stmts[0]->stmts[2]->namespacedName);
-        $this->assertEquals('NS\\D', (string) $stmts[0]->stmts[3]->consts[0]->namespacedName);
-        $this->assertEquals('A',     (string) $stmts[1]->stmts[0]->namespacedName);
-        $this->assertEquals('B',     (string) $stmts[1]->stmts[1]->namespacedName);
-        $this->assertEquals('C',     (string) $stmts[1]->stmts[2]->namespacedName);
-        $this->assertEquals('D',     (string) $stmts[1]->stmts[3]->consts[0]->namespacedName);
+        $this->assertEquals('NS\\A', (string) $Statements[0]->Statements[0]->namespacedName);
+        $this->assertEquals('NS\\B', (string) $Statements[0]->Statements[1]->namespacedName);
+        $this->assertEquals('NS\\C', (string) $Statements[0]->Statements[2]->namespacedName);
+        $this->assertEquals('NS\\D', (string) $Statements[0]->Statements[3]->consts[0]->namespacedName);
+        $this->assertEquals('A',     (string) $Statements[1]->Statements[0]->namespacedName);
+        $this->assertEquals('B',     (string) $Statements[1]->Statements[1]->namespacedName);
+        $this->assertEquals('C',     (string) $Statements[1]->Statements[2]->namespacedName);
+        $this->assertEquals('D',     (string) $Statements[1]->Statements[3]->consts[0]->namespacedName);
     }
 
     public function testAddTraitNamespacedName() {
-        $stmts = $this->createNamespacedAndNonNamespaced(array(
-            new Stmt_Trait('A')
+        $Statements = $this->createNamespacedAndNonNamespaced(array(
+            new Statement_Trait('A')
         ));
 
         $traverser = new Traverser;
         $traverser->addVisitor(new NameResolver);
 
-        $stmts = $traverser->traverse($stmts);
+        $Statements = $traverser->traverse($Statements);
 
-        $this->assertEquals('NS\\A', (string) $stmts[0]->stmts[0]->namespacedName);
-        $this->assertEquals('A',     (string) $stmts[1]->stmts[0]->namespacedName);
+        $this->assertEquals('NS\\A', (string) $Statements[0]->Statements[0]->namespacedName);
+        $this->assertEquals('A',     (string) $Statements[1]->Statements[0]->namespacedName);
     }
 
     /**
@@ -240,15 +242,15 @@ EOC;
      * @expectedExceptionMessage Cannot use "C" as "B" because the name is already in use on line 2
      */
     public function testAlreadyInUseError() {
-        $stmts = array(
-            new Stmt_Use(array(
-                new Stmt_Use(new Name('A\B'), 'B', array('startLine' => 1)),
-                new Stmt_Use(new Name('C'),   'B', array('startLine' => 2)),
+        $Statements = array(
+            new Statement_Use(array(
+                new Statement_Use(new Name('A\B'), 'B', array('startLine' => 1)),
+                new Statement_Use(new Name('C'),   'B', array('startLine' => 2)),
             ))
         );
 
         $traverser = new NodeTraverser;
         $traverser->addVisitor(new NodeVisitor_NameResolver);
-        $traverser->traverse($stmts);
+        $traverser->traverse($Statements);
     }
 }

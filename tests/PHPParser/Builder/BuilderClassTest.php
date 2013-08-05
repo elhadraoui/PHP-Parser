@@ -3,15 +3,13 @@
 namespace PHPParserTest\Builder;
 
 use PHPParser\Node\Scalar\String;
-
-use PHPParser\Node\Stmt_Echo;
-use PHPParser\Node\Stmt\TraitUse;
+use PHPParser\Node\Statement\EchoStatement;
+use PHPParser\Node\Statement\TraitUse;
 use PHPParser\Node\Node_Const;
 use PHPParser\Node\Scalar\ClassConst;
-use PHPParser\Node\Stmt\PropertyProperty;
-use PHPParser\Node\Stmt\Property;
-use PHPParser\Node\Stmt\ClassMethod;
-use PHPParser\Node\Stmt_Class;
+use PHPParser\Node\Statement\PropertyStatement;
+use PHPParser\Node\Statement\ClassMethodStatement;
+use PHPParser\Node\Statement\ClassStatement;
 use PHPParser\Node\Name;
 use PHPParser\Builder\BuilderClass;
 
@@ -29,7 +27,7 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new Stmt_Class('SomeLogger', array(
+            new ClassStatement('SomeLogger', array(
                 'extends' => new Name('BaseLogger'),
                 'implements' => array(
                     new Name('Namespaced\Logger'),
@@ -47,8 +45,8 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new Stmt_Class('Test', array(
-                'type' => Stmt_Class::MODIFIER_ABSTRACT
+            new ClassStatement('Test', array(
+                'type' => ClassStatement::MODIFIER_ABSTRACT
             )),
             $node
         );
@@ -61,18 +59,18 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new Stmt_Class('Test', array(
-                'type' => Stmt_Class::MODIFIER_FINAL
+            new ClassStatement('Test', array(
+                'type' => ClassStatement::MODIFIER_FINAL
             )),
             $node
         );
     }
 
     public function testStatementOrder() {
-        $method = new ClassMethod('testMethod');
-        $property = new Property(
-            Stmt_Class::MODIFIER_PUBLIC,
-            array(new PropertyProperty('testProperty'))
+        $method = new ClassMethodStatement('testMethod');
+        $property = new PropertyStatement(
+            ClassStatement::MODIFIER_PUBLIC,
+            array(new PropertyStatement('testPropertyStatement'))
         );
         $const = new ClassConst(array(
             new Node_Const('TEST_CONST', new String('ABC'))
@@ -80,15 +78,15 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
         $use = new TraitUse(array(new Name('SomeTrait')));
 
         $node = $this->createClassBuilder('Test')
-            ->addStmt($method)
-            ->addStmt($property)
-            ->addStmts(array($const, $use))
+            ->addStatement($method)
+            ->addStatement($property)
+            ->addStatements(array($const, $use))
             ->getNode()
         ;
 
         $this->assertEquals(
-            new Stmt_Class('Test', array(
-                'stmts' => array($use, $const, $property, $method)
+            new ClassStatement('Test', array(
+                'Statements' => array($use, $const, $property, $method)
             )),
             $node
         );
@@ -96,11 +94,11 @@ class BuilderClassTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException LogicException
-     * @expectedExceptionMessage Unexpected node of type "Stmt_Echo"
+     * @expectedExceptionMessage Unexpected node of type "EchoStatement"
      */
-    public function testInvalidStmtError() {
+    public function testInvalidStatementError() {
         $this->createClassBuilder('Test')
-            ->addStmt(new Stmt_Echo(array()))
+            ->addStatement(new EchoStatement(array()))
         ;
     }
 }

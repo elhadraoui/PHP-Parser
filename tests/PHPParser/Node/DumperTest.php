@@ -48,11 +48,11 @@ class DumperTest extends \PHPUnit_Framework_TestCase
                 new Expr_Array(array(
                     new ArrayItem(new String('Foo'))
                 )),
-'Expr_Array(
+'PHPParser\Node\Expr_Array(
     items: array(
-        0: Expr_ArrayItem(
+        0: PHPParser\Node\Expr\ArrayItem(
             key: null
-            value: Scalar_String(
+            value: PHPParser\Node\Scalar\String(
                 value: Foo
             )
             byRef: false

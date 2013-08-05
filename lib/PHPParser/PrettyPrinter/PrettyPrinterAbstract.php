@@ -75,14 +75,14 @@ abstract class PrettyPrinterAbstract
     /**
      * Pretty prints an array of statements.
      *
-     * @param PHPParser\Node[] $stmts Array of statements
+     * @param PHPParser\Node[] $Statements Array of statements
      *
      * @return string Pretty printed statements
      */
-    public function prettyPrint(array $stmts) {
-        $this->preprocessNodes($stmts);
+    public function prettyPrint(array $Statements) {
+        $this->preprocessNodes($Statements);
 
-        return str_replace("\n" . $this->noIndentToken, "\n", $this->pStmts($stmts, false));
+        return str_replace("\n" . $this->noIndentToken, "\n", $this->pStatements($Statements, false));
     }
 
     /**
@@ -99,12 +99,12 @@ abstract class PrettyPrinterAbstract
     /**
      * Pretty prints a file of statements (includes the opening <?php tag if it is required).
      *
-     * @param PHPParser\Node[] $stmts Array of statements
+     * @param PHPParser\Node[] $Statements Array of statements
      *
      * @return string Pretty printed statements
      */
-    public function prettyPrintFile(array $stmts) {
-        $p = trim($this->prettyPrint($stmts));
+    public function prettyPrintFile(array $Statements) {
+        $p = trim($this->prettyPrint($Statements));
 
         $p = preg_replace('/^\?>\n?/', '', $p, -1, $count);
         $p = preg_replace('/<\?php$/', '', $p);
@@ -125,7 +125,7 @@ abstract class PrettyPrinterAbstract
         /* We can use semicolon-namespaces unless there is a global namespace declaration */
         $this->canUseSemicolonNamespaces = true;
         foreach ($nodes as $node) {
-            if ($node instanceof PHPParser\Node\Stmt_Namespace && null === $node->name) {
+            if ($node instanceof PHPParser\Node\Statement_Namespace && null === $node->name) {
                 $this->canUseSemicolonNamespaces = false;
             }
         }
@@ -139,7 +139,7 @@ abstract class PrettyPrinterAbstract
      *
      * @return string Pretty printed statements
      */
-    protected function pStmts(array $nodes, $indent = true) {
+    protected function pStatements(array $nodes, $indent = true) {
         $pNodes = array();
         foreach ($nodes as $node) {
             $pNodes[] = $this->pComments($node->getAttribute('comments', array()))

@@ -4,7 +4,7 @@ namespace PHPParser\Node\Visitor;
 
 use PHPParser\Node\Node;
 
-use PHPParser\Node\Stmt_Trait;
+use PHPParser\Node\Statement_Trait;
 
 use PHPParser\Node\VisitorAbstract;
 
@@ -26,7 +26,7 @@ class NameResolver extends VisitorAbstract
     }
 
     public function enterNode(Node $node) {
-        if ($node instanceof Stmt_Namespace) {
+        if ($node instanceof Statement_Namespace) {
             $this->namespace = $node->name;
             $this->aliases   = array();
         } elseif ($node instanceof UseUse) {
@@ -41,7 +41,7 @@ class NameResolver extends VisitorAbstract
             }
 
             $this->aliases[$node->alias] = $node->name;
-        } elseif ($node instanceof Stmt_Class) {
+        } elseif ($node instanceof ClassStatement) {
             if (null !== $node->extends) {
                 $node->extends = $this->resolveClassName($node->extends);
             }
@@ -51,22 +51,22 @@ class NameResolver extends VisitorAbstract
             }
 
             $this->addNamespacedName($node);
-        } elseif ($node instanceof Stmt_Interface) {
+        } elseif ($node instanceof Statement_Interface) {
             foreach ($node->extends as &$interface) {
                 $interface = $this->resolveClassName($interface);
             }
 
             $this->addNamespacedName($node);
-        } elseif ($node instanceof Stmt_Trait) {
+        } elseif ($node instanceof Statement_Trait) {
             $this->addNamespacedName($node);
-        } elseif ($node instanceof Stmt_Function) {
+        } elseif ($node instanceof FunctionStatement) {
             $this->addNamespacedName($node);
-        } elseif ($node instanceof Stmt_Const) {
+        } elseif ($node instanceof Statement_Const) {
             foreach ($node->consts as $const) {
                 $this->addNamespacedName($const);
             }
         } elseif ($node instanceof StaticCall
-                  || $node instanceof StaticPropertyFetch
+                  || $node instanceof StaticPropertyStatementFetch
                   || $node instanceof ClassConstFetch
                   || $node instanceof Expr_New
                   || $node instanceof Expr_Instanceof
@@ -74,7 +74,7 @@ class NameResolver extends VisitorAbstract
             if ($node->class instanceof Name) {
                 $node->class = $this->resolveClassName($node->class);
             }
-        } elseif ($node instanceof Stmt_Catch) {
+        } elseif ($node instanceof Statement_Catch) {
             $node->type = $this->resolveClassName($node->type);
         } elseif ($node instanceof FuncCall
                   || $node instanceof ConstFetch

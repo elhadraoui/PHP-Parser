@@ -7,7 +7,7 @@ use PHPParser\Node\Name;
 use PHPParser\Node\Scalar\String;
 
 use PHPParser\Node\Expr_Print;
-use PHPParser\Node\Stmt_Function;
+use PHPParser\Node\Statement\FunctionStatement;
 use PHPParser\Node\Param;
 use PHPParser\Builder\BuilderFunction;
 
@@ -24,7 +24,7 @@ class BuilderFunctionTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new Stmt_Function('test', array(
+            new FunctionStatement('test', array(
                 'byRef' => true
             )),
             $node
@@ -43,27 +43,27 @@ class BuilderFunctionTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new Stmt_Function('test', array(
+            new FunctionStatement('test', array(
                 'params' => array($param1, $param2, $param3)
             )),
             $node
         );
     }
 
-    public function testStmts() {
-        $stmt1 = new Expr_Print(new String('test1'));
-        $stmt2 = new Expr_Print(new String('test2'));
-        $stmt3 = new Expr_Print(new String('test3'));
+    public function testStatements() {
+        $Statement1 = new Expr_Print(new String('test1'));
+        $Statement2 = new Expr_Print(new String('test2'));
+        $Statement3 = new Expr_Print(new String('test3'));
 
         $node = $this->createFunctionBuilder('test')
-            ->addStmt($stmt1)
-            ->addStmts(array($stmt2, $stmt3))
+            ->addStatement($Statement1)
+            ->addStatements(array($Statement2, $Statement3))
             ->getNode()
         ;
 
         $this->assertEquals(
-            new Stmt_Function('test', array(
-                'stmts' => array($stmt1, $stmt2, $stmt3)
+            new FunctionStatement('test', array(
+                'Statements' => array($Statement1, $Statement2, $Statement3)
             )),
             $node
         );

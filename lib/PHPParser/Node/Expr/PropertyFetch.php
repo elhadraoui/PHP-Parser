@@ -4,15 +4,15 @@ namespace Expr;
 
 /**
  * @property PHPParser\Node\Expr        $var  Variable holding object
- * @property string|PHPParser\Node\Expr $name Property Name
+ * @property string|PHPParser\Node\Expr $name PropertyStatement Name
  */
-class PropertyFetch extends PHPParser\Node\Expr
+class PropertyStatementFetch extends PHPParser\Node\Expr
 {
     /**
      * Constructs a function call node.
      *
      * @param PHPParser\Node\Expr        $var        Variable holding object
-     * @param string|PHPParser\Node\Expr $name       Property name
+     * @param string|PHPParser\Node\Expr $name       PropertyStatement name
      * @param array                      $attributes Additional attributes
      */
     public function __construct(PHPParser\Node\Expr $var, $name, array $attributes = array()) {

@@ -1,48 +1,48 @@
 <?php
 
-namespace PHPParserTest\Node\Stmt;
+namespace PHPParserTest\Node\Statement;
 
-use PHPParser\Node\Stmt\Property;
+use PHPParser\Node\Statement\PropertyStatement;
 
-use PHPParser\Node\Stmt_Const;
+use PHPParser\Node\Statement_Const;
 
-use PHPParser\Node\Stmt\TraitUse;
+use PHPParser\Node\Statement\TraitUse;
 
-use PHPParser\Node\Stmt\ClassMethod;
+use PHPParser\Node\Statement\ClassMethodStatement;
 
-use PHPParser\Node\Stmt_Class;
+use PHPParser\Node\Statement\ClassStatement;
 
 class ClassTest extends \PHPUnit_Framework_TestCase
 {
     public function testIsAbstract() {
-        $class = new Stmt_Class('Foo', array('type' => Stmt_Class::MODIFIER_ABSTRACT));
+        $class = new ClassStatement('Foo', array('type' => ClassStatement::MODIFIER_ABSTRACT));
         $this->assertTrue($class->isAbstract());
 
-        $class = new Stmt_Class('Foo');
+        $class = new ClassStatement('Foo');
         $this->assertFalse($class->isAbstract());
     }
 
     public function testIsFinal() {
-        $class = new Stmt_Class('Foo', array('type' => Stmt_Class::MODIFIER_FINAL));
+        $class = new ClassStatement('Foo', array('type' => ClassStatement::MODIFIER_FINAL));
         $this->assertTrue($class->isFinal());
 
-        $class = new Stmt_Class('Foo');
+        $class = new ClassStatement('Foo');
         $this->assertFalse($class->isFinal());
     }
 
     public function testGetMethods() {
         $methods = array(
-            new ClassMethod('foo'),
-            new ClassMethod('bar'),
-            new ClassMethod('fooBar'),
+            new ClassMethodStatement('foo'),
+            new ClassMethodStatement('bar'),
+            new ClassMethodStatement('fooBar'),
         );
-        $class = new Stmt_Class('Foo', array(
-            'stmts' => array(
+        $class = new ClassStatement('Foo', array(
+            'Statements' => array(
                 new TraitUse(array()),
                 $methods[0],
-                new Stmt_Const(array()),
+                new Statement_Const(array()),
                 $methods[1],
-                new Property(0, array()),
+                new PropertyStatement(0, array()),
                 $methods[2],
             )
         ));

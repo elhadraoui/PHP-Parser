@@ -3,7 +3,7 @@
 namespace PHPParser\Builder;
 
 use PHPParser\Builder\Builder_Interface;
-use PHPParser\Builder\Builder_Property;
+use PHPParser\Builder\Builder_PropertyStatement;
 use PHPParser\Builder\Builder_Param;
 
 /**
@@ -66,10 +66,10 @@ class Factory
      *
      * @param string $name Name of the property
      *
-     * @return PHPParser\Builder_Property The created property builder
+     * @return PHPParser\Builder_PropertyStatement The created property builder
      */
     public function property($name) {
-        return new Builder_Property($name);
+        return new Builder_PropertyStatement($name);
     }
 
     /**
@@ -77,7 +77,7 @@ class Factory
      *
      * @param string $name Name of the function
      *
-     * @return PHPParser\Builder_Property The created function builder
+     * @return PHPParser\Builder_PropertyStatement The created function builder
      */
     protected function _function($name) {
         return new BuilderFunction($name);

@@ -24,9 +24,9 @@ function functionName(&\$a = 0, \$b = 1.0) {
 CODE;
         $xml = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<AST xmlns:node="http://nikic.github.com/\PHPParser/XML/node" xmlns:subNode="http://nikic.github.com/\PHPParser/XML/subNode" xmlns:attribute="http://nikic.github.com/\PHPParser/XML/attribute" xmlns:scalar="http://nikic.github.com/\PHPParser/XML/scalar">
+<AST xmlns:node="http://nikic.github.com/PHPParser/XML/node" xmlns:subNode="http://nikic.github.com/PHPParser/XML/subNode" xmlns:attribute="http://nikic.github.com/PHPParser/XML/attribute" xmlns:scalar="http://nikic.github.com/PHPParser/XML/scalar">
  <scalar:array>
-  <node:Stmt_Function>
+  <node:FunctionStatement>
    <attribute:comments>
     <scalar:array>
      <comment isDocComment="false" line="2">// comment
@@ -107,9 +107,9 @@ CODE;
      </node:Param>
     </scalar:array>
    </subNode:params>
-   <subNode:stmts>
+   <subNode:Statements>
     <scalar:array>
-     <node:Stmt_Echo>
+     <node:EchoStatement>
       <attribute:startLine>
        <scalar:int>5</scalar:int>
       </attribute:startLine>
@@ -118,7 +118,7 @@ CODE;
       </attribute:endLine>
       <subNode:exprs>
        <scalar:array>
-        <node:Scalar_String>
+        <node:PHPParser\Node\Scalar\String>
          <attribute:startLine>
           <scalar:int>5</scalar:int>
          </attribute:startLine>
@@ -128,25 +128,25 @@ CODE;
          <subNode:value>
           <scalar:string>Foo</scalar:string>
          </subNode:value>
-        </node:Scalar_String>
+        </node:PHPParser\Node\Scalar\String>
        </scalar:array>
       </subNode:exprs>
-     </node:Stmt_Echo>
+     </node:EchoStatement>
     </scalar:array>
-   </subNode:stmts>
+   </subNode:Statements>
    <subNode:name>
     <scalar:string>functionName</scalar:string>
    </subNode:name>
-  </node:Stmt_Function>
+  </node:FunctionStatement>
  </scalar:array>
 </AST>
 XML;
 
         $parser     = new Parser(new Lexer);
-        $serializer = new Serializer_XML;
+        $serializer = new XML;
 
-        $stmts = $parser->parse($code);
-        $this->assertXmlStringEqualsXmlString($xml, $serializer->serialize($stmts));
+        $Statements = $parser->parse($code);
+        $this->assertXmlStringEqualsXmlString($xml, $serializer->serialize($Statements));
     }
 
     /**

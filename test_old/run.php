@@ -128,20 +128,20 @@ foreach (new RecursiveIteratorIterator(
 
     try {
         $startTime = microtime(true);
-        $stmts = $parser->parse($code);
+        $Statements = $parser->parse($code);
         $parseTime += microtime(true) - $startTime;
 
         $startTime = microtime(true);
-        $code = '<?php' . "\n" . $prettyPrinter->prettyPrint($stmts);
+        $code = '<?php' . "\n" . $prettyPrinter->prettyPrint($Statements);
         $ppTime += microtime(true) - $startTime;
 
         try {
             $startTime = microtime(true);
-            $ppStmts = $parser->parse($code);
+            $ppStatements = $parser->parse($code);
             $reparseTime += microtime(true) - $startTime;
 
             $startTime = microtime(true);
-            $same = $nodeDumper->dump($stmts) == $nodeDumper->dump($ppStmts);
+            $same = $nodeDumper->dump($Statements) == $nodeDumper->dump($ppStatements);
             $compareTime += microtime(true) - $startTime;
 
             if (!$same) {

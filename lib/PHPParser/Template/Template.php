@@ -26,7 +26,7 @@ class Template
      *
      * @return PHPParser\Node[] Statements
      */
-    public function getStmts(array $placeholders) {
+    public function getStatements(array $placeholders) {
         return $this->parser->parse(
             $this->getTemplateWithPlaceholdersReplaced($placeholders)
         );

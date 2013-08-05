@@ -20,7 +20,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
             array('interface', 'PHPParser\Builder_Interface'),
             array('method',    'PHPParser\Builder_Method'),
             array('function',  'PHPParser\Builder_Function'),
-            array('property',  'PHPParser\Builder_Property'),
+            array('property',  'PHPParser\Builder_PropertyStatement'),
             array('param',     'PHPParser\Builder_Param'),
         );
     }

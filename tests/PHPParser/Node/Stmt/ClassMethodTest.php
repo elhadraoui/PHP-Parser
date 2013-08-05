@@ -1,17 +1,17 @@
 <?php
 
-namespace PHPParserTest\Node\Stmt;
+namespace PHPParserTest\Node\Statement;
 
-use PHPParser\Node\Stmt\ClassMethod;
+use PHPParser\Node\Statement\ClassMethodStatement;
 
-class ClassMethodTest extends \PHPUnit_Framework_TestCase
+class ClassMethodStatementTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideModifiers
      */
     public function testModifiers($modifier) {
-        $node = new ClassMethod('foo', array(
-            'type' => constant('Stmt_Class::MODIFIER_' . strtoupper($modifier))
+        $node = new ClassMethodStatement('foo', array(
+            'type' => constant('ClassStatement::MODIFIER_' . strtoupper($modifier))
         ));
 
         $this->assertTrue($node->{'is' . $modifier}());
@@ -21,7 +21,7 @@ class ClassMethodTest extends \PHPUnit_Framework_TestCase
      * @dataProvider provideModifiers
      */
     public function testNoModifiers($modifier) {
-        $node = new ClassMethod('foo', array('type' => 0));
+        $node = new ClassMethodStatement('foo', array('type' => 0));
 
         $this->assertFalse($node->{'is' . $modifier}());
     }

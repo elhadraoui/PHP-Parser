@@ -14,7 +14,7 @@ use PHPParser\Node\Scalar\LNumber;
 
 use PHPParser\Node\Expr\ConstFetch;
 
-use PHPParser\Node\Stmt_Class;
+use PHPParser\Node\Statement\ClassStatement;
 
 use PHPParser\Node\Name;
 
@@ -106,7 +106,7 @@ abstract class BuilderAbstract implements Builder {
      * @param int $modifier Modifier to set
      */
     protected function setModifier($modifier) {
-        Stmt_Class::verifyModifier($this->type, $modifier);
+        ClassStatement::verifyModifier($this->type, $modifier);
         $this->type |= $modifier;
     }
 }

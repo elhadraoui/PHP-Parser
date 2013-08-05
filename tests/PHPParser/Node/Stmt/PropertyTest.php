@@ -1,17 +1,17 @@
 <?php
 
-namespace PHPParserTest\Node\Stmt;
+namespace PHPParserTest\Node\Statement;
 
-use PHPParser\Node\Stmt\Property;
+use PHPParser\Node\Statement\PropertyStatement;
 
-class PropertyTest extends \PHPUnit_Framework_TestCase
+class PropertyStatementTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideModifiers
      */
     public function testModifiers($modifier) {
-        $node = new Property(
-            constant('PHPParser\Node\Stmt_Class::MODIFIER_' . strtoupper($modifier)),
+        $node = new PropertyStatement(
+            constant('PHPParser\Node\Statement\ClassStatement::MODIFIER_' . strtoupper($modifier)),
             array() // invalid
         );
 
@@ -22,7 +22,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase
      * @dataProvider provideModifiers
      */
     public function testNoModifiers($modifier) {
-        $node = new Property(0, array());
+        $node = new PropertyStatement(0, array());
 
         $this->assertFalse($node->{'is' . $modifier}());
     }

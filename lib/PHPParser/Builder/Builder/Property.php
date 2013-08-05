@@ -2,13 +2,13 @@
 
 namespace PHPParser\Builder;
 
-use PHPParser\Node\Stmt\PropertyProperty;
+use PHPParser\Node\Statement\PropertyStatement;
 
-use PHPParser\Node\Stmt\Property;
+use PHPParser\Node\Statement\PropertyStatement;
 
-use PHPParser\Node\Stmt_Class;
+use PHPParser\Node\Statement\ClassStatement;
 
-class Builder_Property extends BuilderAbstract
+class Builder_PropertyStatement extends BuilderAbstract
 {
     protected $name;
 
@@ -30,10 +30,10 @@ class Builder_Property extends BuilderAbstract
     /**
      * Makes the property public.
      *
-     * @return PHPParser\Builder_Property The builder instance (for fluid interface)
+     * @return PHPParser\Builder_PropertyStatement The builder instance (for fluid interface)
      */
     public function makePublic() {
-        $this->setModifier(Stmt_Class::MODIFIER_PUBLIC);
+        $this->setModifier(ClassStatement::MODIFIER_PUBLIC);
 
         return $this;
     }
@@ -41,10 +41,10 @@ class Builder_Property extends BuilderAbstract
     /**
      * Makes the property protected.
      *
-     * @return PHPParser\Builder_Property The builder instance (for fluid interface)
+     * @return PHPParser\Builder_PropertyStatement The builder instance (for fluid interface)
      */
     public function makeProtected() {
-        $this->setModifier(Stmt_Class::MODIFIER_PROTECTED);
+        $this->setModifier(ClassStatement::MODIFIER_PROTECTED);
 
         return $this;
     }
@@ -52,10 +52,10 @@ class Builder_Property extends BuilderAbstract
     /**
      * Makes the property private.
      *
-     * @return PHPParser\Builder_Property The builder instance (for fluid interface)
+     * @return PHPParser\Builder_PropertyStatement The builder instance (for fluid interface)
      */
     public function makePrivate() {
-        $this->setModifier(Stmt_Class::MODIFIER_PRIVATE);
+        $this->setModifier(ClassStatement::MODIFIER_PRIVATE);
 
         return $this;
     }
@@ -63,10 +63,10 @@ class Builder_Property extends BuilderAbstract
     /**
      * Makes the property static.
      *
-     * @return PHPParser\Builder_Property The builder instance (for fluid interface)
+     * @return PHPParser\Builder_PropertyStatement The builder instance (for fluid interface)
      */
     public function makeStatic() {
-        $this->setModifier(Stmt_Class::MODIFIER_STATIC);
+        $this->setModifier(ClassStatement::MODIFIER_STATIC);
 
         return $this;
     }
@@ -76,7 +76,7 @@ class Builder_Property extends BuilderAbstract
      *
      * @param mixed $value Default value to use
      *
-     * @return PHPParser\Builder_Property The builder instance (for fluid interface)
+     * @return PHPParser\Builder_PropertyStatement The builder instance (for fluid interface)
      */
     public function setDefault($value) {
         $this->default = $this->normalizeValue($value);
@@ -87,13 +87,13 @@ class Builder_Property extends BuilderAbstract
     /**
      * Returns the built class node.
      *
-     * @return PHPParser\Node\Stmt_Property The built property node
+     * @return PHPParser\Node\Statement_PropertyStatement The built property node
      */
     public function getNode() {
-        return new Property(
-            $this->type !== 0 ? $this->type : Stmt_Class::MODIFIER_PUBLIC,
+        return new PropertyStatement(
+            $this->type !== 0 ? $this->type : ClassStatement::MODIFIER_PUBLIC,
             array(
-                new PropertyProperty($this->name, $this->default)
+                new PropertyStatement($this->name, $this->default)
             )
         );
     }

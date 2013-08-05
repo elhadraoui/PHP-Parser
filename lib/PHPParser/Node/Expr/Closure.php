@@ -3,7 +3,7 @@
 namespace Expr;
 
 /**
- * @property PHPParser\Node[]                 $stmts  Statements
+ * @property PHPParser\Node[]                 $Statements  Statements
  * @property PHPParser\Node\Param[]           $params Parameters
  * @property ClosureUse[] $uses   use()s
  * @property bool                             $byRef  Whether to return by reference
@@ -15,7 +15,7 @@ class Closure extends PHPParser\Node\Expr
      * Constructs a lambda function node.
      *
      * @param array $subNodes   Array of the following optional subnodes:
-     *                          'stmts'  => array(): Statements
+     *                          'Statements'  => array(): Statements
      *                          'params' => array(): Parameters
      *                          'uses'   => array(): use()s
      *                          'byRef'  => false  : Whether to return by reference
@@ -25,7 +25,7 @@ class Closure extends PHPParser\Node\Expr
     public function __construct(array $subNodes = array(), array $attributes = array()) {
         parent::__construct(
             $subNodes + array(
-                'stmts'  => array(),
+                'Statements'  => array(),
                 'params' => array(),
                 'uses'   => array(),
                 'byRef'  => false,

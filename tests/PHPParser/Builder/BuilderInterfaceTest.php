@@ -5,19 +5,19 @@ namespace PHPParserTest\Builder;
 /**
  * This class unit-tests the interface builder
  */
-use PHPParser\Node\Stmt\PropertyProperty;
+use PHPParser\Node\Statement\PropertyStatement;
 
 use PHPParser\Node\Scalar\DNumber;
 
-use PHPParser\Node\Stmt\ClassConst;
+use PHPParser\Node\Statement\ClassConst;
 
 use PHPParser\Node\Node_Const;
 
-use PHPParser\Node\Stmt\ClassMethod;
+use PHPParser\Node\Statement\ClassMethodStatement;
 
 use PHPParser\Node\Name;
 
-use PHPParser\Node\Stmt_Interface;
+use PHPParser\Node\Statement_Interface;
 
 use PHPParser\PrettyPrinter\PrettyPrinterDefault;
 
@@ -39,14 +39,14 @@ class BuilderInterfaceTest extends \PHPUnit_Framework_TestCase
 
     public function testEmpty() {
         $contract = $this->builder->getNode();
-        $this->assertInstanceOf('PHPParser\Node\Stmt_Interface', $contract);
+        $this->assertInstanceOf('PHPParser\Node\Statement_Interface', $contract);
         $this->assertEquals('Contract', $contract->name);
     }
 
     public function testExtending() {
         $contract = $this->builder->extend('Space\Root1', 'Root2')->getNode();
         $this->assertEquals(
-            new Stmt_Interface('Contract', array(
+            new Statement_Interface('Contract', array(
                 'extends' => array(
                     new Name('Space\Root1'),
                     new Name('Root2')
@@ -56,50 +56,50 @@ class BuilderInterfaceTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testAddMethod() {
-        $method = new ClassMethod('doSomething');
-        $contract = $this->builder->addStmt($method)->getNode();
-        $this->assertEquals(array($method), $contract->stmts);
+        $method = new ClassMethodStatement('doSomething');
+        $contract = $this->builder->addStatement($method)->getNode();
+        $this->assertEquals(array($method), $contract->Statements);
     }
 
     public function testAddConst() {
         $const = new ClassConst(array(
             new Node_Const('SPEED_OF_LIGHT', new DNumber(299792458))
         ));
-        $contract = $this->builder->addStmt($const)->getNode();
-        $this->assertEquals(299792458, $contract->stmts[0]->consts[0]->value->value);
+        $contract = $this->builder->addStatement($const)->getNode();
+        $this->assertEquals(299792458, $contract->Statements[0]->consts[0]->value->value);
     }
 
     public function testOrder() {
         $const = new ClassConst(array(
             new Node_Const('SPEED_OF_LIGHT', new DNumber(299792458))
         ));
-        $method = new ClassMethod('doSomething');
+        $method = new ClassMethodStatement('doSomething');
         $contract = $this->builder
-            ->addStmt($method)
-            ->addStmt($const)
+            ->addStatement($method)
+            ->addStatement($const)
             ->getNode()
         ;
 
-        $this->assertInstanceOf('PHPParser\Node\Stmt_ClassConst', $contract->stmts[0]);
-        $this->assertInstanceOf('PHPParser\Node\Stmt_ClassMethod', $contract->stmts[1]);
+        $this->assertInstanceOf('PHPParser\Node\Statement\ClassStatementConst', $contract->Statements[0]);
+        $this->assertInstanceOf('PHPParser\Node\Statement\ClassStatementMethod', $contract->Statements[1]);
     }
 
     /**
      * @expectedException LogicException
-     * @expectedExceptionMessage Unexpected node of type "Stmt_PropertyProperty"
+     * @expectedExceptionMessage Unexpected node of type "Statement_PropertyStatement"
      */
-    public function testInvalidStmtError() {
-        $this->builder->addStmt(new PropertyProperty('invalid'));
+    public function testInvalidStatementError() {
+        $this->builder->addStatement(new PropertyStatement('invalid'));
     }
 
     public function testFullFunctional() {
         $const = new ClassConst(array(
             new Node_Const('SPEED_OF_LIGHT', new DNumber(299792458))
         ));
-        $method = new ClassMethod('doSomething');
+        $method = new ClassMethodStatement('doSomething');
         $contract = $this->builder
-            ->addStmt($method)
-            ->addStmt($const)
+            ->addStatement($method)
+            ->addStatement($const)
             ->getNode()
         ;
 

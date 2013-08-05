@@ -2,8 +2,7 @@
 
 namespace PHPParserTest\Node;
 
-use PHPParser\Comment\Doc;
-
+use PHPParser\Comment\DocComment;
 use PHPParser\Comment\Comment;
 
 class AbstractTest extends \PHPUnit_Framework_TestCase
@@ -13,7 +12,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase
             'startLine' => 10,
             'comments'  => array(
                 new Comment('// Comment' . "\n"),
-                new Doc('/** doc comment */'),
+                new DocComment('/** doc comment */'),
             ),
         );
 

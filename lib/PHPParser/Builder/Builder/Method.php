@@ -2,8 +2,8 @@
 
 namespace PHPParser\Builder;
 
-use PHPParser\Node\Stmt_Class;
-use PHPParser\Node\Stmt\ClassMethod;
+use PHPParser\Node\Statement\ClassStatement;
+use PHPParser\Node\Statement\ClassMethodStatement;
 
 class Builder_Method extends BuilderAbstract
 {
@@ -12,7 +12,7 @@ class Builder_Method extends BuilderAbstract
     protected $type;
     protected $returnByRef;
     protected $params;
-    protected $stmts;
+    protected $Statements;
 
     /**
      * Creates a method builder.
@@ -25,7 +25,7 @@ class Builder_Method extends BuilderAbstract
         $this->type = 0;
         $this->returnByRef = false;
         $this->params = array();
-        $this->stmts = array();
+        $this->Statements = array();
     }
 
     /**
@@ -34,7 +34,7 @@ class Builder_Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makePublic() {
-        $this->setModifier(Stmt_Class::MODIFIER_PUBLIC);
+        $this->setModifier(ClassStatement::MODIFIER_PUBLIC);
 
         return $this;
     }
@@ -45,7 +45,7 @@ class Builder_Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makeProtected() {
-        $this->setModifier(Stmt_Class::MODIFIER_PROTECTED);
+        $this->setModifier(ClassStatement::MODIFIER_PROTECTED);
 
         return $this;
     }
@@ -56,7 +56,7 @@ class Builder_Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makePrivate() {
-        $this->setModifier(Stmt_Class::MODIFIER_PRIVATE);
+        $this->setModifier(ClassStatement::MODIFIER_PRIVATE);
 
         return $this;
     }
@@ -67,7 +67,7 @@ class Builder_Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makeStatic() {
-        $this->setModifier(Stmt_Class::MODIFIER_STATIC);
+        $this->setModifier(ClassStatement::MODIFIER_STATIC);
 
         return $this;
     }
@@ -78,12 +78,12 @@ class Builder_Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makeAbstract() {
-        if (!empty($this->stmts)) {
+        if (!empty($this->Statements)) {
             throw new LogicException('Cannot make method with statements abstract');
         }
 
-        $this->setModifier(Stmt_Class::MODIFIER_ABSTRACT);
-        $this->stmts = null; // abstract methods don't have statements
+        $this->setModifier(ClassStatement::MODIFIER_ABSTRACT);
+        $this->Statements = null; // abstract methods don't have statements
 
         return $this;
     }
@@ -94,7 +94,7 @@ class Builder_Method extends BuilderAbstract
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
     public function makeFinal() {
-        $this->setModifier(Stmt_Class::MODIFIER_FINAL);
+        $this->setModifier(ClassStatement::MODIFIER_FINAL);
 
         return $this;
     }
@@ -147,16 +147,16 @@ class Builder_Method extends BuilderAbstract
     /**
      * Adds a statement.
      *
-     * @param PHPParser\Node|PHPParser\Builder $stmt The statement to add
+     * @param PHPParser\Node|PHPParser\Builder $Statement The statement to add
      *
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
-    public function addStmt($stmt) {
-        if (null === $this->stmts) {
+    public function addStatement($Statement) {
+        if (null === $this->Statements) {
             throw new \LogicException('Cannot add statements to an abstract method');
         }
 
-        $this->stmts[] = $this->normalizeNode($stmt);
+        $this->Statements[] = $this->normalizeNode($Statement);
 
         return $this;
     }
@@ -164,13 +164,13 @@ class Builder_Method extends BuilderAbstract
     /**
      * Adds multiple statements.
      *
-     * @param array $stmts The statements to add
+     * @param array $Statements The statements to add
      *
      * @return PHPParser\Builder_Method The builder instance (for fluid interface)
      */
-    public function addStmts(array $stmts) {
-        foreach ($stmts as $stmt) {
-            $this->addStmt($stmt);
+    public function addStatements(array $Statements) {
+        foreach ($Statements as $Statement) {
+            $this->addStatement($Statement);
         }
 
         return $this;
@@ -179,14 +179,14 @@ class Builder_Method extends BuilderAbstract
     /**
      * Returns the built method node.
      *
-     * @return PHPParser\Node\Stmt_ClassMethod The built method node
+     * @return PHPParser\Node\Statement\ClassStatementMethod The built method node
      */
     public function getNode() {
-        return new ClassMethod($this->name, array(
-            'type'   => $this->type !== 0 ? $this->type : Stmt_Class::MODIFIER_PUBLIC,
+        return new ClassMethodStatement($this->name, array(
+            'type'   => $this->type !== 0 ? $this->type : ClassStatement::MODIFIER_PUBLIC,
             'byRef'  => $this->returnByRef,
             'params' => $this->params,
-            'stmts'  => $this->stmts,
+            'Statements'  => $this->Statements,
         ));
     }
 }

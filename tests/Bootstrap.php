@@ -43,7 +43,7 @@ function autoload($className)
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
     if(file_exists($vCoreLibrary . DIRECTORY_SEPARATOR . $fileName))    
-    	require $fileName;
+    	require_once $fileName;
 }
 
 spl_autoload_register('autoload');

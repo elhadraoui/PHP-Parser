@@ -2,7 +2,7 @@
 
 namespace PHPParser\Builder;
 
-use PHPParser\Node\Stmt_Function;
+use PHPParser\Node\Statement\FunctionStatement;
 
 class BuilderFunction extends BuilderAbstract
 {
@@ -10,7 +10,7 @@ class BuilderFunction extends BuilderAbstract
 
     protected $returnByRef;
     protected $params;
-    protected $stmts;
+    protected $Statements;
 
     /**
      * Creates a function builder.
@@ -22,7 +22,7 @@ class BuilderFunction extends BuilderAbstract
 
         $this->returnByRef = false;
         $this->params = array();
-        $this->stmts = array();
+        $this->Statements = array();
     }
 
     /**
@@ -73,12 +73,12 @@ class BuilderFunction extends BuilderAbstract
     /**
      * Adds a statement.
      *
-     * @param PHPParser\Node|PHPParser\Builder $stmt The statement to add
+     * @param PHPParser\Node|PHPParser\Builder $Statement The statement to add
      *
      * @return PHPParser\Builder_Function The builder instance (for fluid interface)
      */
-    public function addStmt($stmt) {
-        $this->stmts[] = $this->normalizeNode($stmt);
+    public function addStatement($Statement) {
+        $this->Statements[] = $this->normalizeNode($Statement);
 
         return $this;
     }
@@ -86,13 +86,13 @@ class BuilderFunction extends BuilderAbstract
     /**
      * Adds multiple statements.
      *
-     * @param array $stmts The statements to add
+     * @param array $Statements The statements to add
      *
      * @return PHPParser\Builder_Function The builder instance (for fluid interface)
      */
-    public function addStmts(array $stmts) {
-        foreach ($stmts as $stmt) {
-            $this->addStmt($stmt);
+    public function addStatements(array $Statements) {
+        foreach ($Statements as $Statement) {
+            $this->addStatement($Statement);
         }
 
         return $this;
@@ -101,13 +101,13 @@ class BuilderFunction extends BuilderAbstract
     /**
      * Returns the built function node.
      *
-     * @return PHPParser\Node\Stmt_Function The built function node
+     * @return PHPParser\Node\Statement\FunctionStatement The built function node
      */
     public function getNode() {
-        return new Stmt_Function($this->name, array(
+        return new FunctionStatement($this->name, array(
             'byRef'  => $this->returnByRef,
             'params' => $this->params,
-            'stmts'  => $this->stmts,
+            'Statements'  => $this->Statements,
         ));
     }
 }

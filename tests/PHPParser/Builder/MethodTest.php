@@ -10,10 +10,10 @@ use PHPParser\Node\Expr_Print;
 
 use PHPParser\Node\Param;
 
-use PHPParser\Node\Stmt_Class;
+use PHPParser\Node\Statement\ClassStatement;
 
 use PHPParser\Builder\Builder_Method;
-use PHPParser\Node\Stmt\ClassMethod;
+use PHPParser\Node\Statement\ClassMethodStatement;
 
 class MethodTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,11 +30,11 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new ClassMethod('test', array(
-                'type' => Stmt_Class::MODIFIER_PUBLIC
-                        | Stmt_Class::MODIFIER_ABSTRACT
-                        | Stmt_Class::MODIFIER_STATIC,
-                'stmts' => null,
+            new ClassMethodStatement('test', array(
+                'type' => ClassStatement::MODIFIER_PUBLIC
+                        | ClassStatement::MODIFIER_ABSTRACT
+                        | ClassStatement::MODIFIER_STATIC,
+                'Statements' => null,
             )),
             $node
         );
@@ -46,9 +46,9 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new ClassMethod('test', array(
-                'type' => Stmt_Class::MODIFIER_PROTECTED
-                        | Stmt_Class::MODIFIER_FINAL
+            new ClassMethodStatement('test', array(
+                'type' => ClassStatement::MODIFIER_PROTECTED
+                        | ClassStatement::MODIFIER_FINAL
             )),
             $node
         );
@@ -59,8 +59,8 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new ClassMethod('test', array(
-                'type' => Stmt_Class::MODIFIER_PRIVATE
+            new ClassMethodStatement('test', array(
+                'type' => ClassStatement::MODIFIER_PRIVATE
             )),
             $node
         );
@@ -73,7 +73,7 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new ClassMethod('test', array(
+            new ClassMethodStatement('test', array(
                 'byRef' => true
             )),
             $node
@@ -92,27 +92,27 @@ class MethodTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertEquals(
-            new ClassMethod('test', array(
+            new ClassMethodStatement('test', array(
                 'params' => array($param1, $param2, $param3)
             )),
             $node
         );
     }
 
-    public function testStmts() {
-        $stmt1 = new Expr_Print(new String('test1'));
-        $stmt2 = new Expr_Print(new String('test2'));
-        $stmt3 = new Expr_Print(new String('test3'));
+    public function testStatements() {
+        $Statement1 = new Expr_Print(new String('test1'));
+        $Statement2 = new Expr_Print(new String('test2'));
+        $Statement3 = new Expr_Print(new String('test3'));
 
         $node = $this->createMethodBuilder('test')
-            ->addStmt($stmt1)
-            ->addStmts(array($stmt2, $stmt3))
+            ->addStatement($Statement1)
+            ->addStatements(array($Statement2, $Statement3))
             ->getNode()
         ;
 
         $this->assertEquals(
-            new ClassMethod('test', array(
-                'stmts' => array($stmt1, $stmt2, $stmt3)
+            new ClassMethodStatement('test', array(
+                'Statements' => array($Statement1, $Statement2, $Statement3)
             )),
             $node
         );
@@ -122,10 +122,10 @@ class MethodTest extends \PHPUnit_Framework_TestCase
      * @expectedException LogicException
      * @expectedExceptionMessage Cannot add statements to an abstract method
      */
-    public function testAddStmtToAbstractMethodError() {
+    public function testAddStatementToAbstractMethodError() {
         $this->createMethodBuilder('test')
             ->makeAbstract()
-            ->addStmt(new Expr_Print(new String('test')))
+            ->addStatement(new Expr_Print(new String('test')))
         ;
     }
 
@@ -133,9 +133,9 @@ class MethodTest extends \PHPUnit_Framework_TestCase
      * @expectedException LogicException
      * @expectedExceptionMessage Cannot make method with statements abstract
      */
-    public function testMakeMethodWithStmtsAbstractError() {
+    public function testMakeMethodWithStatementsAbstractError() {
         $this->createMethodBuilder('test')
-            ->addStmt(new Expr_Print(new String('test')))
+            ->addStatement(new Expr_Print(new String('test')))
             ->makeAbstract()
         ;
     }

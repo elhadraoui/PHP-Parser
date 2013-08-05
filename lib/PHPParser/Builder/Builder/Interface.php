@@ -2,7 +2,7 @@
 
 namespace PHPParser\Builder;
 
-use PHPParser\Node\Stmt_Interface;
+use PHPParser\Node\Statement_Interface;
 
 use PHPParser\Builder\BuilderAbstract;
 
@@ -43,23 +43,23 @@ class Builder_Interface extends BuilderAbstract
     /**
      * Adds a statement.
      *
-     * @param PHPParser\Node\Stmt|PHPParser\Builder $stmt The statement to add
+     * @param PHPParser\Node\Statement|PHPParser\Builder $Statement The statement to add
      *
      * @return PHPParser\Builder_Interface The builder instance (for fluid interface)
      */
-    public function addStmt($stmt) {
-        $stmt = $this->normalizeNode($stmt);
+    public function addStatement($Statement) {
+        $Statement = $this->normalizeNode($Statement);
 
-        $type = $stmt->getType();
+        $type = $Statement->getType();
         switch ($type) {
-            case 'Stmt_ClassConst':
-                $this->constants[] = $stmt;
+            case 'ClassStatementConst':
+                $this->constants[] = $Statement;
                 break;
 
-            case 'Stmt_ClassMethod':
+            case 'ClassStatementMethod':
                 // we erase all statements in the body of an interface method
-                $stmt->stmts = null;
-                $this->methods[] = $stmt;
+                $Statement->Statements = null;
+                $this->methods[] = $Statement;
                 break;
 
             default:
@@ -72,13 +72,13 @@ class Builder_Interface extends BuilderAbstract
     /**
      * Adds multiple statements.
      *
-     * @param array $stmts The statements to add
+     * @param array $Statements The statements to add
      *
      * @return PHPParser\Builder_Class The builder instance (for fluid interface)
      */
-    public function addStmts(array $stmts) {
-        foreach ($stmts as $stmt) {
-            $this->addStmt($stmt);
+    public function addStatements(array $Statements) {
+        foreach ($Statements as $Statement) {
+            $this->addStatement($Statement);
         }
 
         return $this;
@@ -87,12 +87,12 @@ class Builder_Interface extends BuilderAbstract
     /**
      * Returns the built class node.
      *
-     * @return PHPParser\Node\Stmt_Interface The built interface node
+     * @return PHPParser\Node\Statement_Interface The built interface node
      */
     public function getNode() {
-        return new Stmt_Interface($this->name, array(
+        return new Statement_Interface($this->name, array(
             'extends' => $this->extends,
-            'stmts' => array_merge($this->constants, $this->methods),
+            'Statements' => array_merge($this->constants, $this->methods),
         ));
     }
 }
