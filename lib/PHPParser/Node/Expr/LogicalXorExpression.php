@@ -1,12 +1,12 @@
 <?php
 
-namespace Expr;
+namespace Expression;
 
 /**
  * @property PHPParser\Node\Expr $left  The left hand side expression
  * @property PHPParser\Node\Expr $right The right hand side expression
  */
-class LogicalXor extends PHPParser\Node\Expr
+class LogicalXorExpression extends Expression
 {
     /**
      * Constructs a logical xor node.
@@ -15,7 +15,7 @@ class LogicalXor extends PHPParser\Node\Expr
      * @param PHPParser\Node\Expr $right      The right hand side expression
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $left, PHPParser\Node\Expr $right, array $attributes = array()) {
+    public function __construct(Expression $left, Expression $right, array $attributes = array()) {
         parent::__construct(
             array(
                 'left'  => $left,
