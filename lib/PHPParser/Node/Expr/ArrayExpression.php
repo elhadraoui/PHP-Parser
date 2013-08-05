@@ -1,16 +1,16 @@
 <?php
 
-namespace PHPParser\Node;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property Expr_ArrayItem[] $items Items
  */
-class Expr_Array extends Expr
+class ArrayExpression extends Expression
 {
     /**
      * Constructs an array node.
      *
-     * @param Expr_ArrayItem[] $items      Items of the array
+     * @param ArrayItemExpression[] $items      Items of the array
      * @param array                           $attributes Additional attributes
      */
     public function __construct(array $items = array(), array $attributes = array()) {
