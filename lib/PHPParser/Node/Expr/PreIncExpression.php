@@ -1,11 +1,11 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Expr $var Variable
  */
-class PreInc extends PHPParser\Node\Expr
+class PreIncExpression extends Expression
 {
     /**
      * Constructs a pre increment node.
@@ -13,7 +13,7 @@ class PreInc extends PHPParser\Node\Expr
      * @param PHPParser\Node\Expr $var        Variable
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $var, array $attributes = array()) {
+    public function __construct(Expression $var, array $attributes = array()) {
         parent::__construct(
             array(
                 'var' => $var
