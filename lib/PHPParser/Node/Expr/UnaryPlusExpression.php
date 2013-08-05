@@ -1,11 +1,11 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Expr $expr Expression
  */
-class UnaryPlus extends PHPParser\Node\Expr
+class UnaryPlusExpression extends Expression
 {
     /**
      * Constructs a unary plus node.
@@ -13,7 +13,7 @@ class UnaryPlus extends PHPParser\Node\Expr
      * @param PHPParser\Node\Expr $expr       Expression
      * @param array               $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $expr, array $attributes = array()) {
+    public function __construct(Expression $expr, array $attributes = array()) {
         parent::__construct(
             array(
                 'expr' => $expr
