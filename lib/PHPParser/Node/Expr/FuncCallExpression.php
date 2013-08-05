@@ -1,12 +1,12 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Name|PHPParser\Node\Expr $name Function name
  * @property PHPParser\Node\Arg[]                    $args Arguments
  */
-class FuncCall extends PHPParser\Node\Expr
+class FuncCallExpression extends Expression
 {
     /**
      * Constructs a function call node.
