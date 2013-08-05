@@ -1,13 +1,13 @@
 <?php
 
-namespace PHPParser\Node\Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property array $parts Encapsed string array
  */
-use PHPParser\Node\Expr;
+use PHPParser\Node\Expression;
 
-class ShellExec extends Expr
+class ShellExecExpression extends Expression
 {
     /**
      * Constructs a shell exec (backtick) node.
