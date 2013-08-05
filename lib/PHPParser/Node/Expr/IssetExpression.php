@@ -1,11 +1,11 @@
 <?php
 
-namespace PHPParser\Node;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Expr[] $vars Variables
  */
-class Expr_Isset extends PHPParser\Node\Expr
+class IssetExpression extends Expression
 {
     /**
      * Constructs an array node.
