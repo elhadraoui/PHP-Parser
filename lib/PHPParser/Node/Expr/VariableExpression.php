@@ -1,11 +1,11 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property string|PHPParser\Node\Expr $name Name
  */
-class Variable extends PHPParser\Node\Expr
+class VariableExpression extends Expression
 {
     /**
      * Constructs a variable node.
