@@ -1,12 +1,12 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property null|PHPParser\Node\Expr $value Value expression
  * @property null|PHPParser\Node\Expr $key   Key expression
  */
-class Yield extends PHPParser\Node\Expr
+class YieldExpression extends Expression
 {
     /**
      * Constructs a yield expression node.
@@ -15,7 +15,7 @@ class Yield extends PHPParser\Node\Expr
      * @param null|PHPParser\Node\Expr $key        Key expression
      * @param array                    $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $value = null, PHPParser\Node\Expr $key = null, array $attributes = array()) {
+    public function __construct(Expression  $value = null, Expression $key = null, array $attributes = array()) {
         parent::__construct(
             array(
                 'key'   => $key,
