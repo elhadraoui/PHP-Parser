@@ -1,12 +1,12 @@
 <?php
 
-namespace PHPParser\Node;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Expr $expr  Expression
  * @property PHPParser\Node\Name|PHPParser\Node\Expr $class Class name
  */
-class Expr_Instanceof extends PHPParser\Node\Expr
+class InstanceofExpression extends Expression
 {
     /**
      * Constructs an instanceof check node.
@@ -15,7 +15,7 @@ class Expr_Instanceof extends PHPParser\Node\Expr
      * @param PHPParser\Node\Name|PHPParser\Node\Expr $class      Class name
      * @param array                                   $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $expr, $class, array $attributes = array()) {
+    public function __construct(Expression $expr, $class, array $attributes = array()) {
         parent::__construct(
             array(
                 'expr'  => $expr,
