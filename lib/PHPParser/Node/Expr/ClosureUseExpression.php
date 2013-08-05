@@ -1,12 +1,12 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property string $var   Name of variable
  * @property bool   $byRef Whether to use by reference
  */
-class ClosureUse extends PHPParser\Node\Expr
+class ClosureUseExpression extends Expression
 {
     /**
      * Constructs a closure use node.
