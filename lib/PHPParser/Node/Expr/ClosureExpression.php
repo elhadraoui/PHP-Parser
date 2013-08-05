@@ -1,6 +1,6 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node[]                 $Statements  Statements
@@ -9,7 +9,7 @@ namespace Expr;
  * @property bool                             $byRef  Whether to return by reference
  * @property bool                             $static Whether the closure is static
  */
-class Closure extends PHPParser\Node\Expr
+class ClosureExpression extends Expression
 {
     /**
      * Constructs a lambda function node.
