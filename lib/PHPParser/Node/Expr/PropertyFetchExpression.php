@@ -1,12 +1,12 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Expr        $var  Variable holding object
  * @property string|PHPParser\Node\Expr $name PropertyStatement Name
  */
-class PropertyStatementFetch extends PHPParser\Node\Expr
+class PropertyStatementFetchExpression extends Expression
 {
     /**
      * Constructs a function call node.
@@ -15,7 +15,7 @@ class PropertyStatementFetch extends PHPParser\Node\Expr
      * @param string|PHPParser\Node\Expr $name       PropertyStatement name
      * @param array                      $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $var, $name, array $attributes = array()) {
+    public function __construct(Expression $var, $name, array $attributes = array()) {
         parent::__construct(
             array(
                 'var'  => $var,
