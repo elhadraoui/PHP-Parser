@@ -1,13 +1,13 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Expr        $var  Variable holding object
  * @property string|PHPParser\Node\Expr $name Method name
  * @property PHPParser\Node\Arg[]       $args Arguments
  */
-class MethodCall extends PHPParser\Node\Expr
+class MethodCallExpression extends Expression
 {
     /**
      * Constructs a function call node.
@@ -17,7 +17,7 @@ class MethodCall extends PHPParser\Node\Expr
      * @param PHPParser\Node\Arg[]       $args       Arguments
      * @param array                      $attributes Additional attributes
      */
-    public function __construct(PHPParser\Node\Expr $var, $name, array $args = array(), array $attributes = array()) {
+    public function __construct(Expression $var, $name, array $args = array(), array $attributes = array()) {
         parent::__construct(
             array(
                 'var'  => $var,
