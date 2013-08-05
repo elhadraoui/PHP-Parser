@@ -1,12 +1,12 @@
 <?php
 
-namespace Expr;
+namespace PHPParser\Node\Expression;
 
 /**
  * @property PHPParser\Node\Name|PHPParser\Node\Expr $class Class name
  * @property string|PHPParser\Node\Expr              $name  PropertyStatement name
  */
-class StaticPropertyStatementFetch extends PHPParser\Node\Expr
+class StaticPropertyStatementFetchExpression extends Expression
 {
     /**
      * Constructs a static property fetch node.
